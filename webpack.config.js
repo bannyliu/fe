@@ -23,24 +23,24 @@ module.exports = {
     // contentBase: '/Users/Felix/Desktop/fengfan/dev/build',
     contentBase: './build',
     host: 'localhost',
-    port: 7000,
-    proxy: {
-      '/api': {
-        // target: 'http://quanzs.xicp.net/',
-        target: 'http://localhost:9000',
-        changeOrigin: true
-      },
-      '/mock': {
-        target: 'http://localhost:9000',
-        pathRewrite: {'^/mock': ''}
-      },
-      '/nodejs': {
-        target: 'http://localhost:9000',
-        changeOrigin: true,
-        pathRewrite: {'^/nodejs': ''}
-      }
-    }
-  },
+    port: 7000
+  //   proxy: {
+  //     '/api': {
+  //       // target: 'http://quanzs.xicp.net/',
+  //       target: 'http://localhost:9000',
+  //       changeOrigin: true
+  //     },
+  //     '/mock': {
+  //       target: 'http://localhost:9000',
+  //       pathRewrite: {'^/mock': ''}
+  //     },
+  //     '/nodejs': {
+  //       target: 'http://localhost:9000',
+  //       changeOrigin: true,
+  //       pathRewrite: {'^/nodejs': ''}
+  //     }
+  //   }
+   },
 
   //模块
   module: {
