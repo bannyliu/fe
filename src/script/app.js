@@ -17,6 +17,13 @@ import QandaAdd from './components/qanda/qandaAdd'
 import JobList from './components/job/jobList'
 // import QandaDetail from './components/qanda/qandaDetail'
 
+import Users from './components/users/Users'
+import Signin from './components/users/Signin'
+import Forgotpwd from './components/users/Forgotpwd'
+import Resetpwd from './components/users/Resetpwd'
+
+//console.log(Users)
+
 ReactDOM.render((
   <Provider store={store().store}>
     <Router history={hashHistory}>
@@ -40,6 +47,13 @@ ReactDOM.render((
           <Route path="list" component={JobList}></Route>
           {/* <Route path="job/:id" component={QandaDetail}></Route> */}
         </Route>
+      </Route>
+       {/* 登录 users*/}
+      <Route path="/users" component={Users}>
+        <IndexRedirect to="signin" />
+        <Route path="signin" component={Signin}></Route>
+        <Route path="forgotpwd" component={Forgotpwd}></Route>
+        <Route path="resetpwd" component={Resetpwd}></Route>
       </Route>
     </Router>
   </Provider>
