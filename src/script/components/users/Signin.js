@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 
+import {Link} from "react-router"
 
 export default class Signin extends Component {
   render() {
@@ -11,7 +12,7 @@ export default class Signin extends Component {
       	<span className="signin_xian"></span>
       	<input type="button" className="signin_login" value="登录" />
       	<b></b>
-      	<a>忘记密码</a>
+      	<Link to="/users/forgotpwd">忘记密码</Link>
       </div>
     )
   }
