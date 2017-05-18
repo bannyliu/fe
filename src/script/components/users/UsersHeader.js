@@ -10,6 +10,9 @@ export default class UsersHeader extends Component {
       		<img src="./images/logo_left.png" />
       		<img src="./images/logo_right.png" />
       	</div>
+      	<div className="logo_name">
+      		<img src="./images/login_fengfan.png"/>
+      	</div>
       </div>
     )
   }
