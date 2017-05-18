@@ -23,6 +23,7 @@ module.exports = {
     // contentBase: '/Users/Felix/Desktop/fengfan/dev/build',
     contentBase: './build',
     host: 'localhost',
+
     port: 7000
   //   proxy: {
   //     '/api': {
@@ -41,6 +42,7 @@ module.exports = {
   //     }
   //   }
    },
+
 
   //模块
   module: {
