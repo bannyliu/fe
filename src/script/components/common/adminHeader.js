@@ -1,6 +1,14 @@
 import React,{Component} from 'react'
+import { Menu, Icon } from 'antd'
+import {Link} from 'react-router'
+
+
 
 class AdminHeader extends Component{
+  handleClick = (e) => {
+   console.log('click ', e)
+  }
+
   render(){
     return (
       <div className="m-adminHeader">
@@ -8,10 +16,10 @@ class AdminHeader extends Component{
           <img src="./images/logo.png" alt="锋帆logo"/>
         </div>
         <ul className="adminNav">
-          <li><a>后台首页</a></li>
-          <li><a>视频管理</a></li>
-          <li><a>招聘管理</a></li>
-          <li><a>面试题管理</a></li>
+          <li><Link to="/admin">后台首页</Link></li>
+          <li><Link to="/admin/video">视频管理</Link></li>
+          <li><Link to="/admin/recruit">招聘管理</Link></li>
+          <li><Link to="/admin/interviewq">面试题管理</Link></li>
         </ul>
       </div>
     )
