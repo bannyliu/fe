@@ -1,5 +1,6 @@
 import React,{Component} from 'react'
 import AdminHeader from '../common/adminHeader'
+import Footer from '../common/Footer'
 
 class Admin extends Component{
   render(){
@@ -7,6 +8,7 @@ class Admin extends Component{
       <div className="m-admin">
         <AdminHeader/>
         {this.props.children}
+        <Footer/>
       </div>
     )
   }
