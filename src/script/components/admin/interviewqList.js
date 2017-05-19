@@ -84,6 +84,11 @@ class AdminInterviewq extends Component{
     }
   }
 
+  delete(){
+    console.log(1)
+  }
+
+
   render(){
     return (
       <div className="m-adInterviewq">
