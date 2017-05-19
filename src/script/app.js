@@ -18,7 +18,7 @@ import VideoList from './components/video/List'
 import QandaList from './components/qanda/qandaList'
 import QandaDetail from './components/qanda/qandaDetail'
 import QandaAdd from './components/qanda/qandaAdd'
-
+//admin 后台登录
 import Admin from './components/admin/admin'
 import InterviewqList from './components/admin/interviewqList'
 import InterviewqAdd from './components/admin/interviewqAdd'
@@ -27,6 +27,11 @@ import RecruitAdd from './components/admin/recruitAdd'
 import Vlist from './components/admin/videoList'
 import Vadd from './components/admin/videoAdd'
 import Vclassify from './components/admin/videoClassify'
+//search 搜索
+import Search from './components/search/search'
+
+
+
 
 
 //job 招聘
@@ -70,6 +75,11 @@ ReactDOM.render((
         <Route path="job">
           <Route path="list" component={JobList}></Route>
           {/* <Route path="job/:id" component={QandaDetail}></Route> */}
+        </Route>
+
+        {/* 搜索 search*/}
+        <Route path="search">
+          <Route path="list" component={Search}></Route>
         </Route>
       </Route>
 

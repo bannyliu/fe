@@ -1,3 +1,5 @@
+@oddColor:#49b0f7;
+@evenColor:#ff8a0c;
 .m-indexlist{
     width: 100%;
     box-sizing: border-box;
@@ -39,6 +41,159 @@
       width:119px;
       height:50px;
       margin:13px auto 0;
+    }
+    .banner_slogan{
+      font-size:36px;
+      color:#fff;
+      font-family:PingFangSC-Regular;
+      opacity:.8;
+      filter:alpha(opacity=80);
+      -moz-opacity:.8;
+      -khtml-opacity:.8;
+      text-align:center;
+      margin-top:10px;
+      span{
+        height:100%;
+        i{
+          font-style:normal;
+          font-size:48px;
+        }
+      }
+    }
+    .banner_line{
+      height:1px;
+      border:1px solid #fff;
+      width:122px;
+      margin:15px auto 0;
+      opacity:.5;
+      filter:alpha(opacity=50);
+      -moz-opacity:.5;
+      -khtml-opacity:.5;
+    }
+  }
+  .index_suggest{
+    margin-top:43px;
+    overflow:hidden;
+    .index_list{
+      .index_vedio{
+        float:left;
+        width:357px;
+        margin-top:22px;
+        dl{
+          margin-left:3px;
+          dt{
+            position:relative;
+            .background{
+              width:100%;
+              height:267px;
+            }
+            .video{
+              position:absolute;
+              top:50%;
+              left:50%;
+              margin-left:-45px;
+              margin-top:-45px;
+              cursor:pointer;
+            }
+            .corner{
+              position:absolute;
+              top:50%;
+              left:50%;
+              margin-left:-9px;
+              margin-top:-15px;
+              cursor:pointer;
+            }
+          }
+          dd{
+            width:338px;
+            font-family:PingFangSC-Regular;
+            text-align:left;
+          }
+          .vedio_title{
+            font-size:24px;
+            color:#000000;
+            letter-spacing:0.29px;
+          }
+          .vedio_time{
+            font-family:PingFangSC-Regular;
+            font-size:16px;
+            color:#4b98f8;
+            letter-spacing:0.19px;
+            text-align:left;
+          }
+          .vedio_decription{
+            font-family:PingFangSC-Regular;
+            font-size:16px;
+            color:rgba(0,0,0,0.50);
+            letter-spacing:0.19px;
+            text-align:left;
+          }
+        }
+      }
+
+    }
+  }
+  .index_news{
+    margin-top:80px;
+    opacity:0.5;
+    background:#f1f1f1;
+    width:100%;
+    height:700px;
+    padding-top:40px;
+    .news_list:nth-of-type(2n){
+      float:left;
+      width:470px;
+      .news_content{
+        margin-top:22px;
+        border-top:5px solid #fff;
+        border-top-color:@evenColor;
+        box-sizing:border-box;
+        padding:24px 20px 0;
+        background:#ffffff;
+        width:470px;
+        height:600px;
+        .news_content_list{
+          font-family:PingFangSC-Regular;
+          font-size:14px;
+          color:rgba(0,0,0,0.50);
+          letter-spacing:0.17px;
+          text-align:left;
+          .news_content_time{
+            color:@evenColor;
+          }
+        }
+      }
+      .index_title{
+        border-left:5px solid @evenColor;
+        p{
+          color:@evenColor;
+        }
+      }
+    }
+    .news_list:nth-of-type(2n+1){
+      width:470px;
+      float:left;
+      margin-right:13px;
+      .news_content{
+        margin-top:22px;
+        border-top:5px solid #fff;
+        border-top-color: @oddColor;
+        box-sizing:border-box;
+        padding:24px 20px 0;
+        background:#ffffff;
+        width:470px;
+        height:600px;
+        .news_content_list{
+          font-family:PingFangSC-Regular;
+          font-size:14px;
+          color:rgba(0,0,0,0.50);
+          letter-spacing:0.17px;
+          text-align:left;
+          .news_content_time{
+            color:@oddColor;
+          }
+        }
+      }
     }
   }
 }
