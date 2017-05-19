@@ -1,77 +1,87 @@
 import React,{Component} from 'react'
-import { Table, Icon , Pagination} from 'antd'
-import { Button } from 'antd'
-const columns = [
-  {
-  title: '分类信息',
-  dataIndex: 'name',
-  key: 'name',
-  render: text => <a>{text}</a>,
-  },
-  {
-  title: '删除',
-  key: 'action',
-  render: (text, record) => (
-    <span>
-      <a  className="delete">X</a>
-    </span>
-  ),
-  }
-]
-
-const data = [
-  {
-   key: '1',
-   name: 'VUE实战1',
-  },
-  {
-   key: '2',
-   name: 'VUE实战2',
-  },
-  {
-   key: '3',
-   name: 'VUE实战3',
- },
- {
-  key: '4',
-  name: 'VUE实战4',
- },
-  {
-   key: '5',
-   name: 'VUE实战5',
- },
- {
-  key: '6',
-  name: 'VUE实战6',
-  },
-  {
-   key: '7',
-   name: 'VUE实战7',
-  },
-  {
-   key: '8',
-   name: 'VUE实战8',
-  }
-]
-
-
+import List from './list'
 
 class VideoList extends Component{
   constructor(props){
     super(props)
-
+    this.state={
+      pagination:{
+        pageSize:4
+      },
+      title:"视频管理/内容列表",
+      columns:[
+        {
+        title: '标题',
+        dataIndex: 'name',
+        key: 'name',
+        width:304,
+        render: text => <a>{text}</a>,
+        },
+        {
+          title: '日期',
+          dataIndex: 'date',
+          key: 'date',
+          width:304,
+        },
+        {
+        title: '操作',
+        key: 'action',
+        width:304,
+        render: (text, record) => (
+          <span>
+            <a  className="update" onClick={this.update.bind(this)}>修改</a>
+            <a  className="delete" onClick={this.delete.bind(this)}>删除</a>
+          </span>
+        ),
+        }
+      ],
+      data:[
+        {
+         key: '1',
+         name: 'VUE实战1',
+         date: "4.20",
+        },
+        {
+         key: '2',
+         name: 'VUE实战2',
+         date: "4.20",
+        },
+        {
+         key: '3',
+         name: 'VUE实战3',
+         date: "4.20",
+       },
+       {
+        key: '4',
+        name: 'VUE实战4',
+        date: "4.20",
+       },
+        {
+         key: '5',
+         name: 'VUE实战5',
+         date: "4.20",
+       }
+      ]
+    }
   }
+
+  //视频管理修改操作
+  update(){
+    this.props.router.push('/admin/video/add')
+  }
+
+
+
+  //视频管理删除操作
+  delete(){
+    console.log(2)
+  }
+
+
   render(){
     return (
-      <div className="m-adVideo">
-        <div className="container">
-          <div className="tit">视频管理/内容列表</div>
-          <div className="tip">分类列表</div>
-          <Table columns={columns} dataSource={data} pagination={false} />
-          <div className="addTip">分类添加</div>
-          <div className="txt"><input type="text" /></div>
-          <Button type="primary">提交</Button>
-        </div>
+      <div className="m-videoList">
+        <List columns={this.state.columns} data={this.state.data} title={this.state.title}></List>
       </div>
     )
   }
