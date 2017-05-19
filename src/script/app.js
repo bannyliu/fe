@@ -28,6 +28,15 @@ import AdminVideoAdd from './components/admin/adminVideoAdd'
 //search 搜索
 import Search from './components/search/search'
 
+import InterviewqList from './components/admin/interviewqList'
+import InterviewqAdd from './components/admin/interviewqAdd'
+import RecruitList from './components/admin/recruitList'
+import RecruitAdd from './components/admin/recruitAdd'
+import Vlist from './components/admin/videoList'
+import Vadd from './components/admin/videoAdd'
+import Vclassify from './components/admin/videoClassify'
+
+
 
 //job 招聘
 
@@ -81,12 +90,26 @@ ReactDOM.render((
 
       {/* 后台管理 admin*/}
       <Router path="admin" component={Admin}>
-        <IndexRedirect to="/admin/interviewq" />
-        <Route path="interviewq" component={AdminInterviewq}></Route>
-        <Route path="recruit" component={AdminRecruit}></Route>
-        <Route path="recruitAdd" component={AdminRecruitAdd}></Route>
-        <Route path="video" component={AdminVideo}></Route>
-        <Route path="videoAdd" component={AdminVideoAdd}></Route>
+        <IndexRedirect to="/admin/video" />
+        {/* 视频管理 */}
+        <Route path="video">
+          <IndexRedirect to="/admin/video/classify" />
+          <Route path="classify" component={Vclassify}></Route>
+          <Route path="list" component={Vlist}></Route>
+          <Route path="add" component={Vadd}></Route>
+        </Route>
+        {/* 招聘管理 */}
+        <Route path="recruit">
+          <IndexRedirect to="/admin/recruit/list" />
+          <Route path="list" component={RecruitList}></Route>
+          <Route path="add" component={RecruitAdd}></Route>
+        </Route>
+        {/* 面试题管理 */}
+        <Route path="interviewq">
+          <IndexRedirect to="/admin/interviewq/list" />
+          <Route path="list" component={InterviewqList}></Route>
+          <Route path="add" component={InterviewqAdd}></Route>
+        </Route>
       </Router>
 
        {/* 登录 users*/}

@@ -35,6 +35,10 @@ class qandaList extends React.Component {
 
     this.state = {
       data: [],
+      curIndex:1,
+      pagination:{
+        pageSize:6
+      },
       columns : [{
         title: '主题',
         dataIndex: 'title',
@@ -51,7 +55,7 @@ class qandaList extends React.Component {
         key: 'createDate',
       },
       {
-        title: '点击()/回帖()',
+        title: '点击/回帖',
         dataIndex: 'action',
         key: 'action',
       }
@@ -59,17 +63,17 @@ class qandaList extends React.Component {
     };
 
     // 获取数据
-    this.getData();
-  };
-
-  getData() {
-    Axios.get('/api/qanda/list', {
+    this.getData({
+      //通过标签值来获取对应的数据
       condition: 'react',
       start: 0,
       count: 10
-    }, (res)=>{
-      console.log(res.data.data);
+    });
+  };
 
+  getData(mes) {
+    Axios.get('/api/qanda/list',mes, (res)=>{
+      // console.log(res.data.data);
       var listData = res.data.data.subjects.map((comment, index) => {
         return {
           id: comment.id,
@@ -80,32 +84,50 @@ class qandaList extends React.Component {
           action: comment.hits + '/' + comment.answers,
         }
       });
-      console.log(listData);
-
+      // console.log(listData);
       this.setState({
         data: listData
       });
-
     })
   };
 
+//通过点击标签来改变table中的数据源
+  changeTag(tag,index){
+    this.setState({
+      curIndex:index
+    })
+    console.log(tag)
+
+    this.getData({
+      condition:tag,
+      start:0,
+      count:10
+    })
+  }
+
   render() {
+    let tagData = [{id:1,tag:"PHP"},{id:2,tag:"HTML5"},{id:3,tag:"VUE"},{id:4,tag:"JS"}]
+    let tagList = tagData.map((item,index)=>{
+      return (
+        <li><i id={index} className={this.state.curIndex==index?"active":""} onClick={this.changeTag.bind(this,item.tag,index)}>{item.tag}</i></li>
+      )
+
+    })
     return (
       <div className="m-qanda-list">
+        <div className="go-q">
+          <Link to="/qanda/add"><img src="/images/goq.png" /></Link>
+        </div>
         <div className="nav">
           <div className="cat">
             <h1 className="title">标签</h1>
             <ul className="content">
-              <li>PHP</li>
-              <li><i>HTML5</i></li>
-              <li>VUE</li>
-              <li>JS</li>
+              {tagList}
             </ul>
           </div>
-
         </div>
         <div className="list">
-          <Table columns={this.state.columns} dataSource={this.state.data} />
+          <Table columns={this.state.columns} dataSource={this.state.data} pagination={this.state.pagination}/>
           {/* <Pagination defaultCurrent={1} total={50} /> */}
         </div>
       </div>
