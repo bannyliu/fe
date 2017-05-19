@@ -29,8 +29,8 @@ module.exports = {
 
 
          '/api': {
-           target: 'http://quanzs.xicp.net/',
-//         target: 'http://localhost:9000',
+          //  target: 'http://quanzs.xicp.net/',
+        target: 'http://localhost:9000',
            changeOrigin: true
          }
 //       '/mock': {

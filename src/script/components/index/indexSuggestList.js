@@ -7,6 +7,9 @@ import Axios from 'axios'
 class IndexSuggestList extends Component{
   constructor(props){
     super(props)
+    this.state={
+      
+    }
   }
   render(){
     return(
