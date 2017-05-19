@@ -2,8 +2,8 @@ import React, {Component} from 'react'
 
 import {Link} from "react-router"
 
-import Axios from "../../utils/axios.util.js"
-//console.log(Axios)//ok
+import utilAxios from "../../utils/axios.util.js"
+console.log(utilAxios)//ok
 
 export default class Signin extends Component {
 	constructor(props) {
@@ -22,6 +22,19 @@ export default class Signin extends Component {
 			password:userspwd
 		}
 //		console.log(data)
+		utilAxios.lgypost({
+        url: '/api/users/signin',
+        method: 'get',
+//      data: `username=${this.username}&password=${this.password}`,
+		data:data,
+        callback: function (res) {
+        	console.log(res)
+//        if (res.data.username) {
+//          localStorage.setItem('username', res.data.username)
+//          that.storeName = res.data.username
+//        }
+        }
+      })
 
 	}
 	
