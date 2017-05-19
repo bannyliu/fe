@@ -26,6 +26,7 @@ module.exports = {
 
     port: 7000,
     proxy: {
+
          '/api': {
            target: 'http://quanzs.xicp.net/',
 //         target: 'http://localhost:9000',
@@ -41,6 +42,7 @@ module.exports = {
 //         pathRewrite: {'^/nodejs': ''}
 //       }
        }
+
    },
 
 
