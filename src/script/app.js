@@ -20,14 +20,6 @@ import QandaDetail from './components/qanda/qandaDetail'
 import QandaAdd from './components/qanda/qandaAdd'
 //admin 后台登录
 import Admin from './components/admin/admin'
-import AdminInterviewq from './components/admin/adminInterviewq'
-import AdminRecruit from './components/admin/adminRecruit'
-import AdminRecruitAdd from './components/admin/adminRecruitAdd'
-import AdminVideo from './components/admin/adminVideo'
-import AdminVideoAdd from './components/admin/adminVideoAdd'
-//search 搜索
-import Search from './components/search/search'
-
 import InterviewqList from './components/admin/interviewqList'
 import InterviewqAdd from './components/admin/interviewqAdd'
 import RecruitList from './components/admin/recruitList'
@@ -35,6 +27,10 @@ import RecruitAdd from './components/admin/recruitAdd'
 import Vlist from './components/admin/videoList'
 import Vadd from './components/admin/videoAdd'
 import Vclassify from './components/admin/videoClassify'
+//search 搜索
+import Search from './components/search/search'
+
+
 
 
 
