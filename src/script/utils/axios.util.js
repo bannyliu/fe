@@ -24,7 +24,7 @@ const Axios = {
       console.log(error);
     })
   },
-  lgypost: (param)=>{//lgy加入
+  lgypost: (param)=>{//lgy加入，用于登录
     axios({
       url: param.url,
       method: param.method,

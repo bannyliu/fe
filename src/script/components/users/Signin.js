@@ -3,16 +3,18 @@ import React, {Component} from 'react'
 import {Link} from "react-router"
 
 import utilAxios from "../../utils/axios.util.js"
-console.log(utilAxios)//ok
+
+import {hashHistory} from 'react-router'
+//console.log(hashHistory)//ok
 
 export default class Signin extends Component {
 	constructor(props) {
-    super(props)
+    	super(props)
 //  this.state = {
 //    username: localStorage.getItem('username')
 //  }
-  }
-	
+ 	 }
+	//登录功能
 	login(){
 //		console.log(this)
 		let usersemail= this.refs.usersemail.value
@@ -21,18 +23,24 @@ export default class Signin extends Component {
 			username:usersemail,
 			password:userspwd
 		}
-//		console.log(data)
+		//目前接口有问题，只是做了逻辑的处理
 		utilAxios.lgypost({
         url: '/api/users/signin',
         method: 'get',
 //      data: `username=${this.username}&password=${this.password}`,
-		data:data,
+		data:JSON.stringify(data),
         callback: function (res) {
         	console.log(res)
-//        if (res.data.username) {
-//          localStorage.setItem('username', res.data.username)
-//          that.storeName = res.data.username
-//        }
+        	if(res.errcode){
+        		//存储
+        		 localStorage.setItem('username', res.data.username)
+        		 //跳转首页
+        		 hashHistory.push("/")
+        	}else{
+        		//打印错误信息
+        		console.log(res.errmsg)
+        	}
+
         }
       })
 
@@ -45,15 +53,13 @@ export default class Signin extends Component {
       	<span className="signin_xian"></span>
       	<input type="password" ref="userspwd" placeholder="请输入登录密码"/>
       	<span className="signin_xian"></span>
-      	<input type="button" className="signin_login" onClick={this. login.bind(this)} value="登录" />
+      	<input type="button" className="signin_login" onClick={this.login.bind(this)} value="登录" />
       	<b></b>
       	<Link to="/users/forgotpwd">忘记密码</Link>
       </div>
     )
   }
-  componentDidMount() {
 
-  }
 
 }
 
