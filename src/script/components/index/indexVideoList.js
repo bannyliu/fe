@@ -12,20 +12,23 @@ class IndexVideoList extends Component{
   }
   indexVideo(list){
     return list.map((value,index)=>{
-      return(
-        <div className="index_vedio">
+      if(index<3){
+
+        return(
+          <div className="index_vedio">
           <dl>
-            <dt>
-              <img className="background" src={value.img}/>
-              <img className="video" src="/images/video.png"/>
-              <img className="corner" src="/images/corner.png"/>
-            </dt>
-            <dd className="vedio_title">{value.title}</dd>
-            <dd className="vedio_time">{value.createDate}</dd>
-            <dd className="vedio_decription">{value.summary}</dd>
+          <dt>
+          <img className="background" src={value.img}/>
+          <img className="video" src="/images/video.png"/>
+          <img className="corner" src="/images/corner.png"/>
+          </dt>
+          <dd className="vedio_title">{value.title}</dd>
+          <dd className="vedio_time">{value.createDate}</dd>
+          <dd className="vedio_decription">{value.summary}</dd>
           </dl>
-        </div>
-      )
+          </div>
+        )
+      }
     })
   }
   render(){

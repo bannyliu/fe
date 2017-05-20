@@ -13,9 +13,9 @@ class SearchContent extends Component{
         "job":false
       },
       total:0,
-      videoData:{},
-      jobData:{},
-      qandaData:{}
+      videoData:null,
+      jobData:null,
+      qandaData:null
     }
   }
   render(){
@@ -36,7 +36,7 @@ class SearchContent extends Component{
     )
   }
   componentDidMount(){
-    console.log(1)
+    // console.log(1)
     let that = this
     let tab = this.props.tab
     let query = this.props.data

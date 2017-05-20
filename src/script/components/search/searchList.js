@@ -19,8 +19,12 @@ class SearchQanda extends Component{
   }
   componentDidMount(){
     let that = this
-    console.log(this)
+    // console.log(this)
+    // if(this){
+    //   console.log(this.props.data)
+    // }
     setTimeout(function(){
+      console.log(that.props)
       let dataSource = that.props.data.subjects
       let NewDataSource = []
       for(let i = 0 ; i < dataSource.length ; i ++){
