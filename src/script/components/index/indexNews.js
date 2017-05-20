@@ -5,8 +5,8 @@ class IndexNews extends Component{
   render(){
     return(
       <ul className="index_news">
-        <IndexNewsList />
-        <IndexNewsList />
+        <IndexNewsList title="推荐视频" tabs="video"/>
+        <IndexNewsList title="最新面试题" tabs="interview"/>
       </ul>
     )
   }

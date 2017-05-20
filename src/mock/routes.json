@@ -2,5 +2,7 @@
   "/api/video/list": "/videolist",
   "/api/qanda/list": "/qandalist",
   "/api/qanda/detail": "/qandadetail",
-  "/api/qanda/reply": "/qandareply"
+  "/api/qanda/reply": "/qandareply",
+  "/api/job/list": "/joblist",
+  "/api/interview/list": "/interviewlist"
 }
