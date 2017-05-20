@@ -28,8 +28,8 @@ class AdminHeader extends Component{
           <li>
             <Link to="/admin/recruit" activeClassName="active">招聘管理</Link>
               <ul>
-                <li><Link to="/admin/recruit/list">内容列表</Link></li>
-                <li><Link to="/admin/recruit/add">内容添加</Link></li>
+                <li><Link to="/admin/job/list">内容列表</Link></li>
+                <li><Link to="/admin/job/add">内容添加</Link></li>
               </ul>
           </li>
             <li>

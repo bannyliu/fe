@@ -17,7 +17,7 @@ class AdminRecruitAdd extends Component{
 
   render(){
     return (
-      <div className="m-recruitAdd">
+      <div className="m-recruitAdd add">
         <Add title={this.state.title} addHandle={this.add.bind(this)}></Add>
       </div>
     )

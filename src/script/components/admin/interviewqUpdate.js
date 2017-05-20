@@ -1,11 +1,12 @@
 import React,{Component} from 'react'
 import Add from './add'
+import Update from './update'
 
-class InterviewqAdd extends Component{
+class InterViewqUpdate extends Component{
   constructor(props){
     super(props)
     this.state={
-      title:"面试题管理/内容添加"
+      title:"面试题管理/内容修改"
     }
   }
 
@@ -18,11 +19,11 @@ class InterviewqAdd extends Component{
 
   render(){
     return (
-      <div className="m-interviewqAdd add">
-        <Add title={this.state.title} addHandle={this.add.bind(this)}></Add>
+      <div className="m-update">
+        <Update title={this.state.title}></Update>
       </div>
     )
   }
 }
 
-export default InterviewqAdd
+export default InterViewqUpdate

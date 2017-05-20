@@ -12,14 +12,11 @@ class List extends Component{
     }
   }
 
-  delete(){
-    console.log(1)
-  }
 
 
   render(){
     return (
-        <div className="adContainer">
+        <div className="listContainer">
           <div className="tit">{this.props.title}</div>
           <div className="list"></div>
           <Table columns={this.props.columns} dataSource={this.props.data} pagination={this.state.pagination}/>
