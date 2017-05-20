@@ -4,5 +4,6 @@
   "/api/qanda/detail": "/qandadetail",
   "/api/qanda/reply": "/qandareply",
   "/api/job/list": "/joblist",
-  "/api/interview/list": "/interviewlist"
+  "/api/interviewq/list": "/interviewqlist",
+  "/api/search":"/search"
 }

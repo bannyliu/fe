@@ -3,7 +3,7 @@ import IndexCommonTitle from './indexCommon'
 import AxiosUtils from '../../utils/axios.util'
 import Axios from 'axios'
 
-class IndexSuggestList extends Component{
+class IndexVideoList extends Component{
   constructor(props){
     super(props)
     this.state={
@@ -39,8 +39,12 @@ class IndexSuggestList extends Component{
   componentDidMount(){
     let that = this
     Axios({
-      url:"/api/api/videolist",
-      method:'get'
+      url:"/api/video/list",
+      method:'get',
+      data:{
+        start:0,
+        count:3
+      }
     })
     .then(function(res){
       that.setState({
@@ -49,4 +53,4 @@ class IndexSuggestList extends Component{
     })
   }
 }
-export default IndexSuggestList
+export default IndexVideoList

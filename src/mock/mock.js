@@ -3,7 +3,8 @@ var qandaList = require('./qanda/qandaList.json');
 var qandaDetail = require('./qanda/qandaDetail.json');
 var qandaReply = require('./qanda/qandaReply.json');
 var jobList = require('./job/jobList.json');
-var interviewList = require('./interview/interviewList.json')
+var interviewqList = require('./interviewq/interviewqList.json');
+var searchList = require('./search/searchList.json')
 
 module.exports = function () {
   return {
@@ -12,6 +13,7 @@ module.exports = function () {
     'qandadetail': qandaDetail,
     'qandareply': qandaReply,
     'joblist':jobList,
-    'interviewlist':interviewList
+    'interviewqlist':interviewqList,
+    'search':searchList
   }
 }

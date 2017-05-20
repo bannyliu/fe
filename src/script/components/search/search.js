@@ -11,11 +11,11 @@ class SearchList extends Component{
   constructor(props){
     super(props)
     this.state={
-      searchBody:''
+      searchBody:this.props.params.id
     }
   }
   getSearchBody(){
-    console.log(this.refs.input.input.refs.input.value);
+    console.log(this.refs.input.input.refs.input.value)
   }
   render(){
     return(
@@ -23,6 +23,7 @@ class SearchList extends Component{
         <div className="search_input">
           <Search
           ref='input'
+          value={this.props.params.id}
           onSearch={value => console.log(value)}
           prefix={<Icon type="search" style={{ fontSize: 27 }} />}
           suffix=''
@@ -32,13 +33,18 @@ class SearchList extends Component{
           >搜索</Button>
         </div>
         <Tabs defaultActiveKey="1" size="small">
-          <TabPane tab="全站" key="1"><SearchContent /></TabPane>
-          <TabPane tab="视频" key="2"><SearchContent1 title="视频" tab="video"/></TabPane>
-          <TabPane tab="问答" key="3"><SearchContent1 title="问答" tab="qanda"/></TabPane>
-          <TabPane tab="招聘" key="4"><SearchContent1 title="招聘" tab="job"/></TabPane>
+          <TabPane tab="全站" key="1"><SearchContent data={this.state.searchBody} tab="all"/></TabPane>
+          <TabPane tab="视频" key="2"><SearchContent data={this.state.searchBody} title="视频" tab="video"/></TabPane>
+          <TabPane tab="问答" key="3"><SearchContent data={this.state.searchBody} title="问答" tab="qanda"/></TabPane>
+          <TabPane tab="招聘" key="4"><SearchContent data={this.state.searchBody} title="招聘" tab="job"/></TabPane>
         </Tabs>
       </div>
     )
+  }
+  componentDidMount(){
+    // console.log(this.state.searchBody)
+    // console.log(this)
+
   }
 }
 export default SearchList
