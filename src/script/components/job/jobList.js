@@ -49,7 +49,7 @@ class jobList extends React.Component {
       start: 0,
       count: 10
     }, (res)=>{
-      console.log(res.data.data);
+      // console.log(res.data.data);
 
       var listData = res.data.data.subjects.map((comment, index) => {
         return {
@@ -61,7 +61,7 @@ class jobList extends React.Component {
           action: comment.hits + '/' + comment.answers,
         }
       });
-      console.log(listData);
+      // console.log(listData);
 
       this.setState({
         data: listData

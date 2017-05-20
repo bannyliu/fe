@@ -14,7 +14,7 @@ class Header extends Component {
         <ul className="nav">
           <li><Link to="/index/list" activeClassName="active">首页</Link></li>
           <li><Link to="/video/list" activeClassName="active">视频</Link></li>
-          <li><Link to="/qanda/list" activeClassName="active">问答</Link></li>
+          <li><Link to="/qanda" activeClassName="active">问答</Link></li>
           <li><Link to="/job/list" activeClassName="active">招聘</Link></li>
         </ul>
         <div className="user">

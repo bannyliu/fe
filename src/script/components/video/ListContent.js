@@ -1,12 +1,18 @@
 import React, {Component} from 'react'
 
-import Axios from '../../utils/axios.util'
+
 
 class ListContent extends Component {
-  getList(){
-    
+  constructor(props){
+    super(props)
+    this.state = {
+      listData:[]
+    }
   }
+
   render() {
+    // console.log(this.props.step)
+    // console.log(this.props.tag)
     return (
       <div className="m-list-content">
         <ul>
@@ -74,13 +80,7 @@ class ListContent extends Component {
   }
 
   componentDidMount() {
-    Axios.get('/api/video/list', {
-      condition: 'javascript',
-      start: 0,
-      count: 10
-    }, (res)=>{
-      console.log(res.data);
-    })
+
   }
 }
 

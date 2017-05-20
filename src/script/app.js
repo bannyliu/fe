@@ -66,6 +66,7 @@ ReactDOM.render((
 
         {/* 问答 qanda */}
         <Route path="qanda">
+          <IndexRedirect to="/qanda/list" />
           <Route path="list" component={QandaList}></Route>
           <Route path="detail/:id" component={QandaDetail}></Route>
           <Route path="add" component={QandaAdd}></Route>
