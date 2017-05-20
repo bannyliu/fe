@@ -14,6 +14,7 @@ import Index from './components/Index'
 import IndexList from './components/index/indexList'
 //video 视频
 import VideoList from './components/video/List'
+import VideoDetail from './components/video/VideoDetail'
 //qanda 问答
 import QandaList from './components/qanda/qandaList'
 import QandaDetail from './components/qanda/qandaDetail'
@@ -64,7 +65,9 @@ ReactDOM.render((
 
         {/* 视频  video*/}
         <Route path="video">
+          <IndexRedirect to="/video/list"/>
           <Route path="list" component={VideoList}></Route>
+          <Route path="detail/:id" component={VideoDetail}></Route>
         </Route>
 
         {/* 问答 qanda */}

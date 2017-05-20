@@ -3,7 +3,7 @@ import React from 'react'
 import { Input } from 'antd';
 import { Button } from 'antd';
 import Axios from '../../utils/axios.util';
-import Content from './qandaDetailContent';
+import CommentCommon from '../common/Comment';
 
 class qandaDetail extends React.Component {
   constructor(props) {
@@ -12,7 +12,7 @@ class qandaDetail extends React.Component {
     this.state = {
       // columns: [],
       question: {},
-      answers: [],
+      answers: null,
       CommentNodes: [1,2,3]
     };
 
@@ -26,19 +26,10 @@ class qandaDetail extends React.Component {
       id: this.props.params.id
     }, (res)=>{
       // console.log(res.data.data);
-
-      var CommentNodes = res.data.data.answers.map((comment, index) => {
-        return (
-          <Content answer={comment}></Content>
-        )
-      });
-
       this.setState({
         question: res.data.data,
         answers: res.data.data.answers,
-        CommentNodes: CommentNodes
       });
-
 
     })
   };
@@ -70,19 +61,9 @@ class qandaDetail extends React.Component {
               </p>
             </div>
           </div>
+          <CommentCommon  detailDatas={this.state.answers}></CommentCommon>
 
-          <div className="section">
-            <p>回帖</p>
-            <div className="reply">
-              <Input type="textarea" rows={4} placeholder="大胆的回复吧" ref="inputContent"/>
-              <Button type="primary" onClick={this.reply.bind(this)}>回复</Button>
-            </div>
-            <p>全部回帖({this.state.answers.length})</p>
-            <div className="cat" />
-            <div className="list">
-              {this.state.CommentNodes}
-            </div>
-          </div>
+
 
         </div>
 
@@ -90,16 +71,7 @@ class qandaDetail extends React.Component {
     )
   }
 
-  reply(){
-    console.log(this.refs.inputContent.refs.input.value);
-    Axios.post('/api/qanda/reply', {
-      uid: 34, // 用户ID [数值：必填]
-      qid: 10, // 问题id：[数值：必填]
-      content: this.refs.inputContent.refs.input.value // 回帖内容：[字符串：必填]
-    }, (res)=>{
-      console.log(res.data.data);
-    })
-  }
+
 
   componentDidMount() {
 
