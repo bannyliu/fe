@@ -15,8 +15,37 @@ class SearchContent extends Component{
       total:0,
       videoData:null,
       jobData:null,
-      qandaData:null
+      qandaData:null,
+      videoColumns:null,
+      jobColumns:null,
+      qandaColumns:null,
     }
+  }
+  setNewDataSource(dataSource){
+
+    let NewDataSource = []
+    for(let i = 0 ; i < dataSource.length ; i ++){
+      NewDataSource.push({
+         key:`${i+1}`,
+         name: `${dataSource[i].createDate}`,
+         title:`${dataSource[i].title}`
+       })
+    }
+    return NewDataSource
+  }
+  setColumns(str){
+    let columns = [{
+        title:str,
+        dataIndex: 'name',
+         key: 'name',
+         render:(text,record)=>(
+           <span className="search_inner">
+            <div className="search_title">{record.title}</div>
+            <a href="#" className="search_article">{record.name}</a>
+          </span>
+         )
+      }]
+      return columns
   }
   render(){
 
@@ -24,13 +53,13 @@ class SearchContent extends Component{
       <div className="search_content">
         <p className="search_total">共找到<span>{this.state.total}</span>个相关内容</p>
         <div className={this.state.isShow.video?'':'hide'}>
-          <SearchList ref="video" title="视频" data={this.state.videoData}/>
+          <SearchList ref="video" title="视频" data={this.state.videoData} columns={this.state.videoColumns}/>
         </div>
         <div className={this.state.isShow.qanda?'':'hide'}>
-          <SearchList ref="qanda" title="问答" data={this.state.qandaData}/>
+          <SearchList ref="qanda" title="问答" data={this.state.qandaData} columns={this.state.qandaColumns}/>
         </div>
         <div className={this.state.isShow.job?'':'hide'}>
-          <SearchList ref="job" title="招聘"  data={this.state.jobData}/>
+          <SearchList ref="job" title="招聘"  data={this.state.jobData} columns={this.state.jobColumns}/>
         </div>
       </div>
     )
@@ -79,15 +108,23 @@ class SearchContent extends Component{
           }else {
             totalNum = res.data.data.subjects[tab].total
           }
-          let video = res.data.data.subjects.video
+          let video = res.data.data.subjects.video.subjects
+          let job = res.data.data.subjects.job.subjects
+          let qanda = res.data.data.subjects.qanda.subjects
+
+
           // console.log(video)
           that.setState({
             isShow:object,
             total:totalNum,
-            videoData:video,
-            jobData:res.data.data.subjects.job,
-            qandaData:res.data.data.subjects.qanda
+            videoData:that.setNewDataSource(video),
+            jobData:that.setNewDataSource(job),
+            qandaData:that.setNewDataSource(qanda),
+            videoColumns:that.setColumns('视频'),
+            jobColumns:that.setColumns('招聘'),
+            qandaColumns:that.setColumns('问答')
           })
+          // console.log(videoData)
         }
       }
     )
