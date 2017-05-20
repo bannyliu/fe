@@ -4,5 +4,17 @@
   "/api/qanda/detail": "/qandadetail",
   "/api/qanda/reply": "/qandareply",
   "/api/job/list": "/joblist",
-  "/api/interview/list": "/interviewlist"
+  "/api/job/remove": "/interviewremove",
+  "/api/job/add": "/videoclassifyadd",
+  "/api/interview/list": "/interviewlist",
+  "/api/interview/remove":"/interviewremove",
+  "/api/interview/add":"/videoclassifyadd",
+  "/api/video/classify/add":"/videoclassifyadd",
+  "/api/video/classify/list":"/videoclassifylist",
+  "/api/video/classify/remove":"/videoclassifyremove",
+  "/api/video/stage/list":"/videostagelist",
+  "/api/video/stage/add":"/videostageadd",
+  "/api/video/stage/remove":"/videostageremove",
+  "/api/video/add":"/videoclassifyadd",
+  "/api/video/update":"/videoclassifyadd"
 }

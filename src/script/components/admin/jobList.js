@@ -1,6 +1,6 @@
 import React,{Component} from 'react'
 import List from './list'
-import adminList from '../../utils/adminList'
+import adminCommon from '../../utils/adminList'
 
 class recruitList extends Component{
   constructor(props){
@@ -49,8 +49,8 @@ class recruitList extends Component{
 
   //招聘管理删除操作
   delete(id){
-    let uri = '/api/video/remove'
-    adminList.delete(id,uri)
+    let uri = '/api/job/remove'
+    adminCommon.delete(id,uri)
   }
 
 
@@ -65,7 +65,7 @@ class recruitList extends Component{
   componentDidMount(){
     //请求招聘管理列表数据
     let uri='/api/job/list'
-    adminList.list(uri,this)
+    adminCommon.list(uri,this)
   }
 }
 

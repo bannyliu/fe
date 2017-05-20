@@ -64,8 +64,22 @@ class VideoList extends Component{
 
   componentDidMount(){
     //请求视频管理列表数据
+    let callback = (res)=>{
+          let subjects = res.data.data.subjects
+          let data = []
+          subjects.map((value,index)=>{
+            data.push({
+              id:value.id,
+              name:value.title,
+              date:value.createDate
+            })
+            this.setState({
+              data:data
+            })
+          })
+    }
     let uri='/api/video/list'
-    adminList.list(uri,this)
+    adminList.videoList(uri,callback)
   }
 }
 

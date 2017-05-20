@@ -9,8 +9,9 @@
         {
           "id":1,
           "title": "场景的真实云彩手绘化",
-          "summary": "手绘中经常用到一些真实的照片场景，如果将照片和手绘的人物风格统一？",
+          "summary": "手绘中经常用到一些真实的照片场景，如果将照片和手绘的人物风格统一？111",
           "img": "./images/img.png",
+          "url": "http://www.codingke.com/v/111.mp4",
           "category": {
             "step": 1,
             "tag": "JavaScript",
@@ -22,8 +23,9 @@
         {
           "id":2,
           "title": "场景的真实云彩手绘化",
-          "summary": "手绘中经常用到一些真实的照片场景，如果将照片和手绘的人物风格统一？",
+          "summary": "手绘中经常用到一些真实的照片场景，如果将照片和手绘的人物风格统一？222",
           "img": "./images/img.png",
+          "url": "http://www.codingke.com/v/111.mp4",
           "category": {
             "step": 1,
             "tag": "JavaScript",
@@ -35,8 +37,9 @@
         {
           "id":3,
           "title": "场景的真实云彩手绘化",
-          "summary": "手绘中经常用到一些真实的照片场景，如果将照片和手绘的人物风格统一？",
+          "summary": "手绘中经常用到一些真实的照片场景，如果将照片和手绘的人物风格统一？333",
           "img": "./images/img.png",
+          "url": "http://www.codingke.com/v/111.mp4",
           "category": {
             "step": 1,
             "tag": "JavaScript",

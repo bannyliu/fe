@@ -28,6 +28,7 @@ import Vlist from './components/admin/videoList'
 import Vadd from './components/admin/videoAdd'
 import Vupdate from './components/admin/videoUpdate'
 import Vclassify from './components/admin/videoClassify'
+import Vstage from './components/admin/stage'
 import JobUpdate from './components/admin/jobUpdate'
 import InterViewqUpdate from './components/admin/interviewqUpdate'
 //search 搜索
@@ -94,6 +95,7 @@ ReactDOM.render((
         <Route path="video">
           <IndexRedirect to="/admin/video/classify" />
           <Route path="classify" component={Vclassify}></Route>
+          <Route path="stage" component={Vstage}></Route>
           <Route path="list" component={Vlist}></Route>
           <Route path="add" component={Vadd}></Route>
           <Route path="update/:id" component={Vupdate}></Route>
