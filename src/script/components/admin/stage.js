@@ -7,19 +7,22 @@ import Management from './management'
 
 
 
-class VideoClassify extends Component{
+class Stage extends Component{
   constructor(props){
     super(props)
+
     this.state={
       info:{
-        title:"视频管理/分类管理",
-        tip:"分类添加",
-        listUri:"/api/video/classify/list",
-        addUri:"/api/video/classify/add",
+        title:"视频管理/阶段管理",
+        tip:"阶段添加",
+        listUri:"/api/video/stage/list",
+        addUri:"/api/video/stage/add",
         removeUri:"/api/video/stage/remove"
       }
     }
   }
+
+
 
   render(){
     return (
@@ -32,4 +35,4 @@ class VideoClassify extends Component{
 
 }
 
-export default VideoClassify
+export default Stage

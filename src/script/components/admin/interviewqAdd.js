@@ -10,16 +10,11 @@ class InterviewqAdd extends Component{
   }
 
 
-  //面试题内容添加操作
-  add(){
-    console.log(this)
-  }
-
 
   render(){
     return (
       <div className="m-interviewqAdd add">
-        <Add title={this.state.title} addHandle={this.add.bind(this)}></Add>
+        <Add title={this.state.title} uri={"/api/interview/add"}></Add>
       </div>
     )
   }

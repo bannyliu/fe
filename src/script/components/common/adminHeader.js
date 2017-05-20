@@ -15,18 +15,18 @@ class AdminHeader extends Component{
         <div className="logo">
           <img src="./images/logo.png" alt="锋帆logo"/>
         </div>
-        <div className="home"><Link to="/admin">后台首页</Link></div>
         <ul className="adminNav">
           <li>
             <Link to="/admin/video" activeClassName="active">视频管理</Link>
             <ul>
               <li><Link to="/admin/video/classify">分类管理</Link></li>
+              <li><Link to="/admin/video/stage">阶段管理</Link></li>
               <li><Link to="/admin/video/list">内容列表</Link></li>
               <li><Link to="/admin/video/add">内容添加</Link></li>
             </ul>
           </li>
           <li>
-            <Link to="/admin/recruit" activeClassName="active">招聘管理</Link>
+            <Link to="/admin/job" activeClassName="active">招聘管理</Link>
               <ul>
                 <li><Link to="/admin/job/list">内容列表</Link></li>
                 <li><Link to="/admin/job/add">内容添加</Link></li>

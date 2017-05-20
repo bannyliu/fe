@@ -16,11 +16,14 @@ class JobUpdate extends Component{
     console.log(this)
   }
 
+  update(){
+    console.log(this)
+  }
 
   render(){
     return (
       <div className="m-update">
-        <Update title={this.state.title}></Update>
+        <Update title={this.state.title} updateHandle={this.update.bind(this)} addHandle={this.add.bind(this)}></Update>
       </div>
     )
   }

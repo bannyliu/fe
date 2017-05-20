@@ -10,15 +10,12 @@ class AdminRecruitAdd extends Component{
     }
   }
 
-  //招聘内容添加操作
-  add(){
-    console.log(this)
-  }
+
 
   render(){
     return (
       <div className="m-recruitAdd add">
-        <Add title={this.state.title} addHandle={this.add.bind(this)}></Add>
+        <Add title={this.state.title} uri={"/api/job/add"}></Add>
       </div>
     )
   }

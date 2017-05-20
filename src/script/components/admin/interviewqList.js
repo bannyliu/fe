@@ -1,6 +1,6 @@
 import React,{Component} from 'react'
 import List from './list'
-import adminList from '../../utils/adminList'
+import adminCommon from '../../utils/adminList'
 
 
 class InterviewqList extends Component{
@@ -50,8 +50,8 @@ class InterviewqList extends Component{
 
   //面试题管理删除操作
   delete(id){
-    let uri = '/api/video/remove'
-    adminList.delete(id,uri)
+    let uri = '/api/interview/remove'
+    adminCommon.delete(id,uri)
   }
 
   render(){
@@ -65,7 +65,7 @@ class InterviewqList extends Component{
   componentDidMount(){
     //请求面试题管理列表数据
     let uri='/api/interview/list'
-    adminList.list(uri,this)
+    adminCommon.list(uri,this)
   }
 
 }

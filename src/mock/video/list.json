@@ -11,6 +11,7 @@
           "title": "(JS第一阶段new1 hot4)",
           "summary": "手绘中经常用到一些真实的照片场景，如果将照片和手绘的人物风格统一？",
           "img": "./images/img.png",
+          "url": "http://www.codingke.com/v/111.mp4",
           "category": {
             "step": 1,
             "tag": "JS",
@@ -24,6 +25,7 @@
           "title": "(JS第二阶段 new2 hot3)",
           "summary": "手绘中经常用到一些真实的照片场景，如果将照片和手绘的人物风格统一？",
           "img": "./images/img.png",
+          "url": "http://www.codingke.com/v/111.mp4",
           "category": {
             "step": 2,
             "tag": "JS",
@@ -219,6 +221,7 @@
           "title": "(VUE第一阶段hot5 new 6)",
           "summary": "手绘中经常用到一些真实的照片场景，如果将照片和手绘的人物风格统一？",
           "img": "./images/img.png",
+          "url": "http://www.codingke.com/v/111.mp4",
           "category": {
             "step": 1,
             "tag": "VUE",
