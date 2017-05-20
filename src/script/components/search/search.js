@@ -8,16 +8,28 @@ const RadioGroup = Radio.Group;
 const TabPane = Tabs.TabPane;
 
 class SearchList extends Component{
+  constructor(props){
+    super(props)
+    this.state={
+      searchBody:''
+    }
+  }
+  getSearchBody(){
+    console.log(this.refs.input.input.refs.input.value);
+  }
   render(){
     return(
       <div className="m-search">
         <div className="search_input">
           <Search
+          ref='input'
           onSearch={value => console.log(value)}
           prefix={<Icon type="search" style={{ fontSize: 27 }} />}
-          suffix=""
+          suffix=''
           />
-          <Button type="primary">搜索</Button>
+          <Button type="primary"
+            onClick={this.getSearchBody.bind(this)}
+          >搜索</Button>
         </div>
         <Tabs defaultActiveKey="1" size="small">
           <TabPane tab="全站" key="1"><SearchContent /></TabPane>

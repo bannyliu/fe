@@ -31,7 +31,7 @@ class IndexSuggestList extends Component{
   render(){
     return(
       <div className="index_list">
-        <IndexCommonTitle />
+        <IndexCommonTitle title="推荐视频"/>
         {this.indexVideo(this.state.data)}
       </div>
     )
@@ -47,7 +47,6 @@ class IndexSuggestList extends Component{
         data:res.data.data.subjects
       })
     })
-    console.log(this)
   }
 }
 export default IndexSuggestList
