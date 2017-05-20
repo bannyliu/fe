@@ -9,10 +9,16 @@ class AdminRecruitAdd extends Component{
       title:"招聘管理/内容添加"
     }
   }
+
+  //招聘内容添加操作
+  add(){
+    console.log(this)
+  }
+
   render(){
     return (
       <div className="m-recruitAdd">
-        <Add title={this.state.title}></Add>
+        <Add title={this.state.title} addHandle={this.add.bind(this)}></Add>
       </div>
     )
   }

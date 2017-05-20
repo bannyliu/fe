@@ -1,6 +1,6 @@
 import React,{Component} from 'react'
 import List from './list'
-
+import axios from '../../utils/axios.util'
 
 
 class recruitList extends Component{
@@ -97,10 +97,31 @@ class recruitList extends Component{
 
   render(){
     return (
-      <div className="m-recruitList">
+      <div className="m-recruitList adList">
         <List columns={this.state.columns} data={this.state.data} title={this.state.title}></List>
       </div>
     )
+  }
+
+  componentDidMount(){
+    //请求招聘管理列表数据
+    let callback = (res)=>{
+          let subjects = res.data.data.subjects
+          let data = []
+          subjects.map((value,index)=>{
+            console.log(value)
+            data.push({
+              name:value.title,
+              date:value.createDate
+            })
+            this.setState({
+              data:data
+            })
+          })
+        }
+    let uri='/api/job/list'
+    let params={}
+    axios.get(uri,params,callback)
   }
 }
 

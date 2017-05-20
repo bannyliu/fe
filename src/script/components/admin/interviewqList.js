@@ -1,9 +1,9 @@
 import React,{Component} from 'react'
 import List from './list'
+import axios from '../../utils/axios.util'
 
 
-
-class AdminInterviewq extends Component{
+class InterviewqList extends Component{
   constructor(props){
     super(props)
     this.state={
@@ -91,16 +91,38 @@ class AdminInterviewq extends Component{
 
   //面试题管理删除操作
   delete(){
-    console.log(2)
+    console.log("面试题管理删除操作")
   }
 
   render(){
     return (
-      <div className="m-interviewqList">
+      <div className="m-interviewqList adList">
         <List columns={this.state.columns} data={this.state.data} title={this.state.title}></List>
       </div>
     )
   }
+
+  componentDidMount(){
+    //请求面试题管理列表数据
+    let callback = (res)=>{
+          let subjects = res.data.data.subjects
+          let data = []
+          subjects.map((value,index)=>{
+            console.log(value)
+            data.push({
+              name:value.title,
+              date:value.createDate
+            })
+            this.setState({
+              data:data
+            })
+          })
+        }
+    let uri='/api/interviewq/list'
+    let params={}
+    axios.get(uri,params,callback)
+  }
+
 }
 
-export default AdminInterviewq
+export default InterviewqList

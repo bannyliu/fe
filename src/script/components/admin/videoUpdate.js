@@ -2,10 +2,11 @@ import React,{Component} from 'react'
 import { Input } from 'antd'
 import axios from '../../utils/axios.util'
 
-class VideoAdd extends Component{
+class VideoUpdate extends Component{
 
-  //视频添加提交操作
+  //视频修改提交操作
   submit(){
+
     let title = this.refs.title.value
     let classify = this.refs.classify.value
     let desc = this.refs.desc.refs.input.value
@@ -46,9 +47,29 @@ class VideoAdd extends Component{
       </div>
     )
   }
+
+  componentDidMount(){
+    let id = this.props.params.id
+    let data
+    //请求视频管理列表数据
+    let callback = (res)=>{
+          let subjects = res.data.data.subjects
+          subjects.map((value,index)=>{
+            if(value.id == id){
+              data =  value
+            }
+          })
+          this.refs.title.value = data.title
+          this.refs.classify.value = data.category.tag
+          this.refs.desc.refs.input.value = data.summary
+          this.refs.url.value = data.img
+        }
+    let uri='/api/video/list'
+    let params={}
+    axios.get(uri,params,callback)
+  }
+
 }
 
 
-
-
-export default VideoAdd
+export default VideoUpdate
