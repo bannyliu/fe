@@ -1,8 +1,7 @@
 import React,{Component} from 'react'
 import { Table, Icon , Pagination} from 'antd'
-
-
-
+import axios from '../../utils/axios.util'
+import adminList from '../../utils/adminList'
 
 class VideoClassify extends Component{
   constructor(props){
@@ -64,12 +63,13 @@ class VideoClassify extends Component{
 
   //删除分类操作
   delete(){
-    console.log(this)
+    adminList.delete()
   }
 
   //分类添加操作
   submit(){
-    let classify = this.refs.classify
+    let classify = this.refs.classify.value
+    console.log(classify)
   }
 
 
@@ -87,6 +87,13 @@ class VideoClassify extends Component{
       </div>
     )
   }
+
+  componentDidMount(){
+    //请求视频管理分类数据
+    let uri='/api/video/list'
+    adminList.list(uri,this)
+  }
+
 }
 
 export default VideoClassify

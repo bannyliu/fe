@@ -14,7 +14,7 @@ class SearchContent extends Component{
   }
   componentDidMount(){
     // console.log(this.props )
-    console.log(this.refs)
+    // console.log(this.refs)
   }
 }
 export default SearchContent

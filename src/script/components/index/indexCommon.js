@@ -4,8 +4,8 @@ class IndexCommonTitle extends Component {
   render(){
     return(
       <div className="index_title">
-        <p>推荐视频</p>
-        <span>More</span>  
+        <p>{this.props.title}</p>
+        <span>More</span>
       </div>
     )
   }

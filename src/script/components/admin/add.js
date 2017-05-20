@@ -13,7 +13,7 @@ class Add extends Component{
           <div className="txt">
             <Input type="textarea" rows={4} />
           </div>
-          <Button>提交</Button>
+          <Button onClick={this.props.addHandle}>提交</Button>
         </div>
     )
   }

@@ -18,15 +18,18 @@ import VideoList from './components/video/List'
 import QandaList from './components/qanda/qandaList'
 import QandaDetail from './components/qanda/qandaDetail'
 import QandaAdd from './components/qanda/qandaAdd'
-//admin 后台登录
+//admin 后台
 import Admin from './components/admin/admin'
 import InterviewqList from './components/admin/interviewqList'
 import InterviewqAdd from './components/admin/interviewqAdd'
-import RecruitList from './components/admin/recruitList'
-import RecruitAdd from './components/admin/recruitAdd'
+import JList from './components/admin/jobList'
+import JAdd from './components/admin/jobAdd'
 import Vlist from './components/admin/videoList'
 import Vadd from './components/admin/videoAdd'
+import Vupdate from './components/admin/videoUpdate'
 import Vclassify from './components/admin/videoClassify'
+import JobUpdate from './components/admin/jobUpdate'
+import InterViewqUpdate from './components/admin/interviewqUpdate'
 //search 搜索
 import Search from './components/search/search'
 
@@ -94,18 +97,21 @@ ReactDOM.render((
           <Route path="classify" component={Vclassify}></Route>
           <Route path="list" component={Vlist}></Route>
           <Route path="add" component={Vadd}></Route>
+          <Route path="update/:id" component={Vupdate}></Route>
         </Route>
         {/* 招聘管理 */}
-        <Route path="recruit">
-          <IndexRedirect to="/admin/recruit/list" />
-          <Route path="list" component={RecruitList}></Route>
-          <Route path="add" component={RecruitAdd}></Route>
+        <Route path="job">
+          <IndexRedirect to="/admin/job/list" />
+          <Route path="list" component={JList}></Route>
+          <Route path="add" component={JAdd}></Route>
+          <Route path="update/:id" component={JobUpdate}></Route>
         </Route>
         {/* 面试题管理 */}
         <Route path="interviewq">
           <IndexRedirect to="/admin/interviewq/list" />
           <Route path="list" component={InterviewqList}></Route>
           <Route path="add" component={InterviewqAdd}></Route>
+          <Route path="update/:id" component={InterViewqUpdate}></Route>
         </Route>
       </Router>
 
