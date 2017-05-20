@@ -87,7 +87,7 @@ ReactDOM.render((
 
         {/* 搜索 search*/}
         <Route path="search">
-          <Route path="list" component={Search}></Route>
+          <Route path="list(/:id)" component={Search}></Route>
         </Route>
       </Route>
 

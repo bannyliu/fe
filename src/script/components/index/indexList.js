@@ -1,6 +1,6 @@
 import React,{Component} from 'react'
 import IndexBanner from './indexbanner'
-import IndexSuggest from './indexSuggest'
+import IndexVideo from './indexVideo'
 import IndexNews from './indexNews'
 
 class IndexList extends Component{
@@ -8,7 +8,7 @@ class IndexList extends Component{
     return(
       <div className="m-indexlist">
         <IndexBanner />
-        <IndexSuggest />
+        <IndexVideo />
         <IndexNews />
       </div>
     )

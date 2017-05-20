@@ -16,5 +16,8 @@
   "/api/video/stage/add":"/videostageadd",
   "/api/video/stage/remove":"/videostageremove",
   "/api/video/add":"/videoclassifyadd",
-  "/api/video/update":"/videoclassifyadd"
+  "/api/video/update":"/videoclassifyadd",
+  "/api/interviewq/list": "/interviewqlist",
+  "/api/search":"/search"
+
 }

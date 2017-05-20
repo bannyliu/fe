@@ -5,6 +5,7 @@ import { Input } from 'antd'
 const Search = Input.Search
 
 class Header extends Component {
+
   render() {
     return (
       <div className="m-header">
@@ -23,14 +24,18 @@ class Header extends Component {
           </span>
           <span>3</span>
         </div>
-        <Link to="/search/list" className="search">
+        <a className="search">
           <Search
+            ref="input"
             placeholder="请输入关键字"
-            onSearch={value => console.log(value)}
+            onSearch={value => this.props.link(value,this)}
             />
-        </Link>
+        </a>
       </div>
     )
+  }
+  componentDidMount(){
+
   }
 }
 

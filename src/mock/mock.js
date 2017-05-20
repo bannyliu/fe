@@ -11,6 +11,8 @@ var videoClassifyRemove = require('./video/classifyRemove.json')
 var videoStage = require('./video/stage.json')
 var videoStageAdd = require('./video/stageAdd.json')
 var videoStageRemove = require('./video/stageRemove.json')
+var interviewqList = require('./interviewq/interviewqList.json');
+var searchList = require('./search/searchList.json')
 
 module.exports = function () {
   return {
@@ -27,5 +29,7 @@ module.exports = function () {
     'videostagelist':videoStage,
     'videostageadd':videoStageAdd,
     'videostageremove':videoStageRemove,
+    'interviewqlist':interviewqList,
+    'search':searchList
   }
 }

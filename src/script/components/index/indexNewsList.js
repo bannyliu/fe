@@ -11,7 +11,7 @@ class IndexNewsList extends Component{
   }
   indexNewsList(list){
     return list.map((value,index)=>{
-      if(index < 5)
+      if(index < 8)
       {
         return(
           <div className="news_content_list">
@@ -41,7 +41,7 @@ class IndexNewsList extends Component{
       method:'get',
       data:{
         start:0,
-        count:10
+        count:8
       },
       callback:function(res){
         that.setState({
