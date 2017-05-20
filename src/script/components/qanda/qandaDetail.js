@@ -25,7 +25,7 @@ class qandaDetail extends React.Component {
       uid: 34,
       id: this.props.params.id
     }, (res)=>{
-      console.log(res.data.data);
+      // console.log(res.data.data);
 
       var CommentNodes = res.data.data.answers.map((comment, index) => {
         return (
