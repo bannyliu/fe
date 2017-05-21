@@ -34,7 +34,7 @@ class IndexVideoList extends Component{
   render(){
     return(
       <div className="index_list">
-        <IndexCommonTitle title="推荐视频"/>
+        <IndexCommonTitle title="推荐视频" path="video"/>
         {this.indexVideo(this.state.data)}
       </div>
     )

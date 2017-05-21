@@ -26,7 +26,7 @@ class IndexNewsList extends Component{
   render(){
     return(
       <li className="news_list">
-        <IndexCommonTitle title={this.props.title}/>
+        <IndexCommonTitle title={this.props.title} path={this.props.tabs}/>
         <div className="news_content">
           {this.indexNewsList(this.state.data)}
         </div>
