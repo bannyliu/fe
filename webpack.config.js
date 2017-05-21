@@ -30,8 +30,8 @@ module.exports = {
 
          '/api': {
           //  target: 'http://quanzs.xicp.net/',
-          // target: 'http://localhost:9000',
-          target: 'http://fengfan.applinzi.com',
+          target: 'http://localhost:9000',
+          // target: 'http://fengfan.applinzi.com',
            changeOrigin: true
          }
 //       '/mock': {

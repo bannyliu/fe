@@ -1,6 +1,6 @@
 import React,{Component} from 'react'
 import List from './list'
-import adminCommon from '../../utils/adminList'
+import adminCommon from '../../utils/adminCommon'
 
 
 class InterviewqList extends Component{
