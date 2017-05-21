@@ -1,22 +1,22 @@
 import React,{Component} from 'react'
 import { Table, Icon , Pagination , Button} from 'antd'
-import axios from '../../utils/axios.util'
+import axios from '../../../utils/axios.util'
 import { message } from 'antd'
 import Management from './management'
 
 
 
-class Stage extends Component{
+class City extends Component{
   constructor(props){
     super(props)
 
     this.state={
       info:{
-        title:"视频管理/阶段管理",
-        tip:"阶段添加",
-        listUri:"/api/video/stage/list",
-        addUri:"/api/video/stage/add",
-        removeUri:"/api/video/stage/remove"
+        title:"城市管理",
+        tip:"城市添加",
+        listUri:"/api/city/list",
+        addUri:"/api/city/add",
+        removeUri:"/api/city/remove"
       }
     }
   }
@@ -25,7 +25,7 @@ class Stage extends Component{
 
   render(){
     return (
-      <div className="m-videoClassify">
+      <div className="m-city management">
         <Management info={this.state.info}></Management>
       </div>
     )
@@ -34,4 +34,4 @@ class Stage extends Component{
 
 }
 
-export default Stage
+export default City

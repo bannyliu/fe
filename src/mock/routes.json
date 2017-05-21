@@ -1,23 +1,35 @@
 {
   "/api/video/list": "/videolist",
+  "/api/video/add":"/videoadd",
+  "/api/video/update":"/videoupdate",
+  "/api/video/remove":"/videoremove",
+
   "/api/qanda/list": "/qandalist",
   "/api/qanda/detail": "/qandadetail",
   "/api/qanda/reply": "/qandareply",
+
   "/api/job/list": "/joblist",
-  "/api/job/remove": "/interviewremove",
-  "/api/job/add": "/videoclassifyadd",
+  "/api/job/remove": "/jobremove",
+  "/api/job/add": "/jobadd",
+  "/api/job/update": "/jobupdate",
+
   "/api/interviewq/list": "/interviewqlist",
   "/api/interviewq/remove":"/interviewremove",
-  "/api/interviewq/add":"/videoclassifyadd",
-  "/api/video/classify/add":"/videoclassifyadd",
-  "/api/video/classify/list":"/videoclassifylist",
-  "/api/video/classify/remove":"/videoclassifyremove",
-  "/api/video/stage/list":"/videostagelist",
-  "/api/video/stage/add":"/videostageadd",
-  "/api/video/stage/remove":"/videostageremove",
-  "/api/video/add":"/videoclassifyadd",
-  "/api/video/update":"/videoclassifyadd",
-  "/api/video/remove":"/interviewremove",
+  "/api/interviewq/add":"/interviewqadd",
+  "/api/interviewq/update":"/interviewqupdate",
+
+  "/api/classify/add":"/classifyadd",
+  "/api/classify/list":"/classifylist",
+  "/api/classify/remove":"/classifyremove",
+
+  "/api/stage/list":"/stagelist",
+  "/api/stage/add":"/stageadd",
+  "/api/stage/remove":"/stageremove",
+
+  "/api/city/list":"/citylist",
+  "/api/city/add":"/cityadd",
+  "/api/city/remove":"/cityremove",
+
   "/api/search":"/search"
 
 }

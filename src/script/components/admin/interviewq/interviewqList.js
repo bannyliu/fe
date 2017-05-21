@@ -1,15 +1,16 @@
 import React,{Component} from 'react'
-import List from './list'
-import adminCommon from '../../utils/adminCommon'
+import List from '../list'
+import adminCommon from '../../../utils/adminCommon'
 
-class recruitList extends Component{
+
+class InterviewqList extends Component{
   constructor(props){
     super(props)
     this.state={
       pagination:{
         pageSize:4
       },
-      title:"招聘管理/内容列表",
+      title:"面试题管理/内容列表",
       columns:[
         {
         title: '标题',
@@ -40,33 +41,33 @@ class recruitList extends Component{
     }
   }
 
-  //招聘管理修改操作
+  //面试题管理修改操作
   update(id){
-    this.props.router.push(`/admin/job/update/${id}`)
+    this.props.router.push(`/admin/interviewq/update/${id}`)
   }
 
 
 
-  //招聘管理删除操作
+  //面试题管理删除操作
   delete(id){
-    let uri = '/api/job/remove'
+    let uri = '/api/interviewq/remove'
     adminCommon.delete(id,uri)
   }
 
-
   render(){
     return (
-      <div className="m-recruitList adList">
+      <div className="m-interviewqList adList">
         <List columns={this.state.columns} data={this.state.data} title={this.state.title}></List>
       </div>
     )
   }
 
   componentDidMount(){
-    //请求招聘管理列表数据
-    let uri='/api/job/list'
+    //请求面试题管理列表数据
+    let uri='/api/interviewq/list'
     adminCommon.list(uri,this)
   }
+
 }
 
-export default recruitList
+export default InterviewqList

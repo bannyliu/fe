@@ -21,6 +21,7 @@ class AdminHeader extends Component{
             <ul>
               <li><Link to="/admin/video/classify">分类管理</Link></li>
               <li><Link to="/admin/video/stage">阶段管理</Link></li>
+              <li><Link to="/admin/video/city">城市管理</Link></li>
               <li><Link to="/admin/video/list">内容列表</Link></li>
               <li><Link to="/admin/video/add">内容添加</Link></li>
             </ul>

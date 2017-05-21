@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import Add from './add'
+import Add from '../add'
 
 
 class AdminRecruitAdd extends Component{

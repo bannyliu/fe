@@ -1,7 +1,7 @@
 import React,{Component} from 'react'
 import { Table, Icon , Pagination , Button} from 'antd'
-import axios from '../../utils/axios.util'
-import adminCommon from '../../utils/adminCommon'
+import axios from '../../../utils/axios.util'
+import adminCommon from '../../../utils/adminCommon'
 import { message } from 'antd'
 
 
@@ -57,7 +57,7 @@ class Management extends Component{
 
     let params={
       url:this.props.info.addUri,
-      method:'get',
+      method:'post',
       data:classify,
       callback:callback
     }
