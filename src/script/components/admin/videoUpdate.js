@@ -1,7 +1,7 @@
 import React,{Component} from 'react'
 import { Input } from 'antd'
 import axios from '../../utils/axios.util'
-import adminCommon from '../../utils/adminList'
+import adminCommon from '../../utils/adminCommon'
 import { Select ,message} from 'antd'
 import Qs from 'qs'
 const Option = Select.Option
