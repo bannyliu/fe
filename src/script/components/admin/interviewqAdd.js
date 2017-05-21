@@ -14,7 +14,7 @@ class InterviewqAdd extends Component{
   render(){
     return (
       <div className="m-interviewqAdd add">
-        <Add title={this.state.title} uri={"/api/interview/add"}></Add>
+        <Add title={this.state.title} uri={"/api/interviewq/add"} tag={"interview"}></Add>
       </div>
     )
   }

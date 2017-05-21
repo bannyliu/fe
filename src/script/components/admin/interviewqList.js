@@ -50,7 +50,7 @@ class InterviewqList extends Component{
 
   //面试题管理删除操作
   delete(id){
-    let uri = '/api/interview/remove'
+    let uri = '/api/interviewq/remove'
     adminCommon.delete(id,uri)
   }
 
@@ -64,7 +64,7 @@ class InterviewqList extends Component{
 
   componentDidMount(){
     //请求面试题管理列表数据
-    let uri='/api/interview/list'
+    let uri='/api/interviewq/list'
     adminCommon.list(uri,this)
   }
 

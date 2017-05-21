@@ -1,6 +1,6 @@
 import React,{Component} from 'react'
 import List from './list'
-import adminList from '../../utils/adminList'
+import adminCommon from '../../utils/adminList'
 
 class VideoList extends Component{
   constructor(props){
@@ -50,7 +50,7 @@ class VideoList extends Component{
   //视频管理删除操作
   delete(id){
     let uri = '/api/video/remove'
-    adminList.delete(id,uri)
+    adminCommon.delete(id,uri)
   }
 
 
@@ -65,6 +65,7 @@ class VideoList extends Component{
   componentDidMount(){
     //请求视频管理列表数据
     let callback = (res)=>{
+          console.log(res)
           let subjects = res.data.data.subjects
           let data = []
           subjects.map((value,index)=>{
@@ -79,7 +80,7 @@ class VideoList extends Component{
           })
     }
     let uri='/api/video/list'
-    adminList.videoList(uri,callback)
+    adminCommon.videoList(uri,callback)
   }
 }
 

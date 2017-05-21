@@ -47,11 +47,9 @@ class VideoUpdate extends Component{
       let data = res.data.data
       if(data.status == "ok"){
         //提交成功
-        message.success('提交成功')
-        this.refs.title.value = ''
-        this.refs.desc.refs.input.value = '',
-        this.refs.imgUrl.value = '',
-        this.refs.videoUrl.value = ''
+        message.success('提交成功',1,()=>{
+          this.props.router.push("/admin/video/list")
+        })
       }else{
         //提交失败
         message.error('提交失败，请重试')

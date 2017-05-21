@@ -2,6 +2,8 @@ import React,{Component} from 'react'
 import Add from './add'
 import { Input } from 'antd'
 import { Button } from 'antd'
+import adminCommon from '../../utils/adminList'
+import axios from '../../utils/axios.util'
 
 
 class Update extends Component{
@@ -9,7 +11,9 @@ class Update extends Component{
     super(props)
   }
 
+  update(){
 
+  }
 
 
   render(){
@@ -17,18 +21,36 @@ class Update extends Component{
       <div className="container">
         <div className="tit">{this.props.title}</div>
         <div className="title">
-          <input type="text" placeholder="添加标题"/>
+          <input type="text" placeholder="添加标题" ref="title"/>
         </div>
         <div className="txt">
-          <Input type="textarea" rows={4} />
+          <Input type="textarea" rows={4} ref="txt"/>
         </div>
-        <Button onClick={this.props.addHandle}>提交</Button>
+        <Button onClick={this.update}>提交</Button>
       </div>
     )
   }
 
   componentDidMount(){
-    console.log(this.props)
+    let title = this.refs.title
+    let txt = this.refs.txt.refs.input
+    let id = this.props.id
+    let uri = this.props.uriList
+    let params = {}
+    let callback = (res)=>{
+      console.log(res)
+      // let data = res.data.data.subjects
+      // let arr={}
+
+      // data.map((value,index)=>{
+      //   if(id == value.id){
+      //     arr = value
+      //   }
+      // })
+      // title.value = arr.title
+
+    }
+    // axios.get(uri,params,callback)
   }
 
 

@@ -16,7 +16,7 @@ class VideoClassify extends Component{
         tip:"分类添加",
         listUri:"/api/video/classify/list",
         addUri:"/api/video/classify/add",
-        removeUri:"/api/video/stage/remove"
+        removeUri:"/api/video/classify/remove"
       }
     }
   }
