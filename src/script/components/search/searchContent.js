@@ -101,9 +101,6 @@ class SearchContent extends Component{
         },
         callback:function(res){
           //total 总共内容数量的变化
-          if(this.state.res.data){
-
-            let res = this.state.res
             let totalNum = 0
             let videoData = res.data.data.subjects.video
             if(tab=='all'){
@@ -125,10 +122,10 @@ class SearchContent extends Component{
               jobColumns:that.setColumns('招聘'),
               qandaColumns:that.setColumns('问答')
             })
-          }
-          // console.log(videoData)
-        // }
-      }
 
+          // console.log(videoData)
+        }
+      })
+    }
 }
 export default SearchContent
