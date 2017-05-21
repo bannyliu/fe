@@ -7,8 +7,6 @@ import Axios from '../../utils/axios.util';
 
 // import ListContent from './ListContent'
 
-
-
 // const data = [{
 //   key: '1',
 //   title: 'Mongoose设置默认时间',
@@ -35,7 +33,8 @@ class qandaList extends React.Component {
 
     this.state = {
       data: [],
-      curIndex:1,
+      curTag:"所有标签",
+      count:10,
       pagination:{
         pageSize:6
       },
@@ -64,11 +63,10 @@ class qandaList extends React.Component {
 
     // 获取数据
     this.getData({
-      //通过标签值来获取对应的数据
-      condition: 'react',
       start: 0,
       count: 10
     });
+
   };
 
   getData(mes) {
@@ -80,36 +78,61 @@ class qandaList extends React.Component {
           key: index,
           title: comment.title,
           author: comment.author,
+          tag:comment.tag,
           createDate: comment.createDate,
           action: comment.hits + '/' + comment.answers,
         }
       });
-      // console.log(listData);
       this.setState({
-        data: listData
+        data: listData,
+        filterData:listData,
+        total:res.data.data.total
       });
+      
     })
   };
 
 //通过点击标签来改变table中的数据源
-  changeTag(tag,index){
+  changeTag(tag,id){
+    // console.log(this.state.data[0].tag)
     this.setState({
-      curIndex:index
+      curTag:tag
     })
-    console.log(tag)
+    this.state.curTag = tag
+    this.dataProcessing()
+  }
 
+  dataProcessing(){
+    let filterData = []
+    this.state.data.map((item,index)=>{
+      if(this.state.curTag=="所有分类"){
+        filterData.push(item)
+      }
+      else if(item.tag == this.state.curTag){
+        filterData.push(item)
+      }
+      return
+    })
+    this.setState({
+      filterData:filterData
+    })
+    console.log(filterData)
+  }
+
+  pageChange(page){
     this.getData({
-      condition:tag,
-      start:0,
-      count:10
+      start:page*this.state.count,
+      count:this.state.count
     })
   }
 
+
+
   render() {
-    let tagData = [{id:1,tag:"PHP"},{id:2,tag:"HTML5"},{id:3,tag:"VUE"},{id:4,tag:"JS"}]
+    let tagData = [{id:0,tag:"所有标签"},{id:1,tag:"PHP"},{id:2,tag:"HTML5"},{id:3,tag:"VUE"},{id:4,tag:"JS"}]
     let tagList = tagData.map((item,index)=>{
       return (
-        <li><i id={index} className={this.state.curIndex==index?"active":""} onClick={this.changeTag.bind(this,item.tag,index)}>{item.tag}</i></li>
+        <li><i id={index} className={this.state.curTag==item.tag?"active":""} onClick={this.changeTag.bind(this,item.tag,index)}>{item.tag}</i></li>
       )
 
     })
@@ -127,20 +150,18 @@ class qandaList extends React.Component {
           </div>
         </div>
         <div className="list">
-          <Table columns={this.state.columns} dataSource={this.state.data} pagination={this.state.pagination}/>
-          {/* <Pagination defaultCurrent={1} total={50} /> */}
+          <Table columns={this.state.columns} dataSource={this.state.filterData} pagination={false}/>
+          <Pagination defaultCurrent={1} total={this.state.total?this.state.total:1}  onChange={this.pageChange.bind(this)} />
         </div>
       </div>
     )
   }
 
   callback(key){
-    console.log(key);
+    // console.log(key);
   }
 
-  componentDidMount() {
 
-  }
 }
 
 export default qandaList

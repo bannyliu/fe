@@ -48,7 +48,7 @@ class VideoDetail extends Component{
             <img src="./images/Videodemo.jpg"/>
           </div>
         </div>
-        <CommentCommon  detailDatas={this.state.answers}></CommentCommon>
+        <CommentCommon  detailDatas={this.state.answers?this.state.answers:null}></CommentCommon>
       </div>
     )
   }
