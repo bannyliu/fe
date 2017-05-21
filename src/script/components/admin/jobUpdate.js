@@ -11,22 +11,15 @@ class JobUpdate extends Component{
   }
 
 
-  //面试题内容添加操作
-  add(){
-    console.log(this)
-  }
-
-  update(){
-    console.log(this)
-  }
 
   render(){
     return (
       <div className="m-update">
-        <Update title={this.state.title} updateHandle={this.update.bind(this)} addHandle={this.add.bind(this)}></Update>
+        <Update title={this.state.title} id={this.props.params.id} uriRemove={"/api/job/add"} uriList={"/api/job/detail"}></Update>
       </div>
     )
   }
+
 }
 
 export default JobUpdate

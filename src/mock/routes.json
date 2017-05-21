@@ -6,9 +6,9 @@
   "/api/job/list": "/joblist",
   "/api/job/remove": "/interviewremove",
   "/api/job/add": "/videoclassifyadd",
-  "/api/interview/list": "/interviewlist",
-  "/api/interview/remove":"/interviewremove",
-  "/api/interview/add":"/videoclassifyadd",
+  "/api/interviewq/list": "/interviewlist",
+  "/api/interviewq/remove":"/interviewremove",
+  "/api/interviewq/add":"/videoclassifyadd",
   "/api/video/classify/add":"/videoclassifyadd",
   "/api/video/classify/list":"/videoclassifylist",
   "/api/video/classify/remove":"/videoclassifyremove",
@@ -17,7 +17,7 @@
   "/api/video/stage/remove":"/videostageremove",
   "/api/video/add":"/videoclassifyadd",
   "/api/video/update":"/videoclassifyadd",
-  "/api/interviewq/list": "/interviewqlist",
+  "/api/video/remove":"/interviewremove",
   "/api/search":"/search"
 
 }

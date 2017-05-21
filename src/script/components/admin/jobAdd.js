@@ -15,7 +15,7 @@ class AdminRecruitAdd extends Component{
   render(){
     return (
       <div className="m-recruitAdd add">
-        <Add title={this.state.title} uri={"/api/job/add"}></Add>
+        <Add title={this.state.title} uri={"/api/job/add"} tag={"job"}></Add>
       </div>
     )
   }

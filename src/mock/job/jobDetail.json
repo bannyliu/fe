@@ -1,0 +1,19 @@
+{
+  "errcode": 0,
+  "errmsg": "",
+  "data": {
+    "id": 10,
+    "title": "JavaScript框架开发工程师",
+    "content": "精通JavaScript",
+  	"author": "小Q",
+  	"createDate": "5分钟前",
+  	"demanders": [
+  	  {
+  	    "id": 12,
+  	    "author": "小Q",
+  	    "createDate": "5分钟前",
+  	    "content": "我去面试了"
+  	  }
+  	]
+  }
+}

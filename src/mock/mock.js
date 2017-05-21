@@ -3,8 +3,7 @@ var qandaList = require('./qanda/qandaList.json');
 var qandaDetail = require('./qanda/qandaDetail.json');
 var qandaReply = require('./qanda/qandaReply.json');
 var jobList = require('./job/jobList.json');
-var interviewList = require('./interview/interviewList.json')
-var interviewRemove = require('./interview/interviewRemove.json')
+var interviewqRemove = require('./interviewq/interviewqRemove.json')
 var videoClassifyAdd = require('./video/classifyAdd.json')
 var videoClassifyList = require('./video/classifyList.json')
 var videoClassifyRemove = require('./video/classifyRemove.json')
@@ -21,8 +20,7 @@ module.exports = function () {
     'qandadetail': qandaDetail,
     'qandareply': qandaReply,
     'joblist':jobList,
-    'interviewlist':interviewList,
-    'interviewremove':interviewRemove,
+    'interviewremove':interviewqRemove,
     'videoclassifylist':videoClassifyList,
     'videoclassifyadd':videoClassifyAdd,
     'videoclassifyremove':videoClassifyRemove,

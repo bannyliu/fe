@@ -26,11 +26,10 @@ module.exports = {
 
     port: 7000,
     proxy: {
-
-
          '/api': {
-           target: 'http://fengfan.applinzi.com',
+          //  target: 'http://quanzs.xicp.net/',
           // target: 'http://localhost:9000',
+          target: 'http://fengfan.applinzi.com',
            changeOrigin: true
          }
 //       '/mock': {

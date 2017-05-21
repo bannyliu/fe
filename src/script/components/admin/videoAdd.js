@@ -47,27 +47,37 @@ class VideoAdd extends Component{
         message.error('提交失败，请重试')
       }
     }
+    //阶段管理和视频分类接口完成后
+    //将  category:{
+    //   step:1,
+    //   tag:"JavaScript"
+    // }
+    //替换为
+    // category:{
+    //   step:stage,
+    //   tag:classify
+    // }
     let data = {
       title:title,
-      videoUrl:videoUrl,
-      imgUrl:imgUrl,
-      summary:classify,
+      url:videoUrl,
+      img:imgUrl,
+      summary:desc,
       category:{
-        step:stage,
-        tag:title
+        step:1,
+        tag:"JavaScript"
       }
     }
     let params = {
       url:'/api/video/add',
-      method:'get',
+      method:'post',
       data:Qs.stringify(data),
       callback:callback
     }
-    if(!title || !desc || !imgUrl || !videoUrl || !classify ||!stage){
-      message.warning('请填写完整')
-    }else{
+    // if(!title || !desc || !imgUrl || !videoUrl || !classify ||!stage){
+    //   message.warning('请填写完整')
+    // }else{
       axios.lgypost(params)
-    }
+    // }
 
   }
 
