@@ -33,7 +33,8 @@ class qandaList extends React.Component {
 
     this.state = {
       data: [],
-      curIndex:0,
+      curTag:"所有标签",
+      count:10,
       pagination:{
         pageSize:6
       },
@@ -62,9 +63,8 @@ class qandaList extends React.Component {
 
     // 获取数据
     this.getData({
-      //通过标签值来获取对应的数据
       start: 0,
-      count: 11
+      count: 10
     });
 
   };
@@ -84,41 +84,55 @@ class qandaList extends React.Component {
         }
       });
       this.setState({
-        data: listData
+        data: listData,
+        filterData:listData,
+        total:res.data.data.total
       });
+      
     })
   };
 
 //通过点击标签来改变table中的数据源
   changeTag(tag,id){
+    // console.log(this.state.data[0].tag)
+    this.setState({
+      curTag:tag
+    })
+    this.state.curTag = tag
+    this.dataProcessing()
+  }
 
-    let tagData = []
-
-    this.state.data.map((value,index)=>{
-
-      if(id==0){
-        tagData.push(value)
+  dataProcessing(){
+    let filterData = []
+    this.state.data.map((item,index)=>{
+      if(this.state.curTag=="所有分类"){
+        filterData.push(item)
       }
-      else if(value.tag==tag){
-        tagData.push(value)
+      else if(item.tag == this.state.curTag){
+        filterData.push(item)
       }
       return
     })
-    console.log(tagData)
-
     this.setState({
-      curIndex:id,
-      data:tagData
+      filterData:filterData
     })
-
-
+    console.log(filterData)
   }
+
+  pageChange(page){
+    this.getData({
+      start:page*this.state.count,
+      count:this.state.count
+    })
+  }
+
+
 
   render() {
     let tagData = [{id:0,tag:"所有标签"},{id:1,tag:"PHP"},{id:2,tag:"HTML5"},{id:3,tag:"VUE"},{id:4,tag:"JS"}]
     let tagList = tagData.map((item,index)=>{
       return (
-        <li><i id={index} className={this.state.curIndex==index?"active":""} onClick={this.changeTag.bind(this,item.tag,index)}>{item.tag}</i></li>
+        <li><i id={index} className={this.state.curTag==item.tag?"active":""} onClick={this.changeTag.bind(this,item.tag,index)}>{item.tag}</i></li>
       )
 
     })
@@ -136,8 +150,8 @@ class qandaList extends React.Component {
           </div>
         </div>
         <div className="list">
-          <Table columns={this.state.columns} dataSource={this.state.data} pagination={this.state.pagination}/>
-          {/* <Pagination defaultCurrent={1} total={50} /> */}
+          <Table columns={this.state.columns} dataSource={this.state.filterData} pagination={false}/>
+          <Pagination defaultCurrent={1} total={this.state.total?this.state.total:1}  onChange={this.pageChange.bind(this)} />
         </div>
       </div>
     )
@@ -147,9 +161,7 @@ class qandaList extends React.Component {
     // console.log(key);
   }
 
-  componentDidMount() {
 
-  }
 }
 
 export default qandaList
