@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import Add from './add'
+import Add from '../add'
 
 class InterviewqAdd extends Component{
   constructor(props){
@@ -14,7 +14,7 @@ class InterviewqAdd extends Component{
   render(){
     return (
       <div className="m-interviewqAdd add">
-        <Add title={this.state.title} uri={"/api/interviewq/add"} tag={"interview"}></Add>
+        <Add title={this.state.title} uri={"/api/interviewq/add"} tag={"interviewq"}></Add>
       </div>
     )
   }

@@ -21,22 +21,25 @@ import QandaDetail from './components/qanda/qandaDetail'
 import QandaAdd from './components/qanda/qandaAdd'
 //admin 后台
 import Admin from './components/admin/admin'
-import InterviewqList from './components/admin/interviewqList'
-import interviewqDetail from './components/job/interviewqDetail'
-import InterviewqAdd from './components/admin/interviewqAdd'
-import JList from './components/admin/jobList'
-import JAdd from './components/admin/jobAdd'
-import Vlist from './components/admin/videoList'
-import Vadd from './components/admin/videoAdd'
-import Vupdate from './components/admin/videoUpdate'
-import Vclassify from './components/admin/videoClassify'
-import Vstage from './components/admin/stage'
-import JobUpdate from './components/admin/jobUpdate'
-import InterViewqUpdate from './components/admin/interviewqUpdate'
+
+import InterviewqList from './components/admin/interviewq/interviewqList'
+import InterviewqAdd from './components/admin/interviewq/interviewqAdd'
+import InterViewqUpdate from './components/admin/interviewq/interviewqUpdate'
+
+import JList from './components/admin/job/jobList'
+import JAdd from './components/admin/job/jobAdd'
+import JobUpdate from './components/admin/job/jobUpdate'
+
+import Vlist from './components/admin/video/videoList'
+import Vadd from './components/admin/video/videoAdd'
+import Vupdate from './components/admin/video/videoUpdate'
+
+import Classify from './components/admin/management/Classify'
+import Stage from './components/admin/management/stage'
+import City from './components/admin/management/city'
+
 //search 搜索
 import Search from './components/search/search'
-
-
 
 
 
@@ -109,8 +112,9 @@ ReactDOM.render((
         {/* 视频管理 */}
         <Route path="video">
           <IndexRedirect to="/admin/video/classify" />
-          <Route path="classify" component={Vclassify}></Route>
-          <Route path="stage" component={Vstage}></Route>
+          <Route path="classify" component={Classify}></Route>
+          <Route path="stage" component={Stage}></Route>
+          <Route path="city" component={City}></Route>
           <Route path="list" component={Vlist}></Route>
           <Route path="add" component={Vadd}></Route>
           <Route path="update/:id" component={Vupdate}></Route>

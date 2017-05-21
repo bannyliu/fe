@@ -34,9 +34,9 @@ export default {
   delete:(id,uri)=>{
     let callback = (res)=>{
           let data = res.data.data
-          if(data.status == "ok" && data.msg == "数据删除成功"){
+          if(data.status == "ok"){
             //删除成功
-            message.success('删除成功');
+            message.success(data.msg);
           }else{
             //删除失败
             message.success('删除失败，请重试');
@@ -44,21 +44,21 @@ export default {
         }
     let params = {
       url:uri,
-      method:'get',
+      method:'post',
       data:`id=${id}`,
       callback:callback
     }
     confirm({
-    title: '是否删除此项?',
-    content: '确认请点击确认,否则请点击取消',
-    onOk() {
-      axios.lgypost(params)
-    }
+      title: '是否删除此项?',
+      content: '确认请点击确认,否则请点击取消',
+      onOk() {
+        axios.lgypost(params)
+      }
     })
   },
-  //请求视频管理分类数据
-  videoClassify:(that)=>{
-    let uri ='/api/video/classify/list'
+  //请求分类数据
+  classify:(that)=>{
+    let uri ='/api/classify/list'
     let callback = (res)=>{
       let arr = []
       res.data.data.subjects.map((value,i)=>{
@@ -75,9 +75,9 @@ export default {
     }
     axios.lgypost(params)
   },
-  //请求视频阶段分类数据
-  videoStage:(that)=>{
-    let uri ='/api/video/stage/list'
+  //请求阶段数据
+  stage:(that)=>{
+    let uri ='/api/stage/list'
     let callback = (res)=>{
       let arr = []
       res.data.data.subjects.map((value,i)=>{
@@ -85,6 +85,25 @@ export default {
       })
       that.setState({
         stage:arr
+      })
+    }
+    let params = {
+      url:uri,
+      method:'get',
+      callback:callback
+    }
+    axios.lgypost(params)
+  },
+  //请求城市数据
+  city:(that)=>{
+    let uri ='/api/city/list'
+    let callback = (res)=>{
+      let arr = []
+      res.data.data.subjects.map((value,i)=>{
+        arr.push(<Option key={value.title}>{value.title}</Option>)
+      })
+      that.setState({
+        city:arr
       })
     }
     let params = {

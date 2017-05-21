@@ -1,6 +1,6 @@
 import React,{Component} from 'react'
-import List from './list'
-import adminCommon from '../../utils/adminCommon'
+import List from '../list'
+import adminCommon from '../../../utils/adminCommon'
 
 class VideoList extends Component{
   constructor(props){
