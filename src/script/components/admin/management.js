@@ -89,7 +89,6 @@ class Management extends Component{
   componentDidMount(){
     //请求视频管理分类数据
     let uri=this.props.info.listUri
-    console.log(uri)
     adminCommon.list(uri,this)
   }
 

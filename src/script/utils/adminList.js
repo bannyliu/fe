@@ -32,7 +32,6 @@ export default {
   },
   //删除操作
   delete:(id,uri)=>{
-    console.log(uri)
     let callback = (res)=>{
           let data = res.data.data
           if(data.status == "ok" && data.msg == "数据删除成功"){
@@ -98,7 +97,6 @@ export default {
   //请求job和interview列表数据
   commonList:(uri,that)=>{
     let callback = (res)=>{
-      console.log(res)
       let data = []
       res.data.data.subjects.map((value,index)=>{
         data.push(value)
