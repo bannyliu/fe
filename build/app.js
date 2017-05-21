@@ -123,7 +123,7 @@ var Axios = {
       method: param.method,
       data: param.data,
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
+        'Content-Type': 'application/json; charset=utf-8'
       }
     }).then(function (res) {
       param.callback(res);
@@ -137,6 +137,12 @@ exports.default = Axios;
 
 /***/ }),
 /* 3 */
+/***/ (function(module, exports) {
+
+module.exports = window.ReactRouter;
+
+/***/ }),
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/BANNY/Desktop/fe/liubin/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/BANNY/Desktop/fe/liubin/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -184,7 +190,6 @@ exports.default = {
   },
   //删除操作
   delete: function _delete(id, uri) {
-    console.log(uri);
     var callback = function callback(res) {
       var data = res.data.data;
       if (data.status == "ok" && data.msg == "数据删除成功") {
@@ -258,7 +263,6 @@ exports.default = {
   //请求job和interview列表数据
   commonList: function commonList(uri, that) {
     var callback = function callback(res) {
-      console.log(res);
       var data = [];
       res.data.data.subjects.map(function (value, index) {
         data.push(value);
@@ -280,13 +284,11 @@ exports.default = {
   }
 };
 
+<<<<<<< HEAD
 /* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/BANNY/Desktop/fe/liubin/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "adminList.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports) {
-
-module.exports = window.ReactRouter;
+=======
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/BANNY/Desktop/fe/liubin/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "adminCommon.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+>>>>>>> 1f7f2b3fd67ada299ca8c649a72214425df06611
 
 /***/ }),
 /* 5 */
@@ -308,9 +310,9 @@ var _react2 = _interopRequireDefault(_react);
 
 var _antd = __webpack_require__(1);
 
-var _adminList = __webpack_require__(3);
+var _axios = __webpack_require__(2);
 
-var _adminList2 = _interopRequireDefault(_adminList);
+var _axios2 = _interopRequireDefault(_axios);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -335,10 +337,54 @@ var Add = function (_Component) {
 
     //添加操作
     value: function add() {
+      var _this2 = this;
+
       var title = this.refs.title.value;
       var txt = this.refs.txt.refs.input.value;
       var uri = this.props.uri;
-      _adminList2.default.add(uri);
+      var callback = function callback(res) {
+        console.log(res);
+        var data = res.data.data;
+        if (data.status == "ok") {
+          _antd.message.success('提交成功');
+          _this2.refs.title.value = '';
+          _this2.refs.txt.refs.input.value = '';
+        } else {
+          _antd.message.error('提交失败，请重试');
+        }
+      };
+      var tag = this.props.tag; //区分招聘和面试题(发送数据不同)
+      var params = {};
+      if (tag == "job") {
+        params = {
+          url: uri,
+          method: "post",
+          data: {
+            uid: 4,
+            title: title,
+            city: "Beijing",
+            content: txt
+          },
+          callback: callback
+        };
+      } else if (tag == "interview") {
+        params = {
+          url: uri,
+          method: "post",
+          data: {
+            uid: 4,
+            title: title,
+            tag: "HTML5",
+            content: txt
+          },
+          callback: callback
+        };
+      }
+      if (!title || !txt) {
+        _antd.message.warning('请填写完整');
+      } else {
+        _axios2.default.lgypost(params);
+      }
     }
   }, {
     key: 'render',
@@ -707,9 +753,13 @@ var _axios = __webpack_require__(2);
 
 var _axios2 = _interopRequireDefault(_axios);
 
-var _adminList = __webpack_require__(3);
+<<<<<<< HEAD
+var _adminList = __webpack_require__(4);
+=======
+var _adminCommon = __webpack_require__(4);
+>>>>>>> 1f7f2b3fd67ada299ca8c649a72214425df06611
 
-var _adminList2 = _interopRequireDefault(_adminList);
+var _adminCommon2 = _interopRequireDefault(_adminCommon);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -766,7 +816,7 @@ var Management = function (_Component) {
     key: 'delete',
     value: function _delete(id) {
       var uri = this.props.info.removeUri;
-      _adminList2.default.delete(id, uri);
+      _adminCommon2.default.delete(id, uri);
     }
 
     //分类添加操作
@@ -844,8 +894,7 @@ var Management = function (_Component) {
     value: function componentDidMount() {
       //请求视频管理分类数据
       var uri = this.props.info.listUri;
-      console.log(uri);
-      _adminList2.default.list(uri, this);
+      _adminCommon2.default.list(uri, this);
     }
   }]);
 
@@ -880,6 +929,20 @@ var _add2 = _interopRequireDefault(_add);
 
 var _antd = __webpack_require__(1);
 
+<<<<<<< HEAD
+var _adminList = __webpack_require__(4);
+
+var _adminList2 = _interopRequireDefault(_adminList);
+=======
+var _adminCommon = __webpack_require__(4);
+
+var _adminCommon2 = _interopRequireDefault(_adminCommon);
+>>>>>>> 1f7f2b3fd67ada299ca8c649a72214425df06611
+
+var _axios = __webpack_require__(2);
+
+var _axios2 = _interopRequireDefault(_axios);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -898,6 +961,9 @@ var Update = function (_Component) {
   }
 
   _createClass(Update, [{
+    key: 'update',
+    value: function update() {}
+  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
@@ -911,16 +977,16 @@ var Update = function (_Component) {
         _react2.default.createElement(
           'div',
           { className: 'title' },
-          _react2.default.createElement('input', { type: 'text', placeholder: '\u6DFB\u52A0\u6807\u9898' })
+          _react2.default.createElement('input', { type: 'text', placeholder: '\u6DFB\u52A0\u6807\u9898', ref: 'title' })
         ),
         _react2.default.createElement(
           'div',
           { className: 'txt' },
-          _react2.default.createElement(_antd.Input, { type: 'textarea', rows: 4 })
+          _react2.default.createElement(_antd.Input, { type: 'textarea', rows: 4, ref: 'txt' })
         ),
         _react2.default.createElement(
           _antd.Button,
-          { onClick: this.props.addHandle },
+          { onClick: this.update },
           '\u63D0\u4EA4'
         )
       );
@@ -928,7 +994,24 @@ var Update = function (_Component) {
   }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
-      console.log(this.props);
+      var title = this.refs.title;
+      var txt = this.refs.txt.refs.input;
+      var id = this.props.id;
+      var uri = this.props.uriList;
+      var params = {};
+      var callback = function callback(res) {
+        console.log(res);
+        // let data = res.data.data.subjects
+        // let arr={}
+
+        // data.map((value,index)=>{
+        //   if(id == value.id){
+        //     arr = value
+        //   }
+        // })
+        // title.value = arr.title
+      };
+      // axios.get(uri,params,callback)
     }
   }]);
 
@@ -1033,14 +1116,14 @@ var Comment = function (_React$Component) {
   }, {
     key: 'reply',
     value: function reply() {
-      // console.log(this.refs.inputContent.refs.input.value);
-      // Axios.post('/api/qanda/reply', {
-      //   uid: 34, // 用户ID [数值：必填]
-      //   qid: 10, // 问题id：[数值：必填]
-      //   content: this.refs.inputContent.refs.input.value // 回帖内容：[字符串：必填]
-      // }, (res)=>{
-      //   console.log(res.data.data);
-      // })
+      console.log(this.refs.inputContent.refs.input.value);
+      Axios.post('/api/qanda/reply', {
+        uid: 34, // 用户ID [数值：必填]
+        qid: 10, // 问题id：[数值：必填]
+        content: this.refs.inputContent.refs.input.value // 回帖内容：[字符串：必填]
+      }, function (res) {
+        console.log(res.data.data);
+      });
     }
   }, {
     key: 'componentDidMount',
@@ -1173,7 +1256,7 @@ exports.default = Footer;
 
 /* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/BANNY/Desktop/fe/liubin/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/BANNY/Desktop/fe/liubin/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -1184,6 +1267,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = __webpack_require__(3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1203,20 +1288,26 @@ var IndexCommonTitle = function (_Component) {
   }
 
   _createClass(IndexCommonTitle, [{
-    key: "render",
+    key: 'go',
+    value: function go(path) {
+      console.log(_reactRouter.hashHistory);
+      _reactRouter.hashHistory.push('/' + path + '/list/');
+    }
+  }, {
+    key: 'render',
     value: function render() {
       return React.createElement(
-        "div",
-        { className: "index_title" },
+        'div',
+        { className: 'index_title' },
         React.createElement(
-          "p",
+          'p',
           null,
           this.props.title
         ),
         React.createElement(
-          "span",
-          null,
-          "\u66F4\u591A"
+          'span',
+          { onClick: this.go.bind(this, this.props.path) },
+          '\u66F4\u591A'
         )
       );
     }
@@ -1407,70 +1498,56 @@ var SearchQanda = function (_Component) {
       return _react2.default.createElement(
         'div',
         { className: 'search_list' },
-        _react2.default.createElement(_antd.Table, { columns: this.state.columns, dataSource: this.state.data })
+        _react2.default.createElement(_antd.Table, { columns: this.props.columns, dataSource: this.props.data })
       );
     }
   }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
-      var that = this;
-      console.log(this);
-      setTimeout(function () {
-        var dataSource = that.props.data.subjects;
-        var NewDataSource = [];
-        for (var i = 0; i < dataSource.length; i++) {
-          NewDataSource.push({
-            key: '' + (i + 1),
-            name: '' + dataSource[i].createDate,
-            title: '' + dataSource[i].title
-          });
-        }
-        // dataSource.map((value,index)=>{
-        //  NewDataSource.push({
-        //     key:`${index+1}`,
-        //     name: `${value.createDate}`,
-        //     title:`${value.title}`
-        //   })
-        // })
+      // let that = this
+      // console.log(this)
+      // if(this){
+      //   console.log(this.props.data)
+      // }
+      // setTimeout(function(){
+      //   let dataSource = that.props.data.subjects
+      //   let NewDataSource = []
+      //   for(let i = 0 ; i < dataSource.length ; i ++){
+      //     NewDataSource.push({
+      //        key:`${i+1}`,
+      //        name: `${dataSource[i].createDate}`,
+      //        title:`${dataSource[i].title}`
+      //      })
+      //   }
+      // dataSource.map((value,index)=>{
+      //  NewDataSource.push({
+      //     key:`${index+1}`,
+      //     name: `${value.createDate}`,
+      //     title:`${value.title}`
+      //   })
+      // })
 
-        var columns = [{
-          title: that.props.data.title,
-          dataIndex: 'name',
-          key: 'name',
-          render: function render(text, record) {
-            return _react2.default.createElement(
-              'span',
-              { className: 'search_inner' },
-              _react2.default.createElement(
-                'div',
-                { className: 'search_title' },
-                record.title
-              ),
-              _react2.default.createElement(
-                'a',
-                { href: '#', className: 'search_article' },
-                record.name
-              )
-            );
-          }
-        }];
-        that.setState({
-          Data: that.props.data,
-          data: NewDataSource,
-          columns: columns
-        });
-      }, 10);
+      //   let columns=[{
+      //     title:that.props.data.title,
+      //     dataIndex: 'name',
+      //      key: 'name',
+      //      render:(text,record)=>(
+      //        <span className="search_inner">
+      //         <div className="search_title">{record.title}</div>
+      //         <a href="#" className="search_article">{record.name}</a>
+      //       </span>
+      //      )
+      //   }]
+      //   that.setState({
+      //     Data:that.props.data,
+      //     data:NewDataSource,
+      //     columns:columns
+      //   })
+      // },10)
 
       var title = this.props.title;
       if (title == '视频') {} else {}
     }
-  }, {
-    key: 'componentDidUpdate',
-    value: function componentDidUpdate() {}
-    // componentWillReceiveProps(){
-    //   console.log(1)
-    // }
-
   }]);
 
   return SearchQanda;
@@ -1498,7 +1575,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouter = __webpack_require__(4);
+var _reactRouter = __webpack_require__(3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1776,7 +1853,7 @@ var InterviewqAdd = function (_Component) {
       return _react2.default.createElement(
         'div',
         { className: 'm-interviewqAdd add' },
-        _react2.default.createElement(_add2.default, { title: this.state.title, uri: "/api/interview/add" })
+        _react2.default.createElement(_add2.default, { title: this.state.title, uri: "/api/interviewq/add", tag: "interview" })
       );
     }
   }]);
@@ -1810,9 +1887,13 @@ var _list = __webpack_require__(6);
 
 var _list2 = _interopRequireDefault(_list);
 
-var _adminList = __webpack_require__(3);
+<<<<<<< HEAD
+var _adminList = __webpack_require__(4);
+=======
+var _adminCommon = __webpack_require__(4);
+>>>>>>> 1f7f2b3fd67ada299ca8c649a72214425df06611
 
-var _adminList2 = _interopRequireDefault(_adminList);
+var _adminCommon2 = _interopRequireDefault(_adminCommon);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1892,8 +1973,12 @@ var InterviewqList = function (_Component) {
   }, {
     key: 'delete',
     value: function _delete(id) {
-      var uri = '/api/interview/remove';
+      var uri = '/api/interviewq/remove';
+<<<<<<< HEAD
       _adminList2.default.delete(id, uri);
+=======
+      _adminCommon2.default.delete(id, uri);
+>>>>>>> 1f7f2b3fd67ada299ca8c649a72214425df06611
     }
   }, {
     key: 'render',
@@ -1908,8 +1993,12 @@ var InterviewqList = function (_Component) {
     key: 'componentDidMount',
     value: function componentDidMount() {
       //请求面试题管理列表数据
-      var uri = '/api/interview/list';
+      var uri = '/api/interviewq/list';
+<<<<<<< HEAD
       _adminList2.default.list(uri, this);
+=======
+      _adminCommon2.default.list(uri, this);
+>>>>>>> 1f7f2b3fd67ada299ca8c649a72214425df06611
     }
   }]);
 
@@ -2044,7 +2133,7 @@ var AdminRecruitAdd = function (_Component) {
       return _react2.default.createElement(
         'div',
         { className: 'm-recruitAdd add' },
-        _react2.default.createElement(_add2.default, { title: this.state.title, uri: "/api/job/add" })
+        _react2.default.createElement(_add2.default, { title: this.state.title, uri: "/api/job/add", tag: "job" })
       );
     }
   }]);
@@ -2078,9 +2167,13 @@ var _list = __webpack_require__(6);
 
 var _list2 = _interopRequireDefault(_list);
 
-var _adminList = __webpack_require__(3);
+<<<<<<< HEAD
+var _adminList = __webpack_require__(4);
+=======
+var _adminCommon = __webpack_require__(4);
+>>>>>>> 1f7f2b3fd67ada299ca8c649a72214425df06611
 
-var _adminList2 = _interopRequireDefault(_adminList);
+var _adminCommon2 = _interopRequireDefault(_adminCommon);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2161,7 +2254,7 @@ var recruitList = function (_Component) {
     key: 'delete',
     value: function _delete(id) {
       var uri = '/api/job/remove';
-      _adminList2.default.delete(id, uri);
+      _adminCommon2.default.delete(id, uri);
     }
   }, {
     key: 'render',
@@ -2177,7 +2270,7 @@ var recruitList = function (_Component) {
     value: function componentDidMount() {
       //请求招聘管理列表数据
       var uri = '/api/job/list';
-      _adminList2.default.list(uri, this);
+      _adminCommon2.default.list(uri, this);
     }
   }]);
 
@@ -2236,26 +2329,13 @@ var JobUpdate = function (_Component) {
     return _this;
   }
 
-  //面试题内容添加操作
-
-
   _createClass(JobUpdate, [{
-    key: 'add',
-    value: function add() {
-      console.log(this);
-    }
-  }, {
-    key: 'update',
-    value: function update() {
-      console.log(this);
-    }
-  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
         'div',
         { className: 'm-update' },
-        _react2.default.createElement(_update2.default, { title: this.state.title, updateHandle: this.update.bind(this), addHandle: this.add.bind(this) })
+        _react2.default.createElement(_update2.default, { title: this.state.title, id: this.props.params.id, uriRemove: "/api/job/add", uriList: "/api/job/detail" })
       );
     }
   }]);
@@ -2291,10 +2371,13 @@ var _axios = __webpack_require__(2);
 
 var _axios2 = _interopRequireDefault(_axios);
 
-var _adminList = __webpack_require__(3);
+<<<<<<< HEAD
+var _adminList = __webpack_require__(4);
 
 var _adminList2 = _interopRequireDefault(_adminList);
 
+=======
+>>>>>>> 1f7f2b3fd67ada299ca8c649a72214425df06611
 var _management = __webpack_require__(11);
 
 var _management2 = _interopRequireDefault(_management);
@@ -2369,9 +2452,13 @@ var _axios = __webpack_require__(2);
 
 var _axios2 = _interopRequireDefault(_axios);
 
-var _adminList = __webpack_require__(3);
+<<<<<<< HEAD
+var _adminList = __webpack_require__(4);
+=======
+var _adminCommon = __webpack_require__(4);
+>>>>>>> 1f7f2b3fd67ada299ca8c649a72214425df06611
 
-var _adminList2 = _interopRequireDefault(_adminList);
+var _adminCommon2 = _interopRequireDefault(_adminCommon);
 
 var _qs = __webpack_require__(9);
 
@@ -2434,27 +2521,37 @@ var VideoAdd = function (_Component) {
           _antd.message.error('提交失败，请重试');
         }
       };
+      //阶段管理和视频分类接口完成后
+      //将  category:{
+      //   step:1,
+      //   tag:"JavaScript"
+      // }
+      //替换为
+      // category:{
+      //   step:stage,
+      //   tag:classify
+      // }
       var data = {
         title: title,
-        videoUrl: videoUrl,
-        imgUrl: imgUrl,
-        summary: classify,
+        url: videoUrl,
+        img: imgUrl,
+        summary: desc,
         category: {
-          step: stage,
-          tag: title
+          step: 1,
+          tag: "JavaScript"
         }
       };
       var params = {
         url: '/api/video/add',
-        method: 'get',
+        method: 'post',
         data: _qs2.default.stringify(data),
         callback: callback
       };
-      if (!title || !desc || !imgUrl || !videoUrl || !classify || !stage) {
-        _antd.message.warning('请填写完整');
-      } else {
-        _axios2.default.lgypost(params);
-      }
+      // if(!title || !desc || !imgUrl || !videoUrl || !classify ||!stage){
+      //   message.warning('请填写完整')
+      // }else{
+      _axios2.default.lgypost(params);
+      // }
     }
   }, {
     key: 'handleClassifyChange',
@@ -2548,10 +2645,10 @@ var VideoAdd = function (_Component) {
     key: 'componentDidMount',
     value: function componentDidMount() {
       //请求视频管理分类数据
-      _adminList2.default.videoClassify(this);
+      _adminCommon2.default.videoClassify(this);
 
       //请求视频阶段分类数据
-      _adminList2.default.videoStage(this);
+      _adminCommon2.default.videoStage(this);
     }
   }]);
 
@@ -2586,10 +2683,13 @@ var _axios = __webpack_require__(2);
 
 var _axios2 = _interopRequireDefault(_axios);
 
-var _adminList = __webpack_require__(3);
+<<<<<<< HEAD
+var _adminList = __webpack_require__(4);
 
 var _adminList2 = _interopRequireDefault(_adminList);
 
+=======
+>>>>>>> 1f7f2b3fd67ada299ca8c649a72214425df06611
 var _management = __webpack_require__(11);
 
 var _management2 = _interopRequireDefault(_management);
@@ -2616,7 +2716,7 @@ var VideoClassify = function (_Component) {
         tip: "分类添加",
         listUri: "/api/video/classify/list",
         addUri: "/api/video/classify/add",
-        removeUri: "/api/video/stage/remove"
+        removeUri: "/api/video/classify/remove"
       }
     };
     return _this;
@@ -2662,9 +2762,13 @@ var _list = __webpack_require__(6);
 
 var _list2 = _interopRequireDefault(_list);
 
-var _adminList = __webpack_require__(3);
+<<<<<<< HEAD
+var _adminList = __webpack_require__(4);
+=======
+var _adminCommon = __webpack_require__(4);
+>>>>>>> 1f7f2b3fd67ada299ca8c649a72214425df06611
 
-var _adminList2 = _interopRequireDefault(_adminList);
+var _adminCommon2 = _interopRequireDefault(_adminCommon);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2745,7 +2849,7 @@ var VideoList = function (_Component) {
     key: 'delete',
     value: function _delete(id) {
       var uri = '/api/video/remove';
-      _adminList2.default.delete(id, uri);
+      _adminCommon2.default.delete(id, uri);
     }
   }, {
     key: 'render',
@@ -2763,6 +2867,7 @@ var VideoList = function (_Component) {
 
       //请求视频管理列表数据
       var callback = function callback(res) {
+        console.log(res);
         var subjects = res.data.data.subjects;
         var data = [];
         subjects.map(function (value, index) {
@@ -2777,7 +2882,7 @@ var VideoList = function (_Component) {
         });
       };
       var uri = '/api/video/list';
-      _adminList2.default.videoList(uri, callback);
+      _adminCommon2.default.videoList(uri, callback);
     }
   }]);
 
@@ -2812,9 +2917,13 @@ var _axios = __webpack_require__(2);
 
 var _axios2 = _interopRequireDefault(_axios);
 
-var _adminList = __webpack_require__(3);
+<<<<<<< HEAD
+var _adminList = __webpack_require__(4);
+=======
+var _adminCommon = __webpack_require__(4);
+>>>>>>> 1f7f2b3fd67ada299ca8c649a72214425df06611
 
-var _adminList2 = _interopRequireDefault(_adminList);
+var _adminCommon2 = _interopRequireDefault(_adminCommon);
 
 var _qs = __webpack_require__(9);
 
@@ -2882,9 +2991,9 @@ var VideoUpdate = function (_Component) {
         var data = res.data.data;
         if (data.status == "ok") {
           //提交成功
-          _antd.message.success('提交成功');
-          _this2.refs.title.value = '';
-          _this2.refs.desc.refs.input.value = '', _this2.refs.imgUrl.value = '', _this2.refs.videoUrl.value = '';
+          _antd.message.success('提交成功', 1, function () {
+            _this2.props.router.push("/admin/video/list");
+          });
         } else {
           //提交失败
           _antd.message.error('提交失败，请重试');
@@ -2996,10 +3105,10 @@ var VideoUpdate = function (_Component) {
       var id = this.props.params.id;
 
       //请求视频管理分类数据
-      _adminList2.default.videoClassify(this);
+      _adminCommon2.default.videoClassify(this);
 
       //请求视频阶段分类数据
-      _adminList2.default.videoStage(this);
+      _adminCommon2.default.videoStage(this);
 
       //请求视频管理列表数据
       var callback = function callback(res) {
@@ -3020,7 +3129,7 @@ var VideoUpdate = function (_Component) {
         });
       };
       var uri = '/api/video/list';
-      _adminList2.default.videoList(uri, callback);
+      _adminCommon2.default.videoList(uri, callback);
     }
   }]);
 
@@ -3089,6 +3198,12 @@ var IndexList = function (_Component) {
         _react2.default.createElement(_indexNews2.default, null)
       );
     }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      // console.log(localStorage.getItem('username'))
+
+    }
   }]);
 
   return IndexList;
@@ -3116,7 +3231,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouter = __webpack_require__(4);
+var _reactRouter = __webpack_require__(3);
 
 var _antd = __webpack_require__(1);
 
@@ -3425,20 +3540,15 @@ var qandAdd = function (_React$Component) {
         }
         return;
       });
-      console.log({
-        title: title,
-        content: content,
-        tags: tags
+      console.log(tags);
+      _axios2.default.post('/api/qanda/add', {
+        uid: 4, // 用户ID [数值：必填]
+        tag: tags, // 问题标签 [字符串：必填] html, css, 原生js, angular, vue,其他等等
+        title: title, //标题 [字符串：必填]
+        content: content // 回帖内容：[字符串：必填]
+      }, function (res) {
+        console.log(res);
       });
-      // console.log(title+":"+content)
-      // Axios.post('/api/qanda/add', {
-      //   uid: 4, // 用户ID [数值：必填]
-      //   tag: "React", // 问题标签 [字符串：必填] html, css, 原生js, angular, vue,其他等等
-      //   title: "React dangerouslySetInnerHTML 怎么用？", //标题 [字符串：必填]
-      //   content: this.refs.inputContent.refs.input.value // 回帖内容：[字符串：必填]
-      // }, (res)=>{
-      //   // console.log(res.data.data);
-      // })
     }
   }]);
 
@@ -3615,7 +3725,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouter = __webpack_require__(4);
+var _reactRouter = __webpack_require__(3);
 
 var _antd = __webpack_require__(1);
 
@@ -3632,7 +3742,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 // import ListContent from './ListContent'
-
 
 // const data = [{
 //   key: '1',
@@ -3664,7 +3773,8 @@ var qandaList = function (_React$Component) {
 
     _this.state = {
       data: [],
-      curIndex: 1,
+      curTag: "所有标签",
+      count: 10,
       pagination: {
         pageSize: 6
       },
@@ -3699,11 +3809,10 @@ var qandaList = function (_React$Component) {
 
     // 获取数据
     _this.getData({
-      //通过标签值来获取对应的数据
-      condition: 'react',
       start: 0,
       count: 10
     });
+
     return _this;
   }
 
@@ -3720,13 +3829,15 @@ var qandaList = function (_React$Component) {
             key: index,
             title: comment.title,
             author: comment.author,
+            tag: comment.tag,
             createDate: comment.createDate,
             action: comment.hits + '/' + comment.answers
           };
         });
-        // console.log(listData);
         _this2.setState({
-          data: listData
+          data: listData,
+          filterData: listData,
+          total: res.data.data.total
         });
       });
     }
@@ -3735,31 +3846,54 @@ var qandaList = function (_React$Component) {
 
 
     //通过点击标签来改变table中的数据源
-    value: function changeTag(tag, index) {
+    value: function changeTag(tag, id) {
+      // console.log(this.state.data[0].tag)
       this.setState({
-        curIndex: index
+        curTag: tag
       });
-      console.log(tag);
+      this.state.curTag = tag;
+      this.dataProcessing();
+    }
+  }, {
+    key: 'dataProcessing',
+    value: function dataProcessing() {
+      var _this3 = this;
 
+      var filterData = [];
+      this.state.data.map(function (item, index) {
+        if (_this3.state.curTag == "所有分类") {
+          filterData.push(item);
+        } else if (item.tag == _this3.state.curTag) {
+          filterData.push(item);
+        }
+        return;
+      });
+      this.setState({
+        filterData: filterData
+      });
+      console.log(filterData);
+    }
+  }, {
+    key: 'pageChange',
+    value: function pageChange(page) {
       this.getData({
-        condition: tag,
-        start: 0,
-        count: 10
+        start: page * this.state.count,
+        count: this.state.count
       });
     }
   }, {
     key: 'render',
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
-      var tagData = [{ id: 1, tag: "PHP" }, { id: 2, tag: "HTML5" }, { id: 3, tag: "VUE" }, { id: 4, tag: "JS" }];
+      var tagData = [{ id: 0, tag: "所有标签" }, { id: 1, tag: "PHP" }, { id: 2, tag: "HTML5" }, { id: 3, tag: "VUE" }, { id: 4, tag: "JS" }];
       var tagList = tagData.map(function (item, index) {
         return _react2.default.createElement(
           'li',
           null,
           _react2.default.createElement(
             'i',
-            { id: index, className: _this3.state.curIndex == index ? "active" : "", onClick: _this3.changeTag.bind(_this3, item.tag, index) },
+            { id: index, className: _this4.state.curTag == item.tag ? "active" : "", onClick: _this4.changeTag.bind(_this4, item.tag, index) },
             item.tag
           )
         );
@@ -3797,18 +3931,16 @@ var qandaList = function (_React$Component) {
         _react2.default.createElement(
           'div',
           { className: 'list' },
-          _react2.default.createElement(_antd.Table, { columns: this.state.columns, dataSource: this.state.data, pagination: this.state.pagination })
+          _react2.default.createElement(_antd.Table, { columns: this.state.columns, dataSource: this.state.filterData, pagination: false }),
+          _react2.default.createElement(_antd.Pagination, { defaultCurrent: 1, total: this.state.total ? this.state.total : 1, onChange: this.pageChange.bind(this) })
         )
       );
     }
   }, {
     key: 'callback',
     value: function callback(key) {
-      console.log(key);
+      // console.log(key);
     }
-  }, {
-    key: 'componentDidMount',
-    value: function componentDidMount() {}
   }]);
 
   return qandaList;
@@ -3876,7 +4008,7 @@ var SearchList = function (_Component) {
   _createClass(SearchList, [{
     key: 'getSearchBody',
     value: function getSearchBody() {
-      console.log(this.refs.input.input.refs.input.value);
+      // console.log(this.refs.input.input.refs.input.value)
     }
   }, {
     key: 'render',
@@ -4154,7 +4286,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouter = __webpack_require__(4);
+var _reactRouter = __webpack_require__(3);
 
 var _axiosUtil = __webpack_require__(2);
 
@@ -4196,15 +4328,16 @@ var Signin = function (_Component) {
       };
       //目前接口有问题，只是做了逻辑的处理
       _axiosUtil2.default.lgypost({
-        url: '/api/users/signin',
+        url: '/api/users/signin?username=zhangsan123&password=abc123',
         method: 'get',
         //      data: `username=${this.username}&password=${this.password}`,
         data: JSON.stringify(data),
         callback: function callback(res) {
-          console.log(res);
-          if (res.errcode) {
+          // console.log(res)
+          // console.log(res.errcode)
+          if (!res.errcode) {
             //存储
-            localStorage.setItem('username', res.data.username);
+            localStorage.setItem('username', res.data.data.username);
             //跳转首页
             _reactRouter.hashHistory.push("/");
           } else {
@@ -4359,7 +4492,7 @@ var List = function (_Component) {
       step: 0,
       count: 10,
       curPage: 1,
-      listAllData: []
+      listAllData: null
     };
     return _this;
   }
@@ -4452,20 +4585,10 @@ var List = function (_Component) {
 
       // console.log(this.state.curTag)
       var htmlData = [];
-      this.state.listAllData.subjects.map(function (value, index) {
-        //分类：勾选所有分类时
-        if (_this3.state.curTag == "所有分类") {
-          //阶段：勾选所有阶段时
-          if (_this3.state.step == 0) {
-            htmlData.push(value);
-          }
-          //阶段：勾选其它阶段时
-          else if (value.category.step == _this3.state.step) {
-              htmlData.push(value);
-            }
-        }
-        //分类：勾选其它分类时
-        else if (value.category.tag == _this3.state.curTag) {
+      if (this.state.listAllData) {
+        this.state.listAllData.subjects.map(function (value, index) {
+          //分类：勾选所有分类时
+          if (_this3.state.curTag == "所有分类") {
             //阶段：勾选所有阶段时
             if (_this3.state.step == 0) {
               htmlData.push(value);
@@ -4475,8 +4598,20 @@ var List = function (_Component) {
                 htmlData.push(value);
               }
           }
-        return;
-      });
+          //分类：勾选其它分类时
+          else if (value.category.tag == _this3.state.curTag) {
+              //阶段：勾选所有阶段时
+              if (_this3.state.step == 0) {
+                htmlData.push(value);
+              }
+              //阶段：勾选其它阶段时
+              else if (value.category.step == _this3.state.step) {
+                  htmlData.push(value);
+                }
+            }
+          return;
+        });
+      }
       this.setState({
         listData: htmlData
       });
@@ -4534,8 +4669,8 @@ var List = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      console.log(this.state.curTag + ":" + this.state.step);
-      var tagData = [{ id: 0, tag: "所有分类" }, { id: 1, tag: "PHP" }, { id: 2, tag: "HTML5" }, { id: 3, tag: "VUE" }, { id: 4, tag: "JS" }];
+      // console.log(this.state.curTag+":"+this.state.step)
+      var tagData = [{ id: 0, tag: "所有分类" }, { id: 1, tag: "PHP" }, { id: 2, tag: "HTML5" }, { id: 3, tag: "VUE" }, { id: 4, tag: "JavaScript" }];
       var tagData2 = [{ id: 0, tag: "所有阶段" }, { id: 1, tag: "第一阶段" }, { id: 2, tag: "第二阶段" }, { id: 3, tag: "第三阶段" }];
       return _react2.default.createElement(
         'div',
@@ -4586,7 +4721,7 @@ var List = function (_Component) {
             )
           )
         ),
-        _react2.default.createElement(_antd.Pagination, { total: this.state.listAllData.total, current: this.state.curPage, onChange: this.pageChange.bind(this) })
+        _react2.default.createElement(_antd.Pagination, { total: this.state.listAllData ? this.state.listAllData.total : 1, current: this.state.curPage, onChange: this.pageChange.bind(this) })
       );
     }
   }, {
@@ -4599,6 +4734,7 @@ var List = function (_Component) {
         start: 0,
         count: 10
       }, function (res) {
+        // console.log(res)
         _this4.setState({
           listAllData: res.data.data,
           listData: res.data.data.subjects
@@ -4707,7 +4843,7 @@ var VideoDetail = function (_Component) {
             _react2.default.createElement('img', { src: './images/Videodemo.jpg' })
           )
         ),
-        _react2.default.createElement(_Comment2.default, { detailDatas: this.state.answers })
+        _react2.default.createElement(_Comment2.default, { detailDatas: this.state.answers ? this.state.answers : null })
       );
     }
   }]);
@@ -5195,7 +5331,7 @@ var _reactDom = __webpack_require__(46);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _reactRouter = __webpack_require__(4);
+var _reactRouter = __webpack_require__(3);
 
 var _store = __webpack_require__(45);
 
@@ -5429,7 +5565,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouter = __webpack_require__(4);
+var _reactRouter = __webpack_require__(3);
 
 var _antd = __webpack_require__(1);
 
@@ -5564,7 +5700,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _antd = __webpack_require__(1);
 
-var _reactRouter = __webpack_require__(4);
+var _reactRouter = __webpack_require__(3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -5776,7 +5912,7 @@ var IndexNews = function (_Component) {
         'ul',
         { className: 'index_news' },
         _react2.default.createElement(_indexNewsList2.default, { title: '\u6700\u65B0\u95EE\u7B54', tabs: 'qanda' }),
-        _react2.default.createElement(_indexNewsList2.default, { title: '\u6700\u65B0\u9762\u8BD5\u9898', tabs: 'interview' }),
+        _react2.default.createElement(_indexNewsList2.default, { title: '\u6700\u65B0\u9762\u8BD5\u9898', tabs: 'interviewq' }),
         _react2.default.createElement(_indexNewsList2.default, { title: '\u6700\u65B0\u62DB\u8058\u4FE1\u606F', tabs: 'job' })
       );
     }
@@ -5866,7 +6002,7 @@ var IndexNewsList = function (_Component) {
       return _react2.default.createElement(
         'li',
         { className: 'news_list' },
-        _react2.default.createElement(_indexCommon2.default, { title: this.props.title }),
+        _react2.default.createElement(_indexCommon2.default, { title: this.props.title, path: this.props.tabs }),
         _react2.default.createElement(
           'div',
           { className: 'news_content' },
@@ -5880,13 +6016,18 @@ var IndexNewsList = function (_Component) {
       var tabs = this.props.tabs;
       var that = this;
       _axios2.default.get({
-        url: 'api/' + tabs + '/list',
+        url: '/api/' + tabs + '/list?start=0&count=10',
         method: 'get',
         data: {
           start: 0,
-          count: 8
+          count: 10
         },
         callback: function callback(res) {
+<<<<<<< HEAD
+          console.log(res);
+=======
+          // console.log(res)
+>>>>>>> 1f7f2b3fd67ada299ca8c649a72214425df06611
           that.setState({
             data: res.data.data.subjects
           });
@@ -6015,36 +6156,39 @@ var IndexVideoList = function (_Component) {
     key: 'indexVideo',
     value: function indexVideo(list) {
       return list.map(function (value, index) {
-        return _react2.default.createElement(
-          'div',
-          { className: 'index_vedio' },
-          _react2.default.createElement(
-            'dl',
-            null,
+        if (index < 3) {
+
+          return _react2.default.createElement(
+            'div',
+            { className: 'index_vedio' },
             _react2.default.createElement(
-              'dt',
+              'dl',
               null,
-              _react2.default.createElement('img', { className: 'background', src: value.img }),
-              _react2.default.createElement('img', { className: 'video', src: '/images/video.png' }),
-              _react2.default.createElement('img', { className: 'corner', src: '/images/corner.png' })
-            ),
-            _react2.default.createElement(
-              'dd',
-              { className: 'vedio_title' },
-              value.title
-            ),
-            _react2.default.createElement(
-              'dd',
-              { className: 'vedio_time' },
-              value.createDate
-            ),
-            _react2.default.createElement(
-              'dd',
-              { className: 'vedio_decription' },
-              value.summary
+              _react2.default.createElement(
+                'dt',
+                null,
+                _react2.default.createElement('img', { className: 'background', src: value.img }),
+                _react2.default.createElement('img', { className: 'video', src: '/images/video.png' }),
+                _react2.default.createElement('img', { className: 'corner', src: '/images/corner.png' })
+              ),
+              _react2.default.createElement(
+                'dd',
+                { className: 'vedio_title' },
+                value.title
+              ),
+              _react2.default.createElement(
+                'dd',
+                { className: 'vedio_time' },
+                value.createDate
+              ),
+              _react2.default.createElement(
+                'dd',
+                { className: 'vedio_decription' },
+                value.summary
+              )
             )
-          )
-        );
+          );
+        }
       });
     }
   }, {
@@ -6053,7 +6197,7 @@ var IndexVideoList = function (_Component) {
       return _react2.default.createElement(
         'div',
         { className: 'index_list' },
-        _react2.default.createElement(_indexCommon2.default, { title: '\u63A8\u8350\u89C6\u9891' }),
+        _react2.default.createElement(_indexCommon2.default, { title: '\u63A8\u8350\u89C6\u9891', path: 'video' }),
         this.indexVideo(this.state.data)
       );
     }
@@ -6062,13 +6206,14 @@ var IndexVideoList = function (_Component) {
     value: function componentDidMount() {
       var that = this;
       (0, _axios4.default)({
-        url: "/api/video/list",
+        url: "api/video/list?start=0&count=100",
         method: 'get',
         data: {
           start: 0,
           count: 3
         }
       }).then(function (res) {
+        // console.log(res.data.data.subjects)
         that.setState({
           data: res.data.data.subjects
         });
@@ -6193,7 +6338,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouter = __webpack_require__(4);
+var _reactRouter = __webpack_require__(3);
 
 var _antd = __webpack_require__(1);
 
@@ -6415,14 +6560,57 @@ var SearchContent = function (_Component) {
         "job": false
       },
       total: 0,
-      videoData: {},
-      jobData: {},
-      qandaData: {}
+      videoData: null,
+      jobData: null,
+      qandaData: null,
+      videoColumns: null,
+      jobColumns: null,
+      qandaColumns: null
     };
     return _this;
   }
 
   _createClass(SearchContent, [{
+    key: 'setNewDataSource',
+    value: function setNewDataSource(dataSource) {
+
+      var NewDataSource = [];
+      for (var i = 0; i < dataSource.length; i++) {
+        NewDataSource.push({
+          key: '' + (i + 1),
+          name: '' + dataSource[i].createDate,
+          title: '' + dataSource[i].title
+        });
+      }
+      return NewDataSource;
+    }
+  }, {
+    key: 'setColumns',
+    value: function setColumns(str) {
+      var columns = [{
+        title: str,
+        dataIndex: 'name',
+        key: 'name',
+        render: function render(text, record) {
+          return _react2.default.createElement(
+            'span',
+            { className: 'search_inner' },
+            _react2.default.createElement(
+              'div',
+              { className: 'search_title' },
+              record.title
+            ),
+            _react2.default.createElement(
+              'a',
+              { href: '#', className: 'search_article' },
+              record.name
+            )
+          );
+        }
+      }];
+      return columns;
+    }
+  }, {
     key: 'render',
     value: function render() {
 
@@ -6443,24 +6631,24 @@ var SearchContent = function (_Component) {
         _react2.default.createElement(
           'div',
           { className: this.state.isShow.video ? '' : 'hide' },
-          _react2.default.createElement(_searchList2.default, { ref: 'video', title: '\u89C6\u9891', data: this.state.videoData })
+          _react2.default.createElement(_searchList2.default, { ref: 'video', title: '\u89C6\u9891', data: this.state.videoData, columns: this.state.videoColumns })
         ),
         _react2.default.createElement(
           'div',
           { className: this.state.isShow.qanda ? '' : 'hide' },
-          _react2.default.createElement(_searchList2.default, { ref: 'qanda', title: '\u95EE\u7B54', data: this.state.qandaData })
+          _react2.default.createElement(_searchList2.default, { ref: 'qanda', title: '\u95EE\u7B54', data: this.state.qandaData, columns: this.state.qandaColumns })
         ),
         _react2.default.createElement(
           'div',
           { className: this.state.isShow.job ? '' : 'hide' },
-          _react2.default.createElement(_searchList2.default, { ref: 'job', title: '\u62DB\u8058', data: this.state.jobData })
+          _react2.default.createElement(_searchList2.default, { ref: 'job', title: '\u62DB\u8058', data: this.state.jobData, columns: this.state.jobColumns })
         )
       );
     }
   }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
-      console.log(1);
+      // console.log(1)
       var that = this;
       var tab = this.props.tab;
       var query = this.props.data;
@@ -6484,7 +6672,11 @@ var SearchContent = function (_Component) {
       }
 
       _axios2.default.lgypost({
-        url: '/api/search',
+<<<<<<< HEAD
+        url: 'mock/api/search',
+=======
+        url: '/mock/api/search',
+>>>>>>> 1f7f2b3fd67ada299ca8c649a72214425df06611
         method: 'get',
         data: {
           query: query,
@@ -6501,15 +6693,22 @@ var SearchContent = function (_Component) {
           } else {
             totalNum = res.data.data.subjects[tab].total;
           }
-          var video = res.data.data.subjects.video;
+          var video = res.data.data.subjects.video.subjects;
+          var job = res.data.data.subjects.job.subjects;
+          var qanda = res.data.data.subjects.qanda.subjects;
+
           // console.log(video)
           that.setState({
             isShow: object,
             total: totalNum,
-            videoData: video,
-            jobData: res.data.data.subjects.job,
-            qandaData: res.data.data.subjects.qanda
+            videoData: that.setNewDataSource(video),
+            jobData: that.setNewDataSource(job),
+            qandaData: that.setNewDataSource(qanda),
+            videoColumns: that.setColumns('视频'),
+            jobColumns: that.setColumns('招聘'),
+            qandaColumns: that.setColumns('问答')
           });
+          // console.log(videoData)
         }
       });
     }

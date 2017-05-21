@@ -1,4 +1,5 @@
 import React,{Component} from 'react'
+import {hashHistory} from 'react-router'
 import IndexCommonTitle from './indexCommon'
 import AxiosUtils from '../../utils/axios.util'
 import Axios from 'axios'
@@ -10,17 +11,20 @@ class IndexVideoList extends Component{
       data:[{}]
     }
   }
+  push(){
+    hashHistory.push('/video/detail/1')
+  }
   indexVideo(list){
     return list.map((value,index)=>{
       if(index<3){
 
         return(
           <div className="index_vedio">
-          <dl>
-          <dt>
+          <dl >
+          <dt onClick={this.push.bind(this)}>
           <img className="background" src={value.img}/>
-          <img className="video" src="/images/video.png"/>
-          <img className="corner" src="/images/corner.png"/>
+          <img className="video" src="/images/video.png" />
+          <img className="corner" src="/images/corner.png" />
           </dt>
           <dd className="vedio_title">{value.title}</dd>
           <dd className="vedio_time">{value.createDate}</dd>
@@ -50,6 +54,7 @@ class IndexVideoList extends Component{
       }
     })
     .then(function(res){
+      // console.log(res.data.data.subjects)
       that.setState({
         data:res.data.data.subjects
       })

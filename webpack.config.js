@@ -28,14 +28,15 @@ module.exports = {
     proxy: {
          '/api': {
           //  target: 'http://quanzs.xicp.net/',
-          target: 'http://localhost:9000',
-          // target: 'http://fengfan.applinzi.com',
+          // target: 'http://localhost:9000',
+          target: 'http://fengfan.applinzi.com',
            changeOrigin: true
-         }
-//       '/mock': {
-//         target: 'http://localhost:9000',
-//         pathRewrite: {'^/mock': ''}
-//       },
+         },
+        '/mock': {
+          target: 'http://localhost:9000',
+          pathRewrite: {'^/mock': ''}
+        }
+
 //       '/nodejs': {
 //         target: 'http://localhost:9000',
 //         changeOrigin: true,

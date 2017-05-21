@@ -12,6 +12,7 @@ class SearchContent extends Component{
         "qanda":false,
         "job":false
       },
+      res:this.props.data?this.props.data:null,
       total:0,
       videoData:null,
       jobData:null,
@@ -48,7 +49,7 @@ class SearchContent extends Component{
       return columns
   }
   render(){
-
+    // console.log(this.props.data)
     return(
       <div className="search_content">
         <p className="search_total">共找到<span>{this.state.total}</span>个相关内容</p>
@@ -65,7 +66,6 @@ class SearchContent extends Component{
     )
   }
   componentDidMount(){
-    // console.log(1)
     let that = this
     let tab = this.props.tab
     let query = this.props.data
@@ -89,9 +89,10 @@ class SearchContent extends Component{
     }
 
 
+
     axios.lgypost(
       {
-        url:'/api/search',
+        url:'mock/api/search',
         method:'get',
         data:{
           query:query,
@@ -100,36 +101,31 @@ class SearchContent extends Component{
         },
         callback:function(res){
           //total 总共内容数量的变化
+            let totalNum = 0
+            let videoData = res.data.data.subjects.video
+            if(tab=='all'){
+              totalNum = res.data.data.total
+            }else {
+              totalNum = res.data.data.subjects[tab].total
+            }
+            let video = res.data.data.subjects.video.subjects
+            let job = res.data.data.subjects.job.subjects
+            let qanda = res.data.data.subjects.qanda.subjects
+            // console.log(video)
+            that.setState({
+              isShow:object,
+              total:totalNum,
+              videoData:that.setNewDataSource(video),
+              jobData:that.setNewDataSource(job),
+              qandaData:that.setNewDataSource(qanda),
+              videoColumns:that.setColumns('视频'),
+              jobColumns:that.setColumns('招聘'),
+              qandaColumns:that.setColumns('问答')
+            })
 
-          let totalNum = 0
-          let videoData = res.data.data.subjects.video
-          if(tab=='all'){
-            totalNum = res.data.data.total
-          }else {
-            totalNum = res.data.data.subjects[tab].total
-          }
-          let video = res.data.data.subjects.video.subjects
-          let job = res.data.data.subjects.job.subjects
-          let qanda = res.data.data.subjects.qanda.subjects
-
-
-          // console.log(video)
-          that.setState({
-            isShow:object,
-            total:totalNum,
-            videoData:that.setNewDataSource(video),
-            jobData:that.setNewDataSource(job),
-            qandaData:that.setNewDataSource(qanda),
-            videoColumns:that.setColumns('视频'),
-            jobColumns:that.setColumns('招聘'),
-            qandaColumns:that.setColumns('问答')
-          })
           // console.log(videoData)
         }
-      }
-    )
-
-
-  }
+      })
+    }
 }
 export default SearchContent
