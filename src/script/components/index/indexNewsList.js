@@ -37,13 +37,14 @@ class IndexNewsList extends Component{
     let tabs = this.props.tabs
     let that = this
     AxiosUtils.get({
-      url: `api/${tabs}/list`,
+      url: `/api/${tabs}/list?start=0&count=10`,
       method:'get',
       data:{
         start:0,
-        count:8
+        count:10
       },
       callback:function(res){
+        console.log(res)
         that.setState({
           data:res.data.data.subjects
         })

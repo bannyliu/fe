@@ -42,7 +42,7 @@ class IndexVideoList extends Component{
   componentDidMount(){
     let that = this
     Axios({
-      url:"/api/video/list",
+      url:"api/video/list?start=0&count=100",
       method:'get',
       data:{
         start:0,

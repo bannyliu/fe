@@ -25,15 +25,16 @@ export default class Signin extends Component {
 		}
 		//目前接口有问题，只是做了逻辑的处理
 		utilAxios.lgypost({
-        url: '/api/users/signin',
+        url: '/api/users/signin?username=zhangsan123&password=abc123',
         method: 'get',
 //      data: `username=${this.username}&password=${this.password}`,
 		data:JSON.stringify(data),
         callback: function (res) {
-        	console.log(res)
-        	if(res.errcode){
+        	// console.log(res)
+					// console.log(res.errcode)
+        	if(!res.errcode){
         		//存储
-        		 localStorage.setItem('username', res.data.username)
+        		 localStorage.setItem('username', res.data.data.username)
         		 //跳转首页
         		 hashHistory.push("/")
         	}else{
@@ -45,7 +46,7 @@ export default class Signin extends Component {
       })
 
 	}
-	
+
   render() {
     return (
       <div className="signin">
@@ -62,4 +63,3 @@ export default class Signin extends Component {
 
 
 }
-
