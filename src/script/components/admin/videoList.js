@@ -65,7 +65,6 @@ class VideoList extends Component{
   componentDidMount(){
     //请求视频管理列表数据
     let callback = (res)=>{
-          console.log(res)
           let subjects = res.data.data.subjects
           let data = []
           subjects.map((value,index)=>{
