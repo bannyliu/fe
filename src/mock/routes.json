@@ -6,7 +6,7 @@
   "/api/job/list": "/joblist",
   "/api/job/remove": "/interviewremove",
   "/api/job/add": "/videoclassifyadd",
-  "/api/interviewq/list": "/interviewlist",
+  "/api/interviewq/list": "/interviewqlist",
   "/api/interviewq/remove":"/interviewremove",
   "/api/interviewq/add":"/videoclassifyadd",
   "/api/video/classify/add":"/videoclassifyadd",

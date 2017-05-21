@@ -2,7 +2,7 @@ import React,{Component} from 'react'
 import Add from './add'
 import { Input } from 'antd'
 import { Button } from 'antd'
-import adminCommon from '../../utils/adminList'
+import adminCommon from '../../utils/adminCommon'
 import axios from '../../utils/axios.util'
 
 

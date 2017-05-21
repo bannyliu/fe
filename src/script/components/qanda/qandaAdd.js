@@ -112,20 +112,15 @@ class qandAdd extends React.Component {
       }
         return
     })
-    console.log({
-    title:title,
-    content:content,
-    tags:tags
-  })
-    // console.log(title+":"+content)
-    // Axios.post('/api/qanda/add', {
-    //   uid: 4, // 用户ID [数值：必填]
-    //   tag: "React", // 问题标签 [字符串：必填] html, css, 原生js, angular, vue,其他等等
-    //   title: "React dangerouslySetInnerHTML 怎么用？", //标题 [字符串：必填]
-    //   content: this.refs.inputContent.refs.input.value // 回帖内容：[字符串：必填]
-    // }, (res)=>{
-    //   // console.log(res.data.data);
-    // })
+    console.log(tags)
+    Axios.post('/api/qanda/add', {
+      uid: 4, // 用户ID [数值：必填]
+      tag: tags, // 问题标签 [字符串：必填] html, css, 原生js, angular, vue,其他等等
+      title: title, //标题 [字符串：必填]
+      content: content // 回帖内容：[字符串：必填]
+    }, (res)=>{
+      console.log(res);
+    })
   }
 
 

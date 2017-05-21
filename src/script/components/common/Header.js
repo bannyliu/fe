@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router'
+import { connect } from 'react-redux'
+import store from '../../redux/store'
 
 import { Input } from 'antd'
 const Search = Input.Search
@@ -34,9 +36,14 @@ class Header extends Component {
       </div>
     )
   }
-  componentDidMount(){
+  componentDidUpdate(){
+    // console.log(this.refs.input.input.refs.input.value)
+
 
   }
 }
 
-export default Header
+export default connect(
+  store().mapStateToProps,
+  store().mapDispatchToProps
+)(Header)

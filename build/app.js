@@ -190,7 +190,6 @@ exports.default = {
   },
   //删除操作
   delete: function _delete(id, uri) {
-    console.log(uri);
     var callback = function callback(res) {
       var data = res.data.data;
       if (data.status == "ok" && data.msg == "数据删除成功") {
@@ -264,7 +263,6 @@ exports.default = {
   //请求job和interview列表数据
   commonList: function commonList(uri, that) {
     var callback = function callback(res) {
-      console.log(res);
       var data = [];
       res.data.data.subjects.map(function (value, index) {
         data.push(value);
@@ -286,7 +284,11 @@ exports.default = {
   }
 };
 
+<<<<<<< HEAD
 /* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/BANNY/Desktop/fe/liubin/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "adminList.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+=======
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/BANNY/Desktop/fe/liubin/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "adminCommon.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+>>>>>>> 1f7f2b3fd67ada299ca8c649a72214425df06611
 
 /***/ }),
 /* 5 */
@@ -751,9 +753,13 @@ var _axios = __webpack_require__(2);
 
 var _axios2 = _interopRequireDefault(_axios);
 
+<<<<<<< HEAD
 var _adminList = __webpack_require__(4);
+=======
+var _adminCommon = __webpack_require__(4);
+>>>>>>> 1f7f2b3fd67ada299ca8c649a72214425df06611
 
-var _adminList2 = _interopRequireDefault(_adminList);
+var _adminCommon2 = _interopRequireDefault(_adminCommon);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -810,7 +816,7 @@ var Management = function (_Component) {
     key: 'delete',
     value: function _delete(id) {
       var uri = this.props.info.removeUri;
-      _adminList2.default.delete(id, uri);
+      _adminCommon2.default.delete(id, uri);
     }
 
     //分类添加操作
@@ -888,8 +894,7 @@ var Management = function (_Component) {
     value: function componentDidMount() {
       //请求视频管理分类数据
       var uri = this.props.info.listUri;
-      console.log(uri);
-      _adminList2.default.list(uri, this);
+      _adminCommon2.default.list(uri, this);
     }
   }]);
 
@@ -924,9 +929,15 @@ var _add2 = _interopRequireDefault(_add);
 
 var _antd = __webpack_require__(1);
 
+<<<<<<< HEAD
 var _adminList = __webpack_require__(4);
 
 var _adminList2 = _interopRequireDefault(_adminList);
+=======
+var _adminCommon = __webpack_require__(4);
+
+var _adminCommon2 = _interopRequireDefault(_adminCommon);
+>>>>>>> 1f7f2b3fd67ada299ca8c649a72214425df06611
 
 var _axios = __webpack_require__(2);
 
@@ -1105,14 +1116,14 @@ var Comment = function (_React$Component) {
   }, {
     key: 'reply',
     value: function reply() {
-      // console.log(this.refs.inputContent.refs.input.value);
-      // Axios.post('/api/qanda/reply', {
-      //   uid: 34, // 用户ID [数值：必填]
-      //   qid: 10, // 问题id：[数值：必填]
-      //   content: this.refs.inputContent.refs.input.value // 回帖内容：[字符串：必填]
-      // }, (res)=>{
-      //   console.log(res.data.data);
-      // })
+      console.log(this.refs.inputContent.refs.input.value);
+      Axios.post('/api/qanda/reply', {
+        uid: 34, // 用户ID [数值：必填]
+        qid: 10, // 问题id：[数值：必填]
+        content: this.refs.inputContent.refs.input.value // 回帖内容：[字符串：必填]
+      }, function (res) {
+        console.log(res.data.data);
+      });
     }
   }, {
     key: 'componentDidMount',
@@ -1876,9 +1887,13 @@ var _list = __webpack_require__(6);
 
 var _list2 = _interopRequireDefault(_list);
 
+<<<<<<< HEAD
 var _adminList = __webpack_require__(4);
+=======
+var _adminCommon = __webpack_require__(4);
+>>>>>>> 1f7f2b3fd67ada299ca8c649a72214425df06611
 
-var _adminList2 = _interopRequireDefault(_adminList);
+var _adminCommon2 = _interopRequireDefault(_adminCommon);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1959,7 +1974,11 @@ var InterviewqList = function (_Component) {
     key: 'delete',
     value: function _delete(id) {
       var uri = '/api/interviewq/remove';
+<<<<<<< HEAD
       _adminList2.default.delete(id, uri);
+=======
+      _adminCommon2.default.delete(id, uri);
+>>>>>>> 1f7f2b3fd67ada299ca8c649a72214425df06611
     }
   }, {
     key: 'render',
@@ -1975,7 +1994,11 @@ var InterviewqList = function (_Component) {
     value: function componentDidMount() {
       //请求面试题管理列表数据
       var uri = '/api/interviewq/list';
+<<<<<<< HEAD
       _adminList2.default.list(uri, this);
+=======
+      _adminCommon2.default.list(uri, this);
+>>>>>>> 1f7f2b3fd67ada299ca8c649a72214425df06611
     }
   }]);
 
@@ -2144,9 +2167,13 @@ var _list = __webpack_require__(6);
 
 var _list2 = _interopRequireDefault(_list);
 
+<<<<<<< HEAD
 var _adminList = __webpack_require__(4);
+=======
+var _adminCommon = __webpack_require__(4);
+>>>>>>> 1f7f2b3fd67ada299ca8c649a72214425df06611
 
-var _adminList2 = _interopRequireDefault(_adminList);
+var _adminCommon2 = _interopRequireDefault(_adminCommon);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2227,7 +2254,7 @@ var recruitList = function (_Component) {
     key: 'delete',
     value: function _delete(id) {
       var uri = '/api/job/remove';
-      _adminList2.default.delete(id, uri);
+      _adminCommon2.default.delete(id, uri);
     }
   }, {
     key: 'render',
@@ -2243,7 +2270,7 @@ var recruitList = function (_Component) {
     value: function componentDidMount() {
       //请求招聘管理列表数据
       var uri = '/api/job/list';
-      _adminList2.default.list(uri, this);
+      _adminCommon2.default.list(uri, this);
     }
   }]);
 
@@ -2344,10 +2371,13 @@ var _axios = __webpack_require__(2);
 
 var _axios2 = _interopRequireDefault(_axios);
 
+<<<<<<< HEAD
 var _adminList = __webpack_require__(4);
 
 var _adminList2 = _interopRequireDefault(_adminList);
 
+=======
+>>>>>>> 1f7f2b3fd67ada299ca8c649a72214425df06611
 var _management = __webpack_require__(11);
 
 var _management2 = _interopRequireDefault(_management);
@@ -2422,9 +2452,13 @@ var _axios = __webpack_require__(2);
 
 var _axios2 = _interopRequireDefault(_axios);
 
+<<<<<<< HEAD
 var _adminList = __webpack_require__(4);
+=======
+var _adminCommon = __webpack_require__(4);
+>>>>>>> 1f7f2b3fd67ada299ca8c649a72214425df06611
 
-var _adminList2 = _interopRequireDefault(_adminList);
+var _adminCommon2 = _interopRequireDefault(_adminCommon);
 
 var _qs = __webpack_require__(9);
 
@@ -2611,10 +2645,10 @@ var VideoAdd = function (_Component) {
     key: 'componentDidMount',
     value: function componentDidMount() {
       //请求视频管理分类数据
-      _adminList2.default.videoClassify(this);
+      _adminCommon2.default.videoClassify(this);
 
       //请求视频阶段分类数据
-      _adminList2.default.videoStage(this);
+      _adminCommon2.default.videoStage(this);
     }
   }]);
 
@@ -2649,10 +2683,13 @@ var _axios = __webpack_require__(2);
 
 var _axios2 = _interopRequireDefault(_axios);
 
+<<<<<<< HEAD
 var _adminList = __webpack_require__(4);
 
 var _adminList2 = _interopRequireDefault(_adminList);
 
+=======
+>>>>>>> 1f7f2b3fd67ada299ca8c649a72214425df06611
 var _management = __webpack_require__(11);
 
 var _management2 = _interopRequireDefault(_management);
@@ -2725,9 +2762,13 @@ var _list = __webpack_require__(6);
 
 var _list2 = _interopRequireDefault(_list);
 
+<<<<<<< HEAD
 var _adminList = __webpack_require__(4);
+=======
+var _adminCommon = __webpack_require__(4);
+>>>>>>> 1f7f2b3fd67ada299ca8c649a72214425df06611
 
-var _adminList2 = _interopRequireDefault(_adminList);
+var _adminCommon2 = _interopRequireDefault(_adminCommon);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2808,7 +2849,7 @@ var VideoList = function (_Component) {
     key: 'delete',
     value: function _delete(id) {
       var uri = '/api/video/remove';
-      _adminList2.default.delete(id, uri);
+      _adminCommon2.default.delete(id, uri);
     }
   }, {
     key: 'render',
@@ -2841,7 +2882,7 @@ var VideoList = function (_Component) {
         });
       };
       var uri = '/api/video/list';
-      _adminList2.default.videoList(uri, callback);
+      _adminCommon2.default.videoList(uri, callback);
     }
   }]);
 
@@ -2876,9 +2917,13 @@ var _axios = __webpack_require__(2);
 
 var _axios2 = _interopRequireDefault(_axios);
 
+<<<<<<< HEAD
 var _adminList = __webpack_require__(4);
+=======
+var _adminCommon = __webpack_require__(4);
+>>>>>>> 1f7f2b3fd67ada299ca8c649a72214425df06611
 
-var _adminList2 = _interopRequireDefault(_adminList);
+var _adminCommon2 = _interopRequireDefault(_adminCommon);
 
 var _qs = __webpack_require__(9);
 
@@ -3060,10 +3105,10 @@ var VideoUpdate = function (_Component) {
       var id = this.props.params.id;
 
       //请求视频管理分类数据
-      _adminList2.default.videoClassify(this);
+      _adminCommon2.default.videoClassify(this);
 
       //请求视频阶段分类数据
-      _adminList2.default.videoStage(this);
+      _adminCommon2.default.videoStage(this);
 
       //请求视频管理列表数据
       var callback = function callback(res) {
@@ -3084,7 +3129,7 @@ var VideoUpdate = function (_Component) {
         });
       };
       var uri = '/api/video/list';
-      _adminList2.default.videoList(uri, callback);
+      _adminCommon2.default.videoList(uri, callback);
     }
   }]);
 
@@ -3495,20 +3540,15 @@ var qandAdd = function (_React$Component) {
         }
         return;
       });
-      console.log({
-        title: title,
-        content: content,
-        tags: tags
+      console.log(tags);
+      _axios2.default.post('/api/qanda/add', {
+        uid: 4, // 用户ID [数值：必填]
+        tag: tags, // 问题标签 [字符串：必填] html, css, 原生js, angular, vue,其他等等
+        title: title, //标题 [字符串：必填]
+        content: content // 回帖内容：[字符串：必填]
+      }, function (res) {
+        console.log(res);
       });
-      // console.log(title+":"+content)
-      // Axios.post('/api/qanda/add', {
-      //   uid: 4, // 用户ID [数值：必填]
-      //   tag: "React", // 问题标签 [字符串：必填] html, css, 原生js, angular, vue,其他等等
-      //   title: "React dangerouslySetInnerHTML 怎么用？", //标题 [字符串：必填]
-      //   content: this.refs.inputContent.refs.input.value // 回帖内容：[字符串：必填]
-      // }, (res)=>{
-      //   // console.log(res.data.data);
-      // })
     }
   }]);
 
@@ -3703,7 +3743,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 // import ListContent from './ListContent'
 
-
 // const data = [{
 //   key: '1',
 //   title: 'Mongoose设置默认时间',
@@ -3734,7 +3773,8 @@ var qandaList = function (_React$Component) {
 
     _this.state = {
       data: [],
-      curIndex: 1,
+      curTag: "所有标签",
+      count: 10,
       pagination: {
         pageSize: 6
       },
@@ -3769,11 +3809,10 @@ var qandaList = function (_React$Component) {
 
     // 获取数据
     _this.getData({
-      //通过标签值来获取对应的数据
-      condition: 'react',
       start: 0,
       count: 10
     });
+
     return _this;
   }
 
@@ -3790,13 +3829,15 @@ var qandaList = function (_React$Component) {
             key: index,
             title: comment.title,
             author: comment.author,
+            tag: comment.tag,
             createDate: comment.createDate,
             action: comment.hits + '/' + comment.answers
           };
         });
-        // console.log(listData);
         _this2.setState({
-          data: listData
+          data: listData,
+          filterData: listData,
+          total: res.data.data.total
         });
       });
     }
@@ -3805,31 +3846,54 @@ var qandaList = function (_React$Component) {
 
 
     //通过点击标签来改变table中的数据源
-    value: function changeTag(tag, index) {
+    value: function changeTag(tag, id) {
+      // console.log(this.state.data[0].tag)
       this.setState({
-        curIndex: index
+        curTag: tag
       });
-      console.log(tag);
+      this.state.curTag = tag;
+      this.dataProcessing();
+    }
+  }, {
+    key: 'dataProcessing',
+    value: function dataProcessing() {
+      var _this3 = this;
 
+      var filterData = [];
+      this.state.data.map(function (item, index) {
+        if (_this3.state.curTag == "所有分类") {
+          filterData.push(item);
+        } else if (item.tag == _this3.state.curTag) {
+          filterData.push(item);
+        }
+        return;
+      });
+      this.setState({
+        filterData: filterData
+      });
+      console.log(filterData);
+    }
+  }, {
+    key: 'pageChange',
+    value: function pageChange(page) {
       this.getData({
-        condition: tag,
-        start: 0,
-        count: 10
+        start: page * this.state.count,
+        count: this.state.count
       });
     }
   }, {
     key: 'render',
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
-      var tagData = [{ id: 1, tag: "PHP" }, { id: 2, tag: "HTML5" }, { id: 3, tag: "VUE" }, { id: 4, tag: "JS" }];
+      var tagData = [{ id: 0, tag: "所有标签" }, { id: 1, tag: "PHP" }, { id: 2, tag: "HTML5" }, { id: 3, tag: "VUE" }, { id: 4, tag: "JS" }];
       var tagList = tagData.map(function (item, index) {
         return _react2.default.createElement(
           'li',
           null,
           _react2.default.createElement(
             'i',
-            { id: index, className: _this3.state.curIndex == index ? "active" : "", onClick: _this3.changeTag.bind(_this3, item.tag, index) },
+            { id: index, className: _this4.state.curTag == item.tag ? "active" : "", onClick: _this4.changeTag.bind(_this4, item.tag, index) },
             item.tag
           )
         );
@@ -3867,18 +3931,16 @@ var qandaList = function (_React$Component) {
         _react2.default.createElement(
           'div',
           { className: 'list' },
-          _react2.default.createElement(_antd.Table, { columns: this.state.columns, dataSource: this.state.data, pagination: this.state.pagination })
+          _react2.default.createElement(_antd.Table, { columns: this.state.columns, dataSource: this.state.filterData, pagination: false }),
+          _react2.default.createElement(_antd.Pagination, { defaultCurrent: 1, total: this.state.total ? this.state.total : 1, onChange: this.pageChange.bind(this) })
         )
       );
     }
   }, {
     key: 'callback',
     value: function callback(key) {
-      console.log(key);
+      // console.log(key);
     }
-  }, {
-    key: 'componentDidMount',
-    value: function componentDidMount() {}
   }]);
 
   return qandaList;
@@ -3946,7 +4008,7 @@ var SearchList = function (_Component) {
   _createClass(SearchList, [{
     key: 'getSearchBody',
     value: function getSearchBody() {
-      console.log(this.refs.input.input.refs.input.value);
+      // console.log(this.refs.input.input.refs.input.value)
     }
   }, {
     key: 'render',
@@ -4430,7 +4492,7 @@ var List = function (_Component) {
       step: 0,
       count: 10,
       curPage: 1,
-      listAllData: []
+      listAllData: null
     };
     return _this;
   }
@@ -4523,20 +4585,10 @@ var List = function (_Component) {
 
       // console.log(this.state.curTag)
       var htmlData = [];
-      this.state.listAllData.subjects.map(function (value, index) {
-        //分类：勾选所有分类时
-        if (_this3.state.curTag == "所有分类") {
-          //阶段：勾选所有阶段时
-          if (_this3.state.step == 0) {
-            htmlData.push(value);
-          }
-          //阶段：勾选其它阶段时
-          else if (value.category.step == _this3.state.step) {
-              htmlData.push(value);
-            }
-        }
-        //分类：勾选其它分类时
-        else if (value.category.tag == _this3.state.curTag) {
+      if (this.state.listAllData) {
+        this.state.listAllData.subjects.map(function (value, index) {
+          //分类：勾选所有分类时
+          if (_this3.state.curTag == "所有分类") {
             //阶段：勾选所有阶段时
             if (_this3.state.step == 0) {
               htmlData.push(value);
@@ -4546,8 +4598,20 @@ var List = function (_Component) {
                 htmlData.push(value);
               }
           }
-        return;
-      });
+          //分类：勾选其它分类时
+          else if (value.category.tag == _this3.state.curTag) {
+              //阶段：勾选所有阶段时
+              if (_this3.state.step == 0) {
+                htmlData.push(value);
+              }
+              //阶段：勾选其它阶段时
+              else if (value.category.step == _this3.state.step) {
+                  htmlData.push(value);
+                }
+            }
+          return;
+        });
+      }
       this.setState({
         listData: htmlData
       });
@@ -4605,8 +4669,8 @@ var List = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      console.log(this.state.curTag + ":" + this.state.step);
-      var tagData = [{ id: 0, tag: "所有分类" }, { id: 1, tag: "PHP" }, { id: 2, tag: "HTML5" }, { id: 3, tag: "VUE" }, { id: 4, tag: "JS" }];
+      // console.log(this.state.curTag+":"+this.state.step)
+      var tagData = [{ id: 0, tag: "所有分类" }, { id: 1, tag: "PHP" }, { id: 2, tag: "HTML5" }, { id: 3, tag: "VUE" }, { id: 4, tag: "JavaScript" }];
       var tagData2 = [{ id: 0, tag: "所有阶段" }, { id: 1, tag: "第一阶段" }, { id: 2, tag: "第二阶段" }, { id: 3, tag: "第三阶段" }];
       return _react2.default.createElement(
         'div',
@@ -4657,7 +4721,7 @@ var List = function (_Component) {
             )
           )
         ),
-        _react2.default.createElement(_antd.Pagination, { total: this.state.listAllData.total, current: this.state.curPage, onChange: this.pageChange.bind(this) })
+        _react2.default.createElement(_antd.Pagination, { total: this.state.listAllData ? this.state.listAllData.total : 1, current: this.state.curPage, onChange: this.pageChange.bind(this) })
       );
     }
   }, {
@@ -4670,6 +4734,7 @@ var List = function (_Component) {
         start: 0,
         count: 10
       }, function (res) {
+        // console.log(res)
         _this4.setState({
           listAllData: res.data.data,
           listData: res.data.data.subjects
@@ -4778,7 +4843,7 @@ var VideoDetail = function (_Component) {
             _react2.default.createElement('img', { src: './images/Videodemo.jpg' })
           )
         ),
-        _react2.default.createElement(_Comment2.default, { detailDatas: this.state.answers })
+        _react2.default.createElement(_Comment2.default, { detailDatas: this.state.answers ? this.state.answers : null })
       );
     }
   }]);
@@ -5958,7 +6023,11 @@ var IndexNewsList = function (_Component) {
           count: 10
         },
         callback: function callback(res) {
+<<<<<<< HEAD
           console.log(res);
+=======
+          // console.log(res)
+>>>>>>> 1f7f2b3fd67ada299ca8c649a72214425df06611
           that.setState({
             data: res.data.data.subjects
           });
@@ -6144,6 +6213,7 @@ var IndexVideoList = function (_Component) {
           count: 3
         }
       }).then(function (res) {
+        // console.log(res.data.data.subjects)
         that.setState({
           data: res.data.data.subjects
         });
@@ -6602,7 +6672,11 @@ var SearchContent = function (_Component) {
       }
 
       _axios2.default.lgypost({
+<<<<<<< HEAD
         url: 'mock/api/search',
+=======
+        url: '/mock/api/search',
+>>>>>>> 1f7f2b3fd67ada299ca8c649a72214425df06611
         method: 'get',
         data: {
           query: query,

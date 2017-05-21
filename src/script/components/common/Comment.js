@@ -46,14 +46,14 @@ class Comment extends React.Component {
   }
 
   reply(){
-    // console.log(this.refs.inputContent.refs.input.value);
-    // Axios.post('/api/qanda/reply', {
-    //   uid: 34, // 用户ID [数值：必填]
-    //   qid: 10, // 问题id：[数值：必填]
-    //   content: this.refs.inputContent.refs.input.value // 回帖内容：[字符串：必填]
-    // }, (res)=>{
-    //   console.log(res.data.data);
-    // })
+    console.log(this.refs.inputContent.refs.input.value);
+    Axios.post('/api/qanda/reply', {
+      uid: 34, // 用户ID [数值：必填]
+      qid: 10, // 问题id：[数值：必填]
+      content: this.refs.inputContent.refs.input.value // 回帖内容：[字符串：必填]
+    }, (res)=>{
+      console.log(res.data.data);
+    })
   }
 
   componentDidMount(){

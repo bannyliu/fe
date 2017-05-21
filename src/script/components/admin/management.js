@@ -1,7 +1,7 @@
 import React,{Component} from 'react'
 import { Table, Icon , Pagination , Button} from 'antd'
 import axios from '../../utils/axios.util'
-import adminCommon from '../../utils/adminList'
+import adminCommon from '../../utils/adminCommon'
 import { message } from 'antd'
 
 
@@ -89,7 +89,6 @@ class Management extends Component{
   componentDidMount(){
     //请求视频管理分类数据
     let uri=this.props.info.listUri
-    console.log(uri)
     adminCommon.list(uri,this)
   }
 

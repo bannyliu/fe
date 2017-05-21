@@ -16,7 +16,7 @@ class List extends Component {
       step:0,
       count:10,
       curPage:1,
-      listAllData:[]
+      listAllData:null
     }
   }
 
@@ -80,31 +80,33 @@ class List extends Component {
     dataProcessing(){
       // console.log(this.state.curTag)
       let htmlData = []
-      this.state.listAllData.subjects.map((value,index)=>{
-      //分类：勾选所有分类时
-        if(this.state.curTag=="所有分类"){
-          //阶段：勾选所有阶段时
-          if(this.state.step==0){
-            htmlData.push(value)
+      if(this.state.listAllData){
+        this.state.listAllData.subjects.map((value,index)=>{
+          //分类：勾选所有分类时
+          if(this.state.curTag=="所有分类"){
+            //阶段：勾选所有阶段时
+            if(this.state.step==0){
+              htmlData.push(value)
+            }
+            //阶段：勾选其它阶段时
+            else if(value.category.step==this.state.step){
+              htmlData.push(value)
+            }
           }
-          //阶段：勾选其它阶段时
-          else if(value.category.step==this.state.step){
-            htmlData.push(value)
+          //分类：勾选其它分类时
+          else if(value.category.tag == this.state.curTag){
+            //阶段：勾选所有阶段时
+            if(this.state.step==0){
+              htmlData.push(value)
+            }
+            //阶段：勾选其它阶段时
+            else if(value.category.step == this.state.step){
+              htmlData.push(value)
+            }
           }
-        }
-      //分类：勾选其它分类时
-        else if(value.category.tag == this.state.curTag){
-        //阶段：勾选所有阶段时
-          if(this.state.step==0){
-            htmlData.push(value)
-          }
-        //阶段：勾选其它阶段时
-          else if(value.category.step == this.state.step){
-            htmlData.push(value)
-          }
-        }
-        return
-      })
+          return
+        })
+      }
       this.setState({
         listData:htmlData
       })
@@ -153,8 +155,8 @@ class List extends Component {
     }
 
   render() {
-    console.log(this.state.curTag+":"+this.state.step)
-    let tagData = [{id:0,tag:"所有分类"},{id:1,tag:"PHP"},{id:2,tag:"HTML5"},{id:3,tag:"VUE"},{id:4,tag:"JS"}]
+    // console.log(this.state.curTag+":"+this.state.step)
+    let tagData = [{id:0,tag:"所有分类"},{id:1,tag:"PHP"},{id:2,tag:"HTML5"},{id:3,tag:"VUE"},{id:4,tag:"JavaScript"}]
     let tagData2 = [{id:0,tag:"所有阶段"},{id:1,tag:"第一阶段"},{id:2,tag:"第二阶段"},{id:3,tag:"第三阶段"}]
     return (
       <div className="m-video-list">
@@ -180,7 +182,7 @@ class List extends Component {
             </TabPane>
           </Tabs>
         </div>
-        <Pagination total={this.state.listAllData.total} current={this.state.curPage}  onChange={this.pageChange.bind(this)}/>
+        <Pagination total={this.state.listAllData?this.state.listAllData.total:1} current={this.state.curPage}  onChange={this.pageChange.bind(this)}/>
       </div>
     )
   }
@@ -193,6 +195,7 @@ class List extends Component {
       start:0,
       count:10
     },(res)=>{
+      // console.log(res)
       this.setState({
         listAllData:res.data.data,
         listData:res.data.data.subjects

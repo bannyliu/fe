@@ -1,7 +1,6 @@
 import React,{Component} from 'react'
 import { Table, Icon , Pagination , Button} from 'antd'
 import axios from '../../utils/axios.util'
-import adminList from '../../utils/adminList'
 import { message } from 'antd'
 import Management from './management'
 
