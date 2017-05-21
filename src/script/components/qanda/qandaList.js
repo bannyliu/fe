@@ -7,8 +7,6 @@ import Axios from '../../utils/axios.util';
 
 // import ListContent from './ListContent'
 
-
-
 // const data = [{
 //   key: '1',
 //   title: 'Mongoose设置默认时间',
@@ -35,7 +33,7 @@ class qandaList extends React.Component {
 
     this.state = {
       data: [],
-      curIndex:1,
+      curIndex:0,
       pagination:{
         pageSize:6
       },
@@ -65,10 +63,10 @@ class qandaList extends React.Component {
     // 获取数据
     this.getData({
       //通过标签值来获取对应的数据
-      condition: 'react',
       start: 0,
-      count: 10
+      count: 11
     });
+
   };
 
   getData(mes) {
@@ -80,11 +78,11 @@ class qandaList extends React.Component {
           key: index,
           title: comment.title,
           author: comment.author,
+          tag:comment.tag,
           createDate: comment.createDate,
           action: comment.hits + '/' + comment.answers,
         }
       });
-      // console.log(listData);
       this.setState({
         data: listData
       });
@@ -92,21 +90,32 @@ class qandaList extends React.Component {
   };
 
 //通过点击标签来改变table中的数据源
-  changeTag(tag,index){
-    this.setState({
-      curIndex:index
-    })
-    console.log(tag)
+  changeTag(tag,id){
 
-    this.getData({
-      condition:tag,
-      start:0,
-      count:10
+    let tagData = []
+
+    this.state.data.map((value,index)=>{
+
+      if(id==0){
+        tagData.push(value)
+      }
+      else if(value.tag==tag){
+        tagData.push(value)
+      }
+      return
     })
+    console.log(tagData)
+
+    this.setState({
+      curIndex:id,
+      data:tagData
+    })
+
+
   }
 
   render() {
-    let tagData = [{id:1,tag:"PHP"},{id:2,tag:"HTML5"},{id:3,tag:"VUE"},{id:4,tag:"JS"}]
+    let tagData = [{id:0,tag:"所有标签"},{id:1,tag:"PHP"},{id:2,tag:"HTML5"},{id:3,tag:"VUE"},{id:4,tag:"JS"}]
     let tagList = tagData.map((item,index)=>{
       return (
         <li><i id={index} className={this.state.curIndex==index?"active":""} onClick={this.changeTag.bind(this,item.tag,index)}>{item.tag}</i></li>
@@ -135,7 +144,7 @@ class qandaList extends React.Component {
   }
 
   callback(key){
-    console.log(key);
+    // console.log(key);
   }
 
   componentDidMount() {
