@@ -91,7 +91,7 @@ class SearchContent extends Component{
 
     axios.lgypost(
       {
-        url:'/api/search',
+        url:'mock/api/search',
         method:'get',
         data:{
           query:query,

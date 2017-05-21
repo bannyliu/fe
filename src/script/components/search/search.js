@@ -23,7 +23,7 @@ class SearchList extends Component{
         <div className="search_input">
           <Search
           ref='input'
-          value={this.props.params.id}
+          defaultValue={this.props.params.id}
           onSearch={value => console.log(value)}
           prefix={<Icon type="search" style={{ fontSize: 27 }} />}
           suffix=''

@@ -123,7 +123,7 @@ var Axios = {
       method: param.method,
       data: param.data,
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
+        'Content-Type': 'application/json; charset=utf-8'
       }
     }).then(function (res) {
       param.callback(res);
@@ -137,6 +137,12 @@ exports.default = Axios;
 
 /***/ }),
 /* 3 */
+/***/ (function(module, exports) {
+
+module.exports = window.ReactRouter;
+
+/***/ }),
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/BANNY/Desktop/fe/liubin/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/BANNY/Desktop/fe/liubin/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -283,12 +289,6 @@ exports.default = {
 /* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/BANNY/Desktop/fe/liubin/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "adminList.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ }),
-/* 4 */
-/***/ (function(module, exports) {
-
-module.exports = window.ReactRouter;
-
-/***/ }),
 /* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -308,9 +308,9 @@ var _react2 = _interopRequireDefault(_react);
 
 var _antd = __webpack_require__(1);
 
-var _adminList = __webpack_require__(3);
+var _axios = __webpack_require__(2);
 
-var _adminList2 = _interopRequireDefault(_adminList);
+var _axios2 = _interopRequireDefault(_axios);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -335,10 +335,54 @@ var Add = function (_Component) {
 
     //添加操作
     value: function add() {
+      var _this2 = this;
+
       var title = this.refs.title.value;
       var txt = this.refs.txt.refs.input.value;
       var uri = this.props.uri;
-      _adminList2.default.add(uri);
+      var callback = function callback(res) {
+        console.log(res);
+        var data = res.data.data;
+        if (data.status == "ok") {
+          _antd.message.success('提交成功');
+          _this2.refs.title.value = '';
+          _this2.refs.txt.refs.input.value = '';
+        } else {
+          _antd.message.error('提交失败，请重试');
+        }
+      };
+      var tag = this.props.tag; //区分招聘和面试题(发送数据不同)
+      var params = {};
+      if (tag == "job") {
+        params = {
+          url: uri,
+          method: "post",
+          data: {
+            uid: 4,
+            title: title,
+            city: "Beijing",
+            content: txt
+          },
+          callback: callback
+        };
+      } else if (tag == "interview") {
+        params = {
+          url: uri,
+          method: "post",
+          data: {
+            uid: 4,
+            title: title,
+            tag: "HTML5",
+            content: txt
+          },
+          callback: callback
+        };
+      }
+      if (!title || !txt) {
+        _antd.message.warning('请填写完整');
+      } else {
+        _axios2.default.lgypost(params);
+      }
     }
   }, {
     key: 'render',
@@ -707,7 +751,7 @@ var _axios = __webpack_require__(2);
 
 var _axios2 = _interopRequireDefault(_axios);
 
-var _adminList = __webpack_require__(3);
+var _adminList = __webpack_require__(4);
 
 var _adminList2 = _interopRequireDefault(_adminList);
 
@@ -880,6 +924,14 @@ var _add2 = _interopRequireDefault(_add);
 
 var _antd = __webpack_require__(1);
 
+var _adminList = __webpack_require__(4);
+
+var _adminList2 = _interopRequireDefault(_adminList);
+
+var _axios = __webpack_require__(2);
+
+var _axios2 = _interopRequireDefault(_axios);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -898,6 +950,9 @@ var Update = function (_Component) {
   }
 
   _createClass(Update, [{
+    key: 'update',
+    value: function update() {}
+  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
@@ -911,16 +966,16 @@ var Update = function (_Component) {
         _react2.default.createElement(
           'div',
           { className: 'title' },
-          _react2.default.createElement('input', { type: 'text', placeholder: '\u6DFB\u52A0\u6807\u9898' })
+          _react2.default.createElement('input', { type: 'text', placeholder: '\u6DFB\u52A0\u6807\u9898', ref: 'title' })
         ),
         _react2.default.createElement(
           'div',
           { className: 'txt' },
-          _react2.default.createElement(_antd.Input, { type: 'textarea', rows: 4 })
+          _react2.default.createElement(_antd.Input, { type: 'textarea', rows: 4, ref: 'txt' })
         ),
         _react2.default.createElement(
           _antd.Button,
-          { onClick: this.props.addHandle },
+          { onClick: this.update },
           '\u63D0\u4EA4'
         )
       );
@@ -928,7 +983,24 @@ var Update = function (_Component) {
   }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
-      console.log(this.props);
+      var title = this.refs.title;
+      var txt = this.refs.txt.refs.input;
+      var id = this.props.id;
+      var uri = this.props.uriList;
+      var params = {};
+      var callback = function callback(res) {
+        console.log(res);
+        // let data = res.data.data.subjects
+        // let arr={}
+
+        // data.map((value,index)=>{
+        //   if(id == value.id){
+        //     arr = value
+        //   }
+        // })
+        // title.value = arr.title
+      };
+      // axios.get(uri,params,callback)
     }
   }]);
 
@@ -1173,7 +1245,7 @@ exports.default = Footer;
 
 /* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/BANNY/Desktop/fe/liubin/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/BANNY/Desktop/fe/liubin/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -1184,6 +1256,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = __webpack_require__(3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1203,20 +1277,26 @@ var IndexCommonTitle = function (_Component) {
   }
 
   _createClass(IndexCommonTitle, [{
-    key: "render",
+    key: 'go',
+    value: function go(path) {
+      console.log(_reactRouter.hashHistory);
+      _reactRouter.hashHistory.push('/' + path + '/list/');
+    }
+  }, {
+    key: 'render',
     value: function render() {
       return React.createElement(
-        "div",
-        { className: "index_title" },
+        'div',
+        { className: 'index_title' },
         React.createElement(
-          "p",
+          'p',
           null,
           this.props.title
         ),
         React.createElement(
-          "span",
-          null,
-          "\u66F4\u591A"
+          'span',
+          { onClick: this.go.bind(this, this.props.path) },
+          '\u66F4\u591A'
         )
       );
     }
@@ -1407,70 +1487,56 @@ var SearchQanda = function (_Component) {
       return _react2.default.createElement(
         'div',
         { className: 'search_list' },
-        _react2.default.createElement(_antd.Table, { columns: this.state.columns, dataSource: this.state.data })
+        _react2.default.createElement(_antd.Table, { columns: this.props.columns, dataSource: this.props.data })
       );
     }
   }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
-      var that = this;
-      console.log(this);
-      setTimeout(function () {
-        var dataSource = that.props.data.subjects;
-        var NewDataSource = [];
-        for (var i = 0; i < dataSource.length; i++) {
-          NewDataSource.push({
-            key: '' + (i + 1),
-            name: '' + dataSource[i].createDate,
-            title: '' + dataSource[i].title
-          });
-        }
-        // dataSource.map((value,index)=>{
-        //  NewDataSource.push({
-        //     key:`${index+1}`,
-        //     name: `${value.createDate}`,
-        //     title:`${value.title}`
-        //   })
-        // })
+      // let that = this
+      // console.log(this)
+      // if(this){
+      //   console.log(this.props.data)
+      // }
+      // setTimeout(function(){
+      //   let dataSource = that.props.data.subjects
+      //   let NewDataSource = []
+      //   for(let i = 0 ; i < dataSource.length ; i ++){
+      //     NewDataSource.push({
+      //        key:`${i+1}`,
+      //        name: `${dataSource[i].createDate}`,
+      //        title:`${dataSource[i].title}`
+      //      })
+      //   }
+      // dataSource.map((value,index)=>{
+      //  NewDataSource.push({
+      //     key:`${index+1}`,
+      //     name: `${value.createDate}`,
+      //     title:`${value.title}`
+      //   })
+      // })
 
-        var columns = [{
-          title: that.props.data.title,
-          dataIndex: 'name',
-          key: 'name',
-          render: function render(text, record) {
-            return _react2.default.createElement(
-              'span',
-              { className: 'search_inner' },
-              _react2.default.createElement(
-                'div',
-                { className: 'search_title' },
-                record.title
-              ),
-              _react2.default.createElement(
-                'a',
-                { href: '#', className: 'search_article' },
-                record.name
-              )
-            );
-          }
-        }];
-        that.setState({
-          Data: that.props.data,
-          data: NewDataSource,
-          columns: columns
-        });
-      }, 10);
+      //   let columns=[{
+      //     title:that.props.data.title,
+      //     dataIndex: 'name',
+      //      key: 'name',
+      //      render:(text,record)=>(
+      //        <span className="search_inner">
+      //         <div className="search_title">{record.title}</div>
+      //         <a href="#" className="search_article">{record.name}</a>
+      //       </span>
+      //      )
+      //   }]
+      //   that.setState({
+      //     Data:that.props.data,
+      //     data:NewDataSource,
+      //     columns:columns
+      //   })
+      // },10)
 
       var title = this.props.title;
       if (title == '视频') {} else {}
     }
-  }, {
-    key: 'componentDidUpdate',
-    value: function componentDidUpdate() {}
-    // componentWillReceiveProps(){
-    //   console.log(1)
-    // }
-
   }]);
 
   return SearchQanda;
@@ -1498,7 +1564,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouter = __webpack_require__(4);
+var _reactRouter = __webpack_require__(3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1776,7 +1842,7 @@ var InterviewqAdd = function (_Component) {
       return _react2.default.createElement(
         'div',
         { className: 'm-interviewqAdd add' },
-        _react2.default.createElement(_add2.default, { title: this.state.title, uri: "/api/interview/add" })
+        _react2.default.createElement(_add2.default, { title: this.state.title, uri: "/api/interviewq/add", tag: "interview" })
       );
     }
   }]);
@@ -1810,7 +1876,7 @@ var _list = __webpack_require__(6);
 
 var _list2 = _interopRequireDefault(_list);
 
-var _adminList = __webpack_require__(3);
+var _adminList = __webpack_require__(4);
 
 var _adminList2 = _interopRequireDefault(_adminList);
 
@@ -1892,7 +1958,7 @@ var InterviewqList = function (_Component) {
   }, {
     key: 'delete',
     value: function _delete(id) {
-      var uri = '/api/interview/remove';
+      var uri = '/api/interviewq/remove';
       _adminList2.default.delete(id, uri);
     }
   }, {
@@ -1908,7 +1974,7 @@ var InterviewqList = function (_Component) {
     key: 'componentDidMount',
     value: function componentDidMount() {
       //请求面试题管理列表数据
-      var uri = '/api/interview/list';
+      var uri = '/api/interviewq/list';
       _adminList2.default.list(uri, this);
     }
   }]);
@@ -2044,7 +2110,7 @@ var AdminRecruitAdd = function (_Component) {
       return _react2.default.createElement(
         'div',
         { className: 'm-recruitAdd add' },
-        _react2.default.createElement(_add2.default, { title: this.state.title, uri: "/api/job/add" })
+        _react2.default.createElement(_add2.default, { title: this.state.title, uri: "/api/job/add", tag: "job" })
       );
     }
   }]);
@@ -2078,7 +2144,7 @@ var _list = __webpack_require__(6);
 
 var _list2 = _interopRequireDefault(_list);
 
-var _adminList = __webpack_require__(3);
+var _adminList = __webpack_require__(4);
 
 var _adminList2 = _interopRequireDefault(_adminList);
 
@@ -2236,26 +2302,13 @@ var JobUpdate = function (_Component) {
     return _this;
   }
 
-  //面试题内容添加操作
-
-
   _createClass(JobUpdate, [{
-    key: 'add',
-    value: function add() {
-      console.log(this);
-    }
-  }, {
-    key: 'update',
-    value: function update() {
-      console.log(this);
-    }
-  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
         'div',
         { className: 'm-update' },
-        _react2.default.createElement(_update2.default, { title: this.state.title, updateHandle: this.update.bind(this), addHandle: this.add.bind(this) })
+        _react2.default.createElement(_update2.default, { title: this.state.title, id: this.props.params.id, uriRemove: "/api/job/add", uriList: "/api/job/detail" })
       );
     }
   }]);
@@ -2291,7 +2344,7 @@ var _axios = __webpack_require__(2);
 
 var _axios2 = _interopRequireDefault(_axios);
 
-var _adminList = __webpack_require__(3);
+var _adminList = __webpack_require__(4);
 
 var _adminList2 = _interopRequireDefault(_adminList);
 
@@ -2369,7 +2422,7 @@ var _axios = __webpack_require__(2);
 
 var _axios2 = _interopRequireDefault(_axios);
 
-var _adminList = __webpack_require__(3);
+var _adminList = __webpack_require__(4);
 
 var _adminList2 = _interopRequireDefault(_adminList);
 
@@ -2434,27 +2487,37 @@ var VideoAdd = function (_Component) {
           _antd.message.error('提交失败，请重试');
         }
       };
+      //阶段管理和视频分类接口完成后
+      //将  category:{
+      //   step:1,
+      //   tag:"JavaScript"
+      // }
+      //替换为
+      // category:{
+      //   step:stage,
+      //   tag:classify
+      // }
       var data = {
         title: title,
-        videoUrl: videoUrl,
-        imgUrl: imgUrl,
-        summary: classify,
+        url: videoUrl,
+        img: imgUrl,
+        summary: desc,
         category: {
-          step: stage,
-          tag: title
+          step: 1,
+          tag: "JavaScript"
         }
       };
       var params = {
         url: '/api/video/add',
-        method: 'get',
+        method: 'post',
         data: _qs2.default.stringify(data),
         callback: callback
       };
-      if (!title || !desc || !imgUrl || !videoUrl || !classify || !stage) {
-        _antd.message.warning('请填写完整');
-      } else {
-        _axios2.default.lgypost(params);
-      }
+      // if(!title || !desc || !imgUrl || !videoUrl || !classify ||!stage){
+      //   message.warning('请填写完整')
+      // }else{
+      _axios2.default.lgypost(params);
+      // }
     }
   }, {
     key: 'handleClassifyChange',
@@ -2586,7 +2649,7 @@ var _axios = __webpack_require__(2);
 
 var _axios2 = _interopRequireDefault(_axios);
 
-var _adminList = __webpack_require__(3);
+var _adminList = __webpack_require__(4);
 
 var _adminList2 = _interopRequireDefault(_adminList);
 
@@ -2616,7 +2679,7 @@ var VideoClassify = function (_Component) {
         tip: "分类添加",
         listUri: "/api/video/classify/list",
         addUri: "/api/video/classify/add",
-        removeUri: "/api/video/stage/remove"
+        removeUri: "/api/video/classify/remove"
       }
     };
     return _this;
@@ -2662,7 +2725,7 @@ var _list = __webpack_require__(6);
 
 var _list2 = _interopRequireDefault(_list);
 
-var _adminList = __webpack_require__(3);
+var _adminList = __webpack_require__(4);
 
 var _adminList2 = _interopRequireDefault(_adminList);
 
@@ -2763,6 +2826,7 @@ var VideoList = function (_Component) {
 
       //请求视频管理列表数据
       var callback = function callback(res) {
+        console.log(res);
         var subjects = res.data.data.subjects;
         var data = [];
         subjects.map(function (value, index) {
@@ -2812,7 +2876,7 @@ var _axios = __webpack_require__(2);
 
 var _axios2 = _interopRequireDefault(_axios);
 
-var _adminList = __webpack_require__(3);
+var _adminList = __webpack_require__(4);
 
 var _adminList2 = _interopRequireDefault(_adminList);
 
@@ -2882,9 +2946,9 @@ var VideoUpdate = function (_Component) {
         var data = res.data.data;
         if (data.status == "ok") {
           //提交成功
-          _antd.message.success('提交成功');
-          _this2.refs.title.value = '';
-          _this2.refs.desc.refs.input.value = '', _this2.refs.imgUrl.value = '', _this2.refs.videoUrl.value = '';
+          _antd.message.success('提交成功', 1, function () {
+            _this2.props.router.push("/admin/video/list");
+          });
         } else {
           //提交失败
           _antd.message.error('提交失败，请重试');
@@ -3089,6 +3153,12 @@ var IndexList = function (_Component) {
         _react2.default.createElement(_indexNews2.default, null)
       );
     }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      // console.log(localStorage.getItem('username'))
+
+    }
   }]);
 
   return IndexList;
@@ -3116,7 +3186,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouter = __webpack_require__(4);
+var _reactRouter = __webpack_require__(3);
 
 var _antd = __webpack_require__(1);
 
@@ -3615,7 +3685,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouter = __webpack_require__(4);
+var _reactRouter = __webpack_require__(3);
 
 var _antd = __webpack_require__(1);
 
@@ -4154,7 +4224,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouter = __webpack_require__(4);
+var _reactRouter = __webpack_require__(3);
 
 var _axiosUtil = __webpack_require__(2);
 
@@ -4196,15 +4266,16 @@ var Signin = function (_Component) {
       };
       //目前接口有问题，只是做了逻辑的处理
       _axiosUtil2.default.lgypost({
-        url: '/api/users/signin',
+        url: '/api/users/signin?username=zhangsan123&password=abc123',
         method: 'get',
         //      data: `username=${this.username}&password=${this.password}`,
         data: JSON.stringify(data),
         callback: function callback(res) {
-          console.log(res);
-          if (res.errcode) {
+          // console.log(res)
+          // console.log(res.errcode)
+          if (!res.errcode) {
             //存储
-            localStorage.setItem('username', res.data.username);
+            localStorage.setItem('username', res.data.data.username);
             //跳转首页
             _reactRouter.hashHistory.push("/");
           } else {
@@ -5195,7 +5266,7 @@ var _reactDom = __webpack_require__(46);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _reactRouter = __webpack_require__(4);
+var _reactRouter = __webpack_require__(3);
 
 var _store = __webpack_require__(45);
 
@@ -5429,7 +5500,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouter = __webpack_require__(4);
+var _reactRouter = __webpack_require__(3);
 
 var _antd = __webpack_require__(1);
 
@@ -5564,7 +5635,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _antd = __webpack_require__(1);
 
-var _reactRouter = __webpack_require__(4);
+var _reactRouter = __webpack_require__(3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -5776,7 +5847,7 @@ var IndexNews = function (_Component) {
         'ul',
         { className: 'index_news' },
         _react2.default.createElement(_indexNewsList2.default, { title: '\u6700\u65B0\u95EE\u7B54', tabs: 'qanda' }),
-        _react2.default.createElement(_indexNewsList2.default, { title: '\u6700\u65B0\u9762\u8BD5\u9898', tabs: 'interview' }),
+        _react2.default.createElement(_indexNewsList2.default, { title: '\u6700\u65B0\u9762\u8BD5\u9898', tabs: 'interviewq' }),
         _react2.default.createElement(_indexNewsList2.default, { title: '\u6700\u65B0\u62DB\u8058\u4FE1\u606F', tabs: 'job' })
       );
     }
@@ -5866,7 +5937,7 @@ var IndexNewsList = function (_Component) {
       return _react2.default.createElement(
         'li',
         { className: 'news_list' },
-        _react2.default.createElement(_indexCommon2.default, { title: this.props.title }),
+        _react2.default.createElement(_indexCommon2.default, { title: this.props.title, path: this.props.tabs }),
         _react2.default.createElement(
           'div',
           { className: 'news_content' },
@@ -5880,13 +5951,14 @@ var IndexNewsList = function (_Component) {
       var tabs = this.props.tabs;
       var that = this;
       _axios2.default.get({
-        url: 'api/' + tabs + '/list',
+        url: '/api/' + tabs + '/list?start=0&count=10',
         method: 'get',
         data: {
           start: 0,
-          count: 8
+          count: 10
         },
         callback: function callback(res) {
+          console.log(res);
           that.setState({
             data: res.data.data.subjects
           });
@@ -6015,36 +6087,39 @@ var IndexVideoList = function (_Component) {
     key: 'indexVideo',
     value: function indexVideo(list) {
       return list.map(function (value, index) {
-        return _react2.default.createElement(
-          'div',
-          { className: 'index_vedio' },
-          _react2.default.createElement(
-            'dl',
-            null,
+        if (index < 3) {
+
+          return _react2.default.createElement(
+            'div',
+            { className: 'index_vedio' },
             _react2.default.createElement(
-              'dt',
+              'dl',
               null,
-              _react2.default.createElement('img', { className: 'background', src: value.img }),
-              _react2.default.createElement('img', { className: 'video', src: '/images/video.png' }),
-              _react2.default.createElement('img', { className: 'corner', src: '/images/corner.png' })
-            ),
-            _react2.default.createElement(
-              'dd',
-              { className: 'vedio_title' },
-              value.title
-            ),
-            _react2.default.createElement(
-              'dd',
-              { className: 'vedio_time' },
-              value.createDate
-            ),
-            _react2.default.createElement(
-              'dd',
-              { className: 'vedio_decription' },
-              value.summary
+              _react2.default.createElement(
+                'dt',
+                null,
+                _react2.default.createElement('img', { className: 'background', src: value.img }),
+                _react2.default.createElement('img', { className: 'video', src: '/images/video.png' }),
+                _react2.default.createElement('img', { className: 'corner', src: '/images/corner.png' })
+              ),
+              _react2.default.createElement(
+                'dd',
+                { className: 'vedio_title' },
+                value.title
+              ),
+              _react2.default.createElement(
+                'dd',
+                { className: 'vedio_time' },
+                value.createDate
+              ),
+              _react2.default.createElement(
+                'dd',
+                { className: 'vedio_decription' },
+                value.summary
+              )
             )
-          )
-        );
+          );
+        }
       });
     }
   }, {
@@ -6053,7 +6128,7 @@ var IndexVideoList = function (_Component) {
       return _react2.default.createElement(
         'div',
         { className: 'index_list' },
-        _react2.default.createElement(_indexCommon2.default, { title: '\u63A8\u8350\u89C6\u9891' }),
+        _react2.default.createElement(_indexCommon2.default, { title: '\u63A8\u8350\u89C6\u9891', path: 'video' }),
         this.indexVideo(this.state.data)
       );
     }
@@ -6062,7 +6137,7 @@ var IndexVideoList = function (_Component) {
     value: function componentDidMount() {
       var that = this;
       (0, _axios4.default)({
-        url: "/api/video/list",
+        url: "api/video/list?start=0&count=100",
         method: 'get',
         data: {
           start: 0,
@@ -6193,7 +6268,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouter = __webpack_require__(4);
+var _reactRouter = __webpack_require__(3);
 
 var _antd = __webpack_require__(1);
 
@@ -6415,14 +6490,57 @@ var SearchContent = function (_Component) {
         "job": false
       },
       total: 0,
-      videoData: {},
-      jobData: {},
-      qandaData: {}
+      videoData: null,
+      jobData: null,
+      qandaData: null,
+      videoColumns: null,
+      jobColumns: null,
+      qandaColumns: null
     };
     return _this;
   }
 
   _createClass(SearchContent, [{
+    key: 'setNewDataSource',
+    value: function setNewDataSource(dataSource) {
+
+      var NewDataSource = [];
+      for (var i = 0; i < dataSource.length; i++) {
+        NewDataSource.push({
+          key: '' + (i + 1),
+          name: '' + dataSource[i].createDate,
+          title: '' + dataSource[i].title
+        });
+      }
+      return NewDataSource;
+    }
+  }, {
+    key: 'setColumns',
+    value: function setColumns(str) {
+      var columns = [{
+        title: str,
+        dataIndex: 'name',
+        key: 'name',
+        render: function render(text, record) {
+          return _react2.default.createElement(
+            'span',
+            { className: 'search_inner' },
+            _react2.default.createElement(
+              'div',
+              { className: 'search_title' },
+              record.title
+            ),
+            _react2.default.createElement(
+              'a',
+              { href: '#', className: 'search_article' },
+              record.name
+            )
+          );
+        }
+      }];
+      return columns;
+    }
+  }, {
     key: 'render',
     value: function render() {
 
@@ -6443,24 +6561,24 @@ var SearchContent = function (_Component) {
         _react2.default.createElement(
           'div',
           { className: this.state.isShow.video ? '' : 'hide' },
-          _react2.default.createElement(_searchList2.default, { ref: 'video', title: '\u89C6\u9891', data: this.state.videoData })
+          _react2.default.createElement(_searchList2.default, { ref: 'video', title: '\u89C6\u9891', data: this.state.videoData, columns: this.state.videoColumns })
         ),
         _react2.default.createElement(
           'div',
           { className: this.state.isShow.qanda ? '' : 'hide' },
-          _react2.default.createElement(_searchList2.default, { ref: 'qanda', title: '\u95EE\u7B54', data: this.state.qandaData })
+          _react2.default.createElement(_searchList2.default, { ref: 'qanda', title: '\u95EE\u7B54', data: this.state.qandaData, columns: this.state.qandaColumns })
         ),
         _react2.default.createElement(
           'div',
           { className: this.state.isShow.job ? '' : 'hide' },
-          _react2.default.createElement(_searchList2.default, { ref: 'job', title: '\u62DB\u8058', data: this.state.jobData })
+          _react2.default.createElement(_searchList2.default, { ref: 'job', title: '\u62DB\u8058', data: this.state.jobData, columns: this.state.jobColumns })
         )
       );
     }
   }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
-      console.log(1);
+      // console.log(1)
       var that = this;
       var tab = this.props.tab;
       var query = this.props.data;
@@ -6484,7 +6602,7 @@ var SearchContent = function (_Component) {
       }
 
       _axios2.default.lgypost({
-        url: '/api/search',
+        url: 'mock/api/search',
         method: 'get',
         data: {
           query: query,
@@ -6501,15 +6619,22 @@ var SearchContent = function (_Component) {
           } else {
             totalNum = res.data.data.subjects[tab].total;
           }
-          var video = res.data.data.subjects.video;
+          var video = res.data.data.subjects.video.subjects;
+          var job = res.data.data.subjects.job.subjects;
+          var qanda = res.data.data.subjects.qanda.subjects;
+
           // console.log(video)
           that.setState({
             isShow: object,
             total: totalNum,
-            videoData: video,
-            jobData: res.data.data.subjects.job,
-            qandaData: res.data.data.subjects.qanda
+            videoData: that.setNewDataSource(video),
+            jobData: that.setNewDataSource(job),
+            qandaData: that.setNewDataSource(qanda),
+            videoColumns: that.setColumns('视频'),
+            jobColumns: that.setColumns('招聘'),
+            qandaColumns: that.setColumns('问答')
           });
+          // console.log(videoData)
         }
       });
     }
