@@ -5,6 +5,7 @@ import React from 'react'
 import { Input } from 'antd';
 import { Button } from 'antd';
 import Content from '../qanda/qandaDetailContent';
+import Axios from '../../utils/axios.util'
 
 
 class Comment extends React.Component {
@@ -15,13 +16,10 @@ class Comment extends React.Component {
       data:[]
     }
   }
-
-
   render(){
     let CommentNodes = null
     // console.log(this.props)
     if(this.props.detailDatas){
-      console.log(this.props.detailDatas)
        CommentNodes= this.props.detailDatas.map((comment, index) => {
         return (
           <Content answer={comment}></Content>
@@ -45,20 +43,22 @@ class Comment extends React.Component {
     )
   }
 
+//点击回贴，调用父组件的方法重新获取数据，并渲染组件
   reply(){
-    console.log(this.refs.inputContent.refs.input.value);
-    Axios.post('/api/qanda/reply', {
+    // console.log(this.refs.inputContent.refs.input.value);s
+    var that = this
+    Axios.post(this.props.uri, {
       uid: 34, // 用户ID [数值：必填]
       qid: 10, // 问题id：[数值：必填]
       content: this.refs.inputContent.refs.input.value // 回帖内容：[字符串：必填]
     }, (res)=>{
-      console.log(res.data.data);
+      if(res.status == 200){
+        that.props.refreshGetData()
+      }
     })
   }
 
-  componentDidMount(){
-    // console.log(this.props)
-  }
+
 }
 
 export default Comment

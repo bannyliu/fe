@@ -4,7 +4,7 @@ import { Input } from 'antd';
 import { Button } from 'antd';
 import Axios from '../../utils/axios.util';
 
-import CommentCommon from '../common/Comment';
+import VideoComment from '../common/Comment';
 
 
 
@@ -25,7 +25,7 @@ class VideoDetail extends Component{
   };
 
   getData() {
-    Axios.post('/api/qanda/detail', {
+    Axios.post('/api/video/detail', {
       uid: 34,
       id: this.props.params.id
     }, (res)=>{
@@ -37,8 +37,6 @@ class VideoDetail extends Component{
 
     })
   };
-
-
   render(){
     return (
       <div className="videoDetailSection">
@@ -48,7 +46,7 @@ class VideoDetail extends Component{
             <img src="./images/Videodemo.jpg"/>
           </div>
         </div>
-        <CommentCommon  detailDatas={this.state.answers?this.state.answers:null}></CommentCommon>
+        <VideoComment  detailDatas={this.state.answers?this.state.answers:null} uri="api/video/qanda"></VideoComment>
       </div>
     )
   }
