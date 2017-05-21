@@ -22,6 +22,7 @@ import QandaAdd from './components/qanda/qandaAdd'
 //admin 后台
 import Admin from './components/admin/admin'
 import InterviewqList from './components/admin/interviewqList'
+import interviewqDetail from './components/job/interviewqDetail'
 import InterviewqAdd from './components/admin/interviewqAdd'
 import JList from './components/admin/jobList'
 import JAdd from './components/admin/jobAdd'
@@ -42,6 +43,7 @@ import Search from './components/search/search'
 //job 招聘
 
 import JobList from './components/job/jobList'
+import JobDetail from './components/job/JobDetail'
 // import QandaDetail from './components/qanda/qandaDetail'
 
 import Users from './components/users/Users'
@@ -79,9 +81,18 @@ ReactDOM.render((
           <Route path="add" component={QandaAdd}></Route>
         </Route>
 
-        {/* 招聘 job*/}
+        {/* 招聘 job + 面试题 interview*/}
         <Route path="job">
+          <IndexRedirect to="/job/list" />
           <Route path="list" component={JobList}></Route>
+          <Route path="detail/:id" component={JobDetail}></Route>
+          {/* <Route path="job/:id" component={QandaDetail}></Route> */}
+        </Route>
+
+        {/* 面试题 interview*/}
+        <Route path="interviewq">
+          <IndexRedirect to="/job/list" />
+          <Route path="detail/:id" component={interviewqDetail}></Route>
           {/* <Route path="job/:id" component={QandaDetail}></Route> */}
         </Route>
 

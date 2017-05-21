@@ -4,28 +4,8 @@ import { Link } from 'react-router';
 import { Table, Icon } from 'antd';
 import { Pagination } from 'antd';
 import Axios from '../../utils/axios.util';
+import tagFilter from '../../utils/tagFilter';
 
-// import ListContent from './ListContent'
-
-// const data = [{
-//   key: '1',
-//   title: 'Mongoose设置默认时间',
-//   author: '王大海',
-//   createDate: '20:50',
-//   action: '45/34',
-// }, {
-//   key: '2',
-//   title: 'Mongoose设置默认时间',
-//   author: '王大海',
-//   createDate: '20:50',
-//   action: '45/34',
-// }, {
-//   key: '3',
-//   title: 'Mongoose设置默认时间',
-//   author: '王大海',
-//   createDate: '20:50',
-//   action: 'hits/answers',
-// }];
 
 class qandaList extends React.Component {
   constructor(props) {
@@ -38,6 +18,7 @@ class qandaList extends React.Component {
       pagination:{
         pageSize:6
       },
+      current:1,
       columns : [{
         title: '主题',
         dataIndex: 'title',
@@ -61,71 +42,74 @@ class qandaList extends React.Component {
     ],
     };
 
-    // 获取数据
+    //调用方法获取数据
     this.getData({
       start: 0,
       count: 10
+    },(res)=>{
+      // console.log(res.data.data);
+      let listDa = this.dataProcessingFirst(res)
+      this.setState({
+        data: listDa,
+        filterData:listDa,
+        total:res.data.data.total
+      });
     });
 
   };
 
-  getData(mes) {
-    Axios.get('/api/qanda/list',mes, (res)=>{
-      // console.log(res.data.data);
-      var listData = res.data.data.subjects.map((comment, index) => {
-        return {
-          id: comment.id,
-          key: index,
-          title: comment.title,
-          author: comment.author,
-          tag:comment.tag,
-          createDate: comment.createDate,
-          action: comment.hits + '/' + comment.answers,
-        }
-      });
-      this.setState({
-        data: listData,
-        filterData:listData,
-        total:res.data.data.total
-      });
-      
-    })
+  dataProcessingFirst(res){
+    let listData = res.data.data.subjects.map((comment, index) => {
+      return {
+        id: comment.id,
+        key: index,
+        title: comment.title,
+        author: comment.author,
+        tag:comment.tag,
+        createDate: comment.createDate,
+        action: comment.hits + '/' + comment.answers,
+      }
+    });
+    return listData
+  }
+
+//获取数据
+  getData(mes,cb) {
+    Axios.get('/api/qanda/list',mes,cb)
   };
 
 //通过点击标签来改变table中的数据源
   changeTag(tag,id){
     // console.log(this.state.data[0].tag)
-    this.setState({
-      curTag:tag
-    })
     this.state.curTag = tag
-    this.dataProcessing()
-  }
+    this.getData({
+      condition:tag,
+      start: 0,
+      count: 10
+    },(res)=>{
+      // console.log(res.data.data);
+      var listDa = this.dataProcessingFirst(res)
+      var filterData = tagFilter.dataProcessing(listDa,tag)
+      this.setState({
+        data:listDa,
+        current:1,
+        curTag:tag,
+        filterData:filterData,
+        total:res.data.data.total
+      })
+    });
 
-  dataProcessing(){
-    let filterData = []
-    this.state.data.map((item,index)=>{
-      if(this.state.curTag=="所有分类"){
-        filterData.push(item)
-      }
-      else if(item.tag == this.state.curTag){
-        filterData.push(item)
-      }
-      return
-    })
-    this.setState({
-      filterData:filterData
-    })
-    console.log(filterData)
   }
-
+//分页更换数据
   pageChange(page){
     this.getData({
       start:page*this.state.count,
       count:this.state.count
     })
+    this.setState({
+      current:page
+    })
   }
-
 
 
   render() {
@@ -134,8 +118,8 @@ class qandaList extends React.Component {
       return (
         <li><i id={index} className={this.state.curTag==item.tag?"active":""} onClick={this.changeTag.bind(this,item.tag,index)}>{item.tag}</i></li>
       )
-
     })
+
     return (
       <div className="m-qanda-list">
         <div className="go-q">
@@ -151,7 +135,7 @@ class qandaList extends React.Component {
         </div>
         <div className="list">
           <Table columns={this.state.columns} dataSource={this.state.filterData} pagination={false}/>
-          <Pagination defaultCurrent={1} total={this.state.total?this.state.total:1}  onChange={this.pageChange.bind(this)} />
+          <Pagination defaultCurrent={1} total={this.state.total?this.state.total:1} current={this.state.current} onChange={this.pageChange.bind(this)} />
         </div>
       </div>
     )
