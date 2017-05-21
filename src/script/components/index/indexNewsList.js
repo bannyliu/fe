@@ -1,4 +1,5 @@
 import React,{Component} from 'react'
+import {hashHistory} from 'react-router'
 import IndexCommonTitle from './indexCommon'
 import AxiosUtils from '../../utils/axios.js'
 
@@ -9,12 +10,16 @@ class IndexNewsList extends Component{
       data:[{}]
     }
   }
+  push(id){
+    // hashHistory.push(`/${this.props.tabs}/detail/${id}`)
+    hashHistory.push(`/qanda/detail/${id}`)
+  }
   indexNewsList(list){
     return list.map((value,index)=>{
       if(index < 8)
       {
         return(
-          <div className="news_content_list">
+          <div className="news_content_list" onClick={this.push.bind(this,value.id)}>
           <p>{value.title}</p>
           <p className="news_content_time">{value.createDate}</p>
           <br />
@@ -44,7 +49,7 @@ class IndexNewsList extends Component{
         count:10
       },
       callback:function(res){
-        console.log(res)
+        // console.log(res)
         that.setState({
           data:res.data.data.subjects
         })
