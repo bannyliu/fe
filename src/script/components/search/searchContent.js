@@ -89,7 +89,7 @@ class SearchContent extends Component{
     }
 
 
-<<<<<<< HEAD
+
     axios.lgypost(
       {
         url:'mock/api/search',
@@ -100,18 +100,6 @@ class SearchContent extends Component{
           count:10
         },
         callback:function(res){
-=======
-    // axios.lgypost(
-    //   {
-    //     url:'/api/search',
-    //     method:'get',
-    //     data:{
-    //       query:query,
-    //       start:0,
-    //       count:10
-    //     },
-    //     callback:function(res){
->>>>>>> 1f7f2b3fd67ada299ca8c649a72214425df06611
           //total 总共内容数量的变化
           if(this.state.res.data){
 

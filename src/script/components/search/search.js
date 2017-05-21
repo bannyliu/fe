@@ -77,13 +77,8 @@ class SearchList extends Component{
         <div className="search_input">
           <Search
           ref='input'
-<<<<<<< HEAD
-          defaultValue={this.props.params.id}
-          onSearch={value => console.log(value)}
-=======
           defaultValue={this.state.searchBody}
           onSearch={value => this.getId.call(this)}
->>>>>>> 1f7f2b3fd67ada299ca8c649a72214425df06611
           prefix={<Icon type="search" style={{ fontSize: 27 }} />}
           suffix=''
           />

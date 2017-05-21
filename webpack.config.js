@@ -32,17 +32,11 @@ module.exports = {
           target: 'http://fengfan.applinzi.com',
            changeOrigin: true
          },
-<<<<<<< HEAD
         '/mock': {
           target: 'http://localhost:9000',
           pathRewrite: {'^/mock': ''}
-        },
-=======
-          '/mock': {
-            target: 'http://localhost:9000',
-            pathRewrite: {'^/mock': ''}
-          }
->>>>>>> 1f7f2b3fd67ada299ca8c649a72214425df06611
+        }
+
 //       '/nodejs': {
 //         target: 'http://localhost:9000',
 //         changeOrigin: true,
