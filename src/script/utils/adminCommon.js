@@ -45,7 +45,7 @@ export default {
             message.success(data.msg);
           }else{
             //删除失败
-            message.success('删除失败，请重试');
+            message.error('删除失败，请重试');
           }
         }
     let params = {

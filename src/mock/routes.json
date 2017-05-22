@@ -4,8 +4,8 @@
   "/api/video/detail": "/videodetail",
 
   "/api/video/add":"/videoadd",
-  "/api/video/update":"/videoupdate",
   "/api/video/remove":"/videoremove",
+  "/api/video/update":"/videoupdate",
 
   "/api/qanda/list": "/qandalist",
   "/api/qanda/detail": "/qandadetail",
@@ -14,23 +14,19 @@
   "/api/job/list": "/joblist",
   "/api/job/detail": "/jobdetail",
   "/api/job/reply": "/jobreply",
-  "/api/job/remove": "/interviewremove",
-  "/api/job/add": "/videoclassifyadd",
+  "/api/job/add": "/jobadd",
 
   "/api/interviewq/detail": "/interviewqdetail",
   "/api/interviewq/reply": "/interviewqreply",
 
 
-  "/api/video/add":"/videoclassifyadd",
-  "/api/video/update":"/videoclassifyadd",
-  "/api/video/remove":"/interviewremove",
-
   "/api/job/remove": "/jobremove",
   "/api/job/add": "/jobadd",
   "/api/job/update": "/jobupdate",
 
+
   "/api/interviewq/list": "/interviewqlist",
-  "/api/interviewq/remove":"/interviewremove",
+  "/api/interviewq/remove":"/interviewqremove",
   "/api/interviewq/add":"/interviewqadd",
   "/api/interviewq/update":"/interviewqupdate",
 

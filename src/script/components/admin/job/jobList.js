@@ -50,7 +50,7 @@ class recruitList extends Component{
 
   //招聘管理删除操作
   delete(id){
-    let uri = '/api/job/remove'
+    let uri = '/mock/api/job/remove'
     adminCommon.delete(id,uri)
   }
 

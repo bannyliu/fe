@@ -68,7 +68,7 @@ class VideoUpdate extends Component{
     }
 
     let params = {
-      url:'/api/video/update',
+      url:'/mock/api/video/update',
       method:'post',
       data:Qs.stringify(data),
       callback:callback

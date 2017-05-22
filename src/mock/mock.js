@@ -1,5 +1,3 @@
-
-
 var videoDetail = require('./video/videoDetails.json');
 var videoQanda = require('./video/videoqanda.json');
 

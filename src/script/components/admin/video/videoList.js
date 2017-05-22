@@ -50,7 +50,7 @@ class VideoList extends Component{
 
   //视频管理删除操作
   delete(id){
-    let uri = '/api/video/remove'
+    let uri = '/mock/api/video/remove'
     adminCommon.delete(id,uri)
   }
 

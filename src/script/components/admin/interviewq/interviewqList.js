@@ -51,7 +51,7 @@ class InterviewqList extends Component{
 
   //面试题管理删除操作
   delete(id){
-    let uri = '/api/interviewq/remove'
+    let uri = '/mock/api/interviewq/remove'
     adminCommon.delete(id,uri)
   }
 
