@@ -36,7 +36,8 @@ class VideoList extends Component{
         ),
         }
       ],
-      data:[]
+      data:[],
+      total:0
     }
   }
 
@@ -57,30 +58,12 @@ class VideoList extends Component{
   render(){
     return (
       <div className="m-videoList adList">
-        <List columns={this.state.columns} data={this.state.data} title={this.state.title}></List>
+        <List columns={this.state.columns} uri={"/mock/api/video/list"} title={this.state.title} total={this.state.total} ></List>
       </div>
     )
   }
 
-  componentDidMount(){
-    //请求视频管理列表数据
-    let callback = (res)=>{
-          let subjects = res.data.data.subjects
-          let data = []
-          subjects.map((value,index)=>{
-            data.push({
-              id:value.id,
-              name:value.title,
-              date:value.createDate
-            })
-            this.setState({
-              data:data
-            })
-          })
-    }
-    let uri='/api/video/list'
-    adminCommon.videoList(uri,callback)
-  }
+
 }
 
 export default VideoList

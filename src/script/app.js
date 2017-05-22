@@ -44,7 +44,7 @@ import Search from './components/search/search'
 
 
 //job 招聘
-
+import interviewqDetail from './components/job/interviewqDetail'
 import JobList from './components/job/jobList'
 import JobDetail from './components/job/JobDetail'
 // import QandaDetail from './components/qanda/qandaDetail'

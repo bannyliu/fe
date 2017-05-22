@@ -37,7 +37,8 @@ class InterviewqList extends Component{
         ),
         }
       ],
-      data:[]
+      data:[],
+      total:0
     }
   }
 
@@ -57,16 +58,11 @@ class InterviewqList extends Component{
   render(){
     return (
       <div className="m-interviewqList adList">
-        <List columns={this.state.columns} data={this.state.data} title={this.state.title}></List>
+        <List columns={this.state.columns} uri={"/api/interviewq/list"} title={this.state.title} total={this.state.total}></List>
       </div>
     )
   }
 
-  componentDidMount(){
-    //请求面试题管理列表数据
-    let uri='/api/interviewq/list'
-    adminCommon.list(uri,this)
-  }
 
 }
 

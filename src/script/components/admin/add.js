@@ -41,12 +41,13 @@ class Add extends Component{
     let uri = this.props.uri
 
     let callback = (res)=>{
-      console.log(res)
       let data = res.data.data
       if(data.status == "ok"){
-        message.success(data.msg)
         this.refs.title.value = ''
         this.refs.txt.refs.input.value = ''
+        message.success(data.msg,1,()=>{
+            this.props.jumpHandle()
+        })
       }else{
         message.error('提交失败，请重试')
       }
