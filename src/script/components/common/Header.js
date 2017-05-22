@@ -12,7 +12,7 @@ class Header extends Component {
     return (
       <div className="m-header">
         <div className="logo">
-          <img src="./images/logo.png" alt="锋帆logo"/>
+          <img src="./images/logo.png" alt=""/>
         </div>
         <ul className="nav">
           <li><Link to="/index/list" activeClassName="active">首页</Link></li>

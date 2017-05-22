@@ -34,6 +34,7 @@
   "/api/interviewq/add":"/interviewqadd",
   "/api/interviewq/update":"/interviewqupdate",
 
+
   "/api/classify/add":"/classifyadd",
   "/api/classify/list":"/classifylist",
   "/api/classify/remove":"/classifyremove",

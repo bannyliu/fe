@@ -5,8 +5,8 @@ class Footer extends Component {
     return (
       <div className="m-footer">
         <ul>
-          <li><img src="./images/qianfeng-logo.png" alt="千锋logo"/></li>
-          <li>关于千锋</li>
+          <li><img src="./images/ilogo.png" alt=""/></li>
+          <li>关于i学习</li>
           <li>联系我们</li>
           <li>企业合作</li>
           <li>招贤纳士</li>
@@ -16,7 +16,7 @@ class Footer extends Component {
           <li>技术论坛</li>
           <li>RSS订阅</li>
         </ul>
-        <p>Copyright 2011-2017 北京千锋互联科技有限公司 京ICP备12003911号-3 京公网安备11010802011455号</p>
+        <p>Copyright 2011-2017 京ICP备12003911号-3 京公网安备11010802011455号</p>
       </div>
     )
   }

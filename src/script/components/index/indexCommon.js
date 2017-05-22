@@ -3,7 +3,9 @@ import {hashHistory} from 'react-router'
 
 class IndexCommonTitle extends Component {
   go(path){
-    console.log(hashHistory)
+    if(path=='interviewq'){
+      path='qanda'
+    }
     hashHistory.push(`/${path}/list/`)
   }
   render(){
