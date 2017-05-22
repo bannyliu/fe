@@ -59,14 +59,7 @@ class SearchQanda extends Component{
     //   })
     // },10)
 
-    let title = this.props.title
-    if(title=='视频')
-    {
-
-    }
-    else {
-
-    }
+  
   }
 
 
