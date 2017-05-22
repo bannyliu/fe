@@ -22,12 +22,18 @@ export default {
             })
           })
     }
-    let params={}
+    let params={
+      start:0,
+      count:10
+    }
     axios.get(uri,params,callback)
   },
   //请求列表数据
   videoList:(uri,callback)=>{
-    let params={}
+    let params={
+      start:0,
+      count:6
+    }
     axios.get(uri,params,callback)
   },
   //删除操作
@@ -58,7 +64,7 @@ export default {
   },
   //请求分类数据
   classify:(that)=>{
-    let uri ='/api/classify/list'
+    let uri ='/mock/api/classify/list'
     let callback = (res)=>{
       let arr = []
       res.data.data.subjects.map((value,i)=>{
@@ -77,7 +83,7 @@ export default {
   },
   //请求阶段数据
   stage:(that)=>{
-    let uri ='/api/stage/list'
+    let uri ='/mock/api/stage/list'
     let callback = (res)=>{
       let arr = []
       res.data.data.subjects.map((value,i)=>{
@@ -96,7 +102,7 @@ export default {
   },
   //请求城市数据
   city:(that)=>{
-    let uri ='/api/city/list'
+    let uri ='/mock/api/city/list'
     let callback = (res)=>{
       let arr = []
       res.data.data.subjects.map((value,i)=>{

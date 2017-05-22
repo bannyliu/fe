@@ -72,7 +72,6 @@ module.exports = function () {
     'interviewqdetail':interviewqDetail,
     'interviewqreply':interviewqReply,
 
-
     'jobadd':jobAdd,
     'jobremove':jobRemove,
     'jobupdate':jobUpdate,

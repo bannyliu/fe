@@ -44,7 +44,6 @@ class VideoUpdate extends Component{
     let id = this.props.params.id
 
     let callback = (res)=>{
-      console.log(res)
       let data = res.data.data
       if(data.status == "ok"){
         //提交成功
@@ -150,7 +149,7 @@ class VideoUpdate extends Component{
             }
           })
     }
-    let uri='/api/video/list'
+    let uri='/mock/api/video/list'
     adminCommon.videoList(uri,callback)
   }
 }
