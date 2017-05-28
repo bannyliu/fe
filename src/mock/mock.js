@@ -48,6 +48,11 @@ var cityRemove = require('./city/cityRemove.json')
 
 var searchList = require('./search/searchList.json')
 
+var usersAdd = require('./users/usersAdd.json')
+var usersList = require('./users/usersList.json')
+var usersRemove = require('./users/usersRemove.json')
+var usersUpdate = require('./users/usersUpdate.json')
+
 module.exports = function () {
 
   return {
@@ -93,7 +98,12 @@ module.exports = function () {
     'cityadd':cityAdd,
     'cityremove':cityRemove,
 
-    'search':searchList
+    'search':searchList,
+
+    'usersadd':usersAdd,
+    'userslist':usersList,
+    'usersremove':usersRemove,
+    'usersupdate':usersUpdate
 
   }
 }

@@ -2,17 +2,17 @@ import React,{Component} from 'react'
 import List from '../list'
 import adminCommon from '../../../utils/adminCommon'
 
-class recruitList extends Component{
+class UserList extends Component{
   constructor(props){
     super(props)
     this.state={
       pagination:{
         pageSize:4
       },
-      title:"招聘管理/内容列表",
+      title:"用户管理/用户列表",
       columns:[
         {
-        title: '标题',
+        title: '用户名',
         dataIndex: 'name',
         key: 'name',
         width:304,
@@ -41,30 +41,30 @@ class recruitList extends Component{
     }
   }
 
-  //招聘管理修改操作
-  update(id){
-    this.props.router.push(`/admin/job/update/${id}`)
+  //用户管理修改操作
+  update(uid){
+    this.props.router.push(`/admin/users/update/${uid}`)
   }
 
 
 
-  //招聘管理删除操作
+  //用户管理删除操作
   delete(id){
-    let uri = '/api/job/remove'
-    let tag = 'job'
-    adminCommon.delete(id,uri,job)
+    let uri = '/api/users/remove'
+    let tag = 'users'
+    adminCommon.delete(id,uri,tag)
   }
 
 
   render(){
     return (
-      <div className="m-jobList adList">
-        <List columns={this.state.columns} uri={"/api/job/list"} title={this.state.title}
-        total={this.state.total} tag={"job"}></List>
+      <div className="m-usersList adList">
+        <List columns={this.state.columns} uri={"/api/users/list"} title={this.state.title}
+        total={this.state.total} tag={"users"}></List>
       </div>
     )
   }
 
 }
 
-export default recruitList
+export default UserList

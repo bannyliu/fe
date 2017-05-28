@@ -51,14 +51,15 @@ class VideoList extends Component{
   //视频管理删除操作
   delete(id){
     let uri = '/api/video/remove'
-    adminCommon.delete(id,uri)
+    let tag = 'video'
+    adminCommon.delete(id,uri,tag)
   }
 
 
   render(){
     return (
       <div className="m-videoList adList">
-        <List columns={this.state.columns} uri={"/mock/api/video/list"} title={this.state.title} total={this.state.total} ></List>
+        <List columns={this.state.columns} uri={"/api/video/list"} title={this.state.title} total={this.state.total} tag={"video"}></List>
       </div>
     )
   }

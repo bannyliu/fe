@@ -23,7 +23,7 @@
   "/api/job/update": "/jobupdate",
 
   "/api/interviewq/list": "/interviewqlist",
-  "/api/interviewq/remove":"/interviewremove",
+  "/api/interviewq/remove":"/interviewqremove",
   "/api/interviewq/add":"/interviewqadd",
   "/api/interviewq/update":"/interviewqupdate",
 
@@ -40,6 +40,11 @@
   "/api/city/add":"/cityadd",
   "/api/city/remove":"/cityremove",
 
-  "/api/search":"/search"
+  "/api/search":"/search",
+
+  "/api/users/add":"/usersadd",
+  "/api/users/list":"/userslist",
+  "/api/users/remove":"/usersremove",
+  "/api/users/update":"/usersupdate"
 
 }

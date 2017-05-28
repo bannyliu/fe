@@ -32,7 +32,7 @@ class Update extends Component{
 
   }
 
-  //添加操作
+  //修改操作
   update(){
     let id = this.props.id
     let title = this.refs.title.value
@@ -40,17 +40,14 @@ class Update extends Component{
     let uri = this.props.uriUpdate
     let tag = this.props.tag//区分招聘和面试题(发送数据不同)
     let callback = (res)=>{
-      console.log(res)
       let data = res.data.data
-      // if(data.status == "ok"){
-      //   message.success(data.msg,1,()=>{
-      //       this.props.jumpHandle()
-      //   })
-      //   this.refs.title.value = ''
-      //   this.refs.txt.refs.input.value = ''
-      // }else{
-      //   message.error('提交失败，请重试')
-      // }
+      if(data.status == "ok"){
+        message.success(data.msg,1,()=>{
+          this.props.jumpHandle()
+        })
+      }else{
+        message.error('提交失败，请重试')
+      }
     }
 
 
