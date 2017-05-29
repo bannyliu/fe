@@ -13,12 +13,9 @@ class UserUpdate extends Component{
   constructor(props){
     super(props)
     this.state={
-      size:{
-        size:'default'
-      },
-      roles:[],
-      rolesValue:'',
-      options:[]
+      // roles:[],
+      // rolesValue:'',
+      // options:[]
     }
   }
 
@@ -29,7 +26,7 @@ class UserUpdate extends Component{
     let username = this.refs.username.value//用户名
     let pwd = this.refs.pwd.value//用户密码
     let email = this.refs.email.value//email
-    let roles = this.state.rolesValue//用户角色
+    // let roles = this.state.rolesValue//用户角色
 
     let callback = (res)=>{
       let data = res.data.data
@@ -48,29 +45,33 @@ class UserUpdate extends Component{
       uid:id,
       username:username,
       password:pwd,
-      roles:roles,
+      // roles:roles,
       email:email
     }
     let params = {
-      url:'/mock/api/users/update',
-      method:'get',
+      url:'/api/users/update',
+      method:'post',
       data:Qs.stringify(data),
       callback:callback
     }
-    if(!roles || !pwd){
+    // if(!roles || !pwd){
+    if(!pwd){
       message.warning('请填写完整')
     }else{
         axios.lgypost(params)
     }
   }
 
-  onChange(value){
-    let roles = value.join('-')
-    this.setState({
-      rolesValue:roles
-    })
-  }
+  // onChange(value){
+  //   let roles = value.join('-')
+  //   this.setState({
+  //     rolesValue:roles
+  //   })
+  // }
 
+  // <div className="user">
+  //   <Cascader options={this.state.options} onChange={this.onChange.bind(this)} placeholder="请选择角色" />
+  // </div>
   render(){
     return (
       <div className="m-userAdd">
@@ -82,9 +83,6 @@ class UserUpdate extends Component{
             </div>
             <div className="password">
               <input type="text" placeholder="用户密码" ref="pwd"/>
-            </div>
-            <div className="user">
-              <Cascader options={this.state.options} onChange={this.onChange.bind(this)} placeholder="请选择角色" />
             </div>
             <div className="email">
               <input type="text" placeholder="email" ref="email"/>
@@ -98,57 +96,57 @@ class UserUpdate extends Component{
 
   componentDidMount(){
 
-    let uri = '/api/stage/list'
-    let callback = (res)=>{
-      let data = res.data.data.subjects
-      let arr = []
-      data.map((value,index)=>{
-        arr.push({
-          value:value.id,
-          label:value.title
-        })
-      })
-      let options = [
-        {
-          value: '0',
-          label: '管理员',
-        },
-        {
-          value: '1',
-          label: '讲师',
-        },
-        {
-          value: '2',
-          label: '学员',
-          children: [
-            {
-             value: '1',
-             label: '未毕业学员',
-             children:arr
-            },
-            {
-             value: '2',
-             label: '已毕业学员',
-             children:[
-               {
-                 value:'1',
-                 label:'已过试用期',
-               },
-               {
-                 value:'2',
-                 label:'未过试用期',
-               }
-             ]
-            }
-         ]
-        }
-      ]
-      this.setState({
-        options:options
-      })
-    }
-    let params = {}
-    axios.get(uri,params,callback)
+    // let uri = '/api/stage/list'
+    // let callback = (res)=>{
+    //   let data = res.data.data.subjects
+    //   let arr = []
+    //   data.map((value,index)=>{
+    //     arr.push({
+    //       value:value.id,
+    //       label:value.title
+    //     })
+    //   })
+    //   let options = [
+    //     {
+    //       value: '0',
+    //       label: '管理员',
+    //     },
+    //     {
+    //       value: '1',
+    //       label: '讲师',
+    //     },
+    //     {
+    //       value: '2',
+    //       label: '学员',
+    //       children: [
+    //         {
+    //          value: '1',
+    //          label: '未毕业学员',
+    //          children:arr
+    //         },
+    //         {
+    //          value: '2',
+    //          label: '已毕业学员',
+    //          children:[
+    //            {
+    //              value:'1',
+    //              label:'已过试用期',
+    //            },
+    //            {
+    //              value:'2',
+    //              label:'未过试用期',
+    //            }
+    //          ]
+    //         }
+    //      ]
+    //     }
+    //   ]
+    //   this.setState({
+    //     options:options
+    //   })
+    // }
+    // let params = {}
+    // axios.get(uri,params,callback)
 
     let id = this.props.params.id
 

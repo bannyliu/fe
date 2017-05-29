@@ -47,7 +47,7 @@ class VideoUpdate extends Component{
       let data = res.data.data
       if(data.status == "ok"){
         //提交成功
-        message.success('提交成功',1,()=>{
+        message.success(data.msg,1,()=>{
           this.props.router.push("/admin/video/list")
         })
       }else{

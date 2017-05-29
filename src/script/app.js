@@ -38,9 +38,9 @@ import Classify from './components/admin/management/Classify'
 import Stage from './components/admin/management/stage'
 import City from './components/admin/management/city'
 
-import UserAdd from './components/admin/user/userAdd'
-import UserList from './components/admin/user/userList'
-import UserUpdate from './components/admin/user/userUpdate'
+import UserAdd from './components/admin/users/userAdd'
+import UserList from './components/admin/users/userList'
+import UserUpdate from './components/admin/users/userUpdate'
 
 //search 搜索
 import Search from './components/search/search'
@@ -112,10 +112,10 @@ ReactDOM.render((
 
       {/* 后台管理 admin*/}
       <Router path="admin" component={Admin}>
-        <IndexRedirect to="/admin/user" />
+        <IndexRedirect to="/admin/users" />
         {/* 用户管理 */}
         <Route path="users">
-          <IndexRedirect to="/admin/user/list" />
+          <IndexRedirect to="/admin/users/list" />
           <Route path="list" component={UserList}></Route>
           <Route path="add" component={UserAdd}></Route>
           <Route path="update/:id" component={UserUpdate}></Route>

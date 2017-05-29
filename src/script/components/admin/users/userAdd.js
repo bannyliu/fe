@@ -13,12 +13,9 @@ class UserAdd extends Component{
   constructor(props){
     super(props)
     this.state={
-      size:{
-        size:'default'
-      },
-      roles:[],
-      rolesValue:'',
-      options:[]
+      // roles:[],
+      // rolesValue:'',
+      // options:[]
     }
   }
 
@@ -28,7 +25,7 @@ class UserAdd extends Component{
     let username = this.refs.username.value//用户名
     let pwd = this.refs.pwd.value//用户密码
     let email = this.refs.email.value//email
-    let roles = this.state.rolesValue//用户角色
+    // let roles = this.state.rolesValue//用户角色
 
     let callback = (res)=>{
       let data = res.data.data
@@ -49,7 +46,7 @@ class UserAdd extends Component{
     let data = {
       username:username,
       password:pwd,
-      roles:roles,
+      // roles:roles,
       email:email
     }
     let params = {
@@ -70,7 +67,8 @@ class UserAdd extends Component{
           isHas = true
         }
       })
-      if(!username  || !roles || !pwd){
+      // if(!username  || !roles || !pwd){
+      if(!username  || !pwd){
         message.warning('请填写完整')
       }else if(isHas){
         message.warning('用户名已存在')
@@ -81,13 +79,17 @@ class UserAdd extends Component{
     axios.get(uri,pas,cb)
   }
 
-  onChange(value){
-    let roles = value.join('-')
-    this.setState({
-      rolesValue:roles
-    })
-  }
+  // onChange(value){
+  //   let roles = value.join('-')
+  //   this.setState({
+  //     rolesValue:roles
+  //   })
+  // }
 
+
+  // <div className="user">
+  //   <Cascader options={this.state.options} onChange={this.onChange.bind(this)} placeholder="请选择角色" />
+  // </div>
   render(){
     return (
       <div className="m-userAdd">
@@ -99,9 +101,6 @@ class UserAdd extends Component{
             </div>
             <div className="password">
               <input type="text" placeholder="用户密码" ref="pwd" disabled="disabled"/>
-            </div>
-            <div className="user">
-              <Cascader options={this.state.options} onChange={this.onChange.bind(this)} placeholder="请选择角色" />
             </div>
             <div className="email">
               <input type="text" placeholder="email" ref="email"/>
@@ -115,57 +114,57 @@ class UserAdd extends Component{
 
   componentDidMount(){
 
-    let uri = '/mock/api/stage/list'
-    let callback = (res)=>{
-      let data = res.data.data.subjects
-      let arr = []
-      data.map((value,index)=>{
-        arr.push({
-          value:value.id,
-          label:value.title
-        })
-      })
-      let options = [
-        {
-          value: '0',
-          label: '管理员',
-        },
-        {
-          value: '1',
-          label: '讲师',
-        },
-        {
-          value: '2',
-          label: '学员',
-          children: [
-            {
-             value: '1',
-             label: '未毕业学员',
-             children:arr
-            },
-            {
-             value: '2',
-             label: '已毕业学员',
-             children:[
-               {
-                 value:'1',
-                 label:'已过试用期',
-               },
-               {
-                 value:'2',
-                 label:'未过试用期',
-               }
-             ]
-            }
-         ]
-        }
-      ]
-      this.setState({
-        options:options
-      })
-    }
-    let params = {}
-    axios.get(uri,params,callback)
+    // let uri = '/mock/api/stage/list'
+    // let callback = (res)=>{
+      // let data = res.data.data.subjects
+      // let arr = []
+      // data.map((value,index)=>{
+      //   arr.push({
+      //     value:value.id,
+      //     label:value.title
+      //   })
+      // })
+      // let options = [
+      //   {
+      //     value: '0',
+      //     label: '管理员',
+      //   },
+      //   {
+      //     value: '1',
+      //     label: '讲师',
+      //   },
+      //   {
+      //     value: '2',
+      //     label: '学员',
+      //     children: [
+      //       {
+      //        value: '1',
+      //        label: '未毕业学员',
+      //        children:arr
+      //       },
+      //       {
+      //        value: '2',
+      //        label: '已毕业学员',
+      //        children:[
+      //          {
+      //            value:'1',
+      //            label:'已过试用期',
+      //          },
+      //          {
+      //            value:'2',
+      //            label:'未过试用期',
+      //          }
+      //        ]
+      //       }
+      //    ]
+      //   }
+      // ]
+      // this.setState({
+      //   options:options
+      // })
+    // }
+    // let params = {}
+    // axios.get(uri,params,callback)
 
 
     let chars = "abcdefghijkmnpqrstuvwxyzABCDEFGHJKMNPQRSTUVWXYZ23456789"

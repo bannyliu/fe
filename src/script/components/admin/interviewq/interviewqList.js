@@ -51,7 +51,7 @@ class InterviewqList extends Component{
 
   //面试题管理删除操作
   delete(id){
-    let uri = '/mock/api/interviewq/remove'
+    let uri = '/api/interviewq/remove'
     let tag = 'interviewq'
     adminCommon.delete(id,uri,tag)
   }
@@ -59,7 +59,7 @@ class InterviewqList extends Component{
   render(){
     return (
       <div className="m-interviewqList adList">
-        <List columns={this.state.columns} uri={"/mock/api/interviewq/list"} title={this.state.title} total={this.state.total} tag={"interviewq"}></List>
+        <List columns={this.state.columns} uri={"/api/interviewq/list"} title={this.state.title} total={this.state.total} tag={"interviewq"}></List>
       </div>
     )
   }
