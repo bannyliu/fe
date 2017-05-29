@@ -25,7 +25,6 @@ class UserUpdate extends Component{
     let id = this.props.params.id
     let username = this.refs.username.value//用户名
     let pwd = this.refs.pwd.value//用户密码
-    let email = this.refs.email.value//email
     // let roles = this.state.rolesValue//用户角色
 
     let callback = (res)=>{
@@ -45,8 +44,7 @@ class UserUpdate extends Component{
       uid:id,
       username:username,
       password:pwd,
-      // roles:roles,
-      email:email
+      // roles:roles
     }
     let params = {
       url:'/api/users/update',
@@ -83,9 +81,6 @@ class UserUpdate extends Component{
             </div>
             <div className="password">
               <input type="text" placeholder="用户密码" ref="pwd"/>
-            </div>
-            <div className="email">
-              <input type="text" placeholder="email" ref="email"/>
             </div>
             <button className="subBtn"  onClick={this.submit.bind(this)}>提交</button>
           </div>
@@ -156,9 +151,6 @@ class UserUpdate extends Component{
         if(value.uid == id){
           this.refs.username.value = value.username
           this.refs.pwd.value = value.password
-          if(value.email){
-            this.refs.email.value = value.email
-          }
         }
       })
     }

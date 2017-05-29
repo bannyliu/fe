@@ -24,7 +24,6 @@ class UserAdd extends Component{
 
     let username = this.refs.username.value//用户名
     let pwd = this.refs.pwd.value//用户密码
-    let email = this.refs.email.value//email
     // let roles = this.state.rolesValue//用户角色
 
     let callback = (res)=>{
@@ -34,7 +33,6 @@ class UserAdd extends Component{
         message.success(data.msg,1,()=>{
           this.refs.username.value = ''
           this.refs.pwd.value = '',
-          this.refs.email.value = ''
           this.props.router.push('/admin/users/list')
         })
       }else{
@@ -46,8 +44,7 @@ class UserAdd extends Component{
     let data = {
       username:username,
       password:pwd,
-      // roles:roles,
-      email:email
+      // roles:roles
     }
     let params = {
       url:'/api/users/add',
@@ -101,9 +98,6 @@ class UserAdd extends Component{
             </div>
             <div className="password">
               <input type="text" placeholder="用户密码" ref="pwd" disabled="disabled"/>
-            </div>
-            <div className="email">
-              <input type="text" placeholder="email" ref="email"/>
             </div>
             <button className="subBtn"  onClick={this.submit.bind(this)}>提交</button>
           </div>
